@@ -1,0 +1,61 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<h1 class="my-8 text-4xl font-extrabold tracking-tight text-gray-900">{{ center.name }}</h1>
+
+<!-- Pictures -->
+<div>
+    <img class="h-72" src="{{ center.image.url }}" alt="{{ center.name }}">
+</div>
+
+
+<div class="flex space-between gap-x-24 my-8">
+    <div class="description-container">
+        <h2 class="text-xl font-bold tracking-tight text-gray-900">{{ center.center_type | title }} Facility</h2>
+        <h2 class="text-xl font-medium tracking-tight text-gray-900">{{ center.address }}</h2>
+        <p class="mt-2 text-gray-600 dark:text-gray-400">10 beds available • 120 beds total • 4.3 / 5 • 54 reviews</p>
+        <p class="mt-2 text-gray-600 dark:text-gray-400">Accessible, dog-friendly, waterfront A-line with breathtaking
+            views only 50 ft from lake. Stepless entry/shower, elevator. Newly renovated & stylishly furnished w/ 4
+            bedrooms, 3 full bathrooms, hot tub, sauna, gourmet kitchen, 12 person custom dining table, coffee bar,
+            fireplace, game room w/ billiards/foosball/arcade, many outdoor games, 3 outdoor decks, Big Green Egg grill,
+            fire pit, fire table, hammocks, many types of boats, fishing poles, work desk, high speed WiFi, 5 Smart
+            TV’s, EV charger.</p>
+    </div>
+    <div class="reserve-container">
+        <div
+            class="w-72 p-4 bg-white border border-gray-200 rounded-lg shadow ">
+            <form class="space-y-6" action="#">
+                <h5 class="text-xl font-medium text-gray-900 dark:text-white">$4,000 week</h5>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Check-in</label>
+                    <div class="relative max-w-sm">
+                        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                          <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                          </svg>
+                        </div>
+                        <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                      </div>
+                </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Checkout</label>
+                    <div class="relative max-w-sm">
+                        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                          <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                          </svg>
+                        </div>
+                        <input datepicker type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                      </div>
+                </div>
+                
+                <button type="submit"
+                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Reserve</button>
+            </form>
+        </div>
+
+    </div>
+
+
+    {% endblock %}

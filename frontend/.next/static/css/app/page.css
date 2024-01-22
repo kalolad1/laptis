@@ -1,0 +1,189 @@
+/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[3]!./app/components/home/center_card.module.css ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************/
+.center_card_card__GwIRN {
+    background-color: var(--mantine-color-white);
+  }
+    [data-mantine-color-scheme='dark'] .center_card_card__GwIRN {
+    background-color: var(--mantine-color-dark-7);
+}
+  
+  .center_card_section__hgrDa {
+    border-bottom: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-gray-3);
+  }
+  
+  [data-mantine-color-scheme='dark'] .center_card_section__hgrDa {
+    border-bottom: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-dark-4);
+}
+  
+  .center_card_section__hgrDa {
+    padding-left: var(--mantine-spacing-md);
+    padding-right: var(--mantine-spacing-md);
+    padding-bottom: var(--mantine-spacing-md);
+}
+  
+  .center_card_like___SF5V {
+    color: var(--mantine-color-red-6);
+    width: calc(1.25rem * var(--mantine-scale));
+    height: calc(1.25rem * var(--mantine-scale));
+  }
+  
+  .center_card_label__IalFO {
+    text-transform: uppercase;
+    font-size: var(--mantine-font-size-xs);
+    font-weight: 700;
+  }
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[3]!./app/components/home/second_navbar.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
+.second_navbar_header__nv_ab {
+  background-color: var(--mantine-color-body);
+  border-bottom: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-gray-3);
+}
+  [data-mantine-color-scheme='dark'] .second_navbar_header__nv_ab {
+  border-bottom: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-dark-4);
+}
+
+.second_navbar_inner__CZtBf {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.second_navbar_link__J6uTk {
+  display: block;
+  line-height: 1;
+  padding: calc(0.5rem * var(--mantine-scale)) calc(0.75rem * var(--mantine-scale));
+  border-radius: var(--mantine-radius-sm);
+  text-decoration: none;
+  color: var(--mantine-color-gray-7);
+}
+
+[data-mantine-color-scheme='dark'] .second_navbar_link__J6uTk {
+  color: var(--mantine-color-dark-0);
+}
+
+.second_navbar_link__J6uTk {
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
+}
+
+@media (hover: hover) {
+  .second_navbar_link__J6uTk:hover {
+    background-color: var(--mantine-color-gray-0);
+  }
+    [data-mantine-color-scheme='dark'] .second_navbar_link__J6uTk:hover {
+    background-color: var(--mantine-color-dark-6);
+  }
+}
+
+@media (hover: none) {
+  .second_navbar_link__J6uTk:active {
+    background-color: var(--mantine-color-gray-0);
+  }
+    [data-mantine-color-scheme='dark'] .second_navbar_link__J6uTk:active {
+    background-color: var(--mantine-color-dark-6);
+  }
+}
+
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[3]!./app/components/home/HeaderMegaMenu.module.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************/
+.HeaderMegaMenu_header__NV1Jx {
+  height: calc(3.75rem * var(--mantine-scale));
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+  border-bottom: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-gray-3);
+}
+  [data-mantine-color-scheme='dark'] .HeaderMegaMenu_header__NV1Jx {
+  border-bottom: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-dark-4);
+}
+
+.HeaderMegaMenu_link__dBYQ7 {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+  text-decoration: none;
+  color: var(--mantine-color-black);
+}
+
+[data-mantine-color-scheme='dark'] .HeaderMegaMenu_link__dBYQ7 {
+  color: var(--mantine-color-white);
+}
+
+.HeaderMegaMenu_link__dBYQ7 {
+  font-weight: 500;
+  font-size: var(--mantine-font-size-sm);
+}
+
+@media (max-width: 48em) {
+
+.HeaderMegaMenu_link__dBYQ7 {
+    height: calc(2.625rem * var(--mantine-scale));
+    width: 100%
+}
+  }
+
+@media (hover: hover) {
+  .HeaderMegaMenu_link__dBYQ7:hover {
+    background-color: var(--mantine-color-gray-0);
+  }
+    [data-mantine-color-scheme='dark'] .HeaderMegaMenu_link__dBYQ7:hover {
+    background-color: var(--mantine-color-dark-6);
+  }
+}
+
+@media (hover: none) {
+  .HeaderMegaMenu_link__dBYQ7:active {
+    background-color: var(--mantine-color-gray-0);
+  }
+    [data-mantine-color-scheme='dark'] .HeaderMegaMenu_link__dBYQ7:active {
+    background-color: var(--mantine-color-dark-6);
+  }
+}
+
+.HeaderMegaMenu_subLink__Cm4yy {
+  width: 100%;
+  padding: var(--mantine-spacing-xs) var(--mantine-spacing-md);
+  border-radius: var(--mantine-radius-md);
+}
+
+@media (hover: hover) {
+  .HeaderMegaMenu_subLink__Cm4yy:hover {
+    background-color: var(--mantine-color-gray-0);
+  }
+    [data-mantine-color-scheme='dark'] .HeaderMegaMenu_subLink__Cm4yy:hover {
+    background-color: var(--mantine-color-dark-7);
+  }
+}
+
+@media (hover: none) {
+  .HeaderMegaMenu_subLink__Cm4yy:active {
+    background-color: var(--mantine-color-gray-0);
+  }
+    [data-mantine-color-scheme='dark'] .HeaderMegaMenu_subLink__Cm4yy:active {
+    background-color: var(--mantine-color-dark-7);
+  }
+}
+
+.HeaderMegaMenu_dropdownFooter__hfpSd {
+  background-color: var(--mantine-color-gray-0);
+}
+
+[data-mantine-color-scheme='dark'] .HeaderMegaMenu_dropdownFooter__hfpSd {
+  background-color: var(--mantine-color-dark-7);
+}
+
+.HeaderMegaMenu_dropdownFooter__hfpSd {
+  margin: calc(var(--mantine-spacing-md) * -1);
+  margin-top: var(--mantine-spacing-sm);
+  padding: var(--mantine-spacing-md) calc(var(--mantine-spacing-md) * 2);
+  padding-bottom: var(--mantine-spacing-xl);
+  border-top: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-gray-1);
+}
+
+[data-mantine-color-scheme='dark'] .HeaderMegaMenu_dropdownFooter__hfpSd {
+  border-top: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-dark-5);
+}

@@ -1,0 +1,17 @@
+# Django
+__pycache__/
+
+# Environments
+venv/
+
+# mypy
+.mypy_cache/
+
+# VSCODE
+.vscode
+
+# Database
+database
+
+# Node
+node_modules/
