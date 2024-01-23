@@ -15,3 +15,6 @@ database
 
 # Node
 node_modules/
+
+# Next
+.next/
