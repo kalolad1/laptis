@@ -101,16 +101,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "(ssr)/./node_modules/@tabler/icons-react/dist/esm/icons/IconHeart.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@tabler/icons-react/dist/esm/icons/IconHeart.js ***!
-  \**********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ IconHeart)\n/* harmony export */ });\n/* harmony import */ var _createReactComponent_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../createReactComponent.js */ \"(ssr)/./node_modules/@tabler/icons-react/dist/esm/createReactComponent.js\");\n/**\n * @tabler/icons-react v2.45.0 - MIT\n */\n\n\n\nvar IconHeart = (0,_createReactComponent_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(\"heart\", \"IconHeart\", [\n  [\n    \"path\",\n    {\n      d: \"M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572\",\n      key: \"svg-0\"\n    }\n  ]\n]);\n\n\n//# sourceMappingURL=IconHeart.js.map\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9ub2RlX21vZHVsZXMvQHRhYmxlci9pY29ucy1yZWFjdC9kaXN0L2VzbS9pY29ucy9JY29uSGVhcnQuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQTtBQUNBO0FBQ0E7O0FBRThEOztBQUU5RCxnQkFBZ0Isb0VBQW9CO0FBQ3BDO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7O0FBRWdDO0FBQ2hDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbWFudGluZS1uZXh0LXRlbXBsYXRlLy4vbm9kZV9tb2R1bGVzL0B0YWJsZXIvaWNvbnMtcmVhY3QvZGlzdC9lc20vaWNvbnMvSWNvbkhlYXJ0LmpzPzIzNDUiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBAdGFibGVyL2ljb25zLXJlYWN0IHYyLjQ1LjAgLSBNSVRcbiAqL1xuXG5pbXBvcnQgY3JlYXRlUmVhY3RDb21wb25lbnQgZnJvbSAnLi4vY3JlYXRlUmVhY3RDb21wb25lbnQuanMnO1xuXG52YXIgSWNvbkhlYXJ0ID0gY3JlYXRlUmVhY3RDb21wb25lbnQoXCJoZWFydFwiLCBcIkljb25IZWFydFwiLCBbXG4gIFtcbiAgICBcInBhdGhcIixcbiAgICB7XG4gICAgICBkOiBcIk0xOS41IDEyLjU3MmwtNy41IDcuNDI4bC03LjUgLTcuNDI4YTUgNSAwIDEgMSA3LjUgLTYuNTY2YTUgNSAwIDEgMSA3LjUgNi41NzJcIixcbiAgICAgIGtleTogXCJzdmctMFwiXG4gICAgfVxuICBdXG5dKTtcblxuZXhwb3J0IHsgSWNvbkhlYXJ0IGFzIGRlZmF1bHQgfTtcbi8vIyBzb3VyY2VNYXBwaW5nVVJMPUljb25IZWFydC5qcy5tYXBcbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(ssr)/./node_modules/@tabler/icons-react/dist/esm/icons/IconHeart.js\n");
-
-/***/ }),
-
 /***/ "(ssr)/./node_modules/@tabler/icons-react/dist/esm/icons/IconReceipt.js":
 /*!************************************************************************!*\
   !*** ./node_modules/@tabler/icons-react/dist/esm/icons/IconReceipt.js ***!

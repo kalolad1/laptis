@@ -46,6 +46,10 @@ import {
                 <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>{child}</Grid.Col>
                 <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>{child}</Grid.Col>
                 <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>{child}</Grid.Col>
+                <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>{child}</Grid.Col>
+                <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>{child}</Grid.Col>
+                <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>{child}</Grid.Col>
+                <Grid.Col span={{ base: 12, md: 6, lg: 3 }}>{child}</Grid.Col>
             </Grid>
         </Container>
     );
