@@ -31,6 +31,8 @@ python backend/manage.py test core
 pip freeze > backend/requirements.txt
 
 # Frontend
+cd frontend
+npm run lint -- --fix
 
 git add -A
 git commit -m "$1"

@@ -1,6 +1,5 @@
 'use client';
 
-
 import {
   Image,
   HoverCard,
@@ -19,10 +18,11 @@ import {
   Collapse,
   ScrollArea,
   rem,
+  ActionIcon,
   useMantineTheme,
   TextInput
 } from '@mantine/core';
-import { IconSearch } from '@tabler/icons-react';
+import { IconSearch, IconArrowRight } from '@tabler/icons-react';
 import { MantineLogo } from '@mantinex/mantine-logo';
 import { useDisclosure } from '@mantine/hooks';
 import {
@@ -92,7 +92,20 @@ export function HeaderMegaMenu() {
               Laptis
             </Text>
           </Group>
-
+          <Group>
+            <TextInput
+              radius="xl"
+              size="md"
+              placeholder="Search questions"
+              rightSectionWidth={42}
+              leftSection={<IconSearch style={{ width: rem(18), height: rem(18) }} stroke={1.5} />}
+              rightSection={
+                <ActionIcon size={32} radius="xl" color={theme.primaryColor} variant="filled">
+                  <IconArrowRight style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
+                </ActionIcon>
+              }
+            />
+          </Group>
           <Group visibleFrom="sm">
             <Button variant="default">Log in</Button>
             <Button>Sign up</Button>
