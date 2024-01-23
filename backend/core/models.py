@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 
+from typing import List
+
 
 class UserManager(BaseUserManager):
     """Define a model manager for User model with no username field."""
@@ -43,7 +45,7 @@ class User(AbstractUser):
     email = models.EmailField("email address", unique=True)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS: List[str] = []
 
     objects = UserManager()
 

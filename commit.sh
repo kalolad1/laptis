@@ -19,15 +19,18 @@ if [ $# -eq 0 ]; then
 fi
 
 trap alert_failure ERR
+
 # Backend
 black . --preview 
-flake8 . --config .flake8
-mypy --config-file mypy.ini -p laptis
-python manage.py collectstatic --noinput
-python manage.py makemigrations
-python manage.py migrate
-python manage.py test core
-pip freeze > ./requirements.txt
+flake8 backend --config backend/.flake8
+mypy --config-file backend/mypy.ini -p backend.core
+python backend/manage.py collectstatic --noinput
+python backend/manage.py makemigrations
+python backend/manage.py migrate
+python backend/manage.py test core
+pip freeze > backend/requirements.txt
+
+# Frontend
 
 git add -A
 git commit -m "$1"
