@@ -1,21 +1,20 @@
-'use client';
+'use client'
 
 import {
   Image,
   Group,
   Button,
-  Box,
   rem,
   ActionIcon,
   useMantineTheme,
   TextInput,
   Container
-} from '@mantine/core';
-import { IconSearch, IconArrowRight } from '@tabler/icons-react';
-import classes from './main_navbar.module.css';
+} from '@mantine/core'
+import { IconSearch, IconArrowRight } from '@tabler/icons-react'
+import classes from './main_navbar.module.css'
 
-export function MainNavbar() {
-  const theme = useMantineTheme();
+export function MainNavbar (): any {
+  const theme = useMantineTheme()
 
   return (
     <Container className={classes.container}>
@@ -23,8 +22,8 @@ export function MainNavbar() {
           <Group>
             <Image
               src="/logo.png"
-              width={50}
-              height={50}
+              width={40}
+              height={40}
             />
           </Group>
           <Group>
@@ -47,5 +46,5 @@ export function MainNavbar() {
           </Group>
         </Group>
     </Container>
-  );
+  )
 }
