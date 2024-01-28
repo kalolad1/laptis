@@ -1,4 +1,4 @@
-import { HeaderMegaMenu } from '@/app/components/home/top_navbar'
+import { MainNavbar } from '@/app/components/home/main_navbar'
 import { SecondNavbar } from '@/app/components/home/second_navbar'
 import { MainContent } from './components/home/main_content'
 
@@ -6,7 +6,7 @@ export default function HomePage (): any {
   return (
     <>
       <header>
-        <HeaderMegaMenu />
+        <MainNavbar />
         <SecondNavbar />
       </header>
       <main>

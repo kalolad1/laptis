@@ -21,7 +21,7 @@ fi
 trap alert_failure ERR
 
 # Backend
-black . --preview 
+black . --preview
 flake8 backend --config backend/.flake8
 mypy --config-file backend/mypy.ini -p backend.core
 python backend/manage.py collectstatic --noinput

@@ -1,4 +1,4 @@
-import { HeaderMegaMenu } from "@/app/components/home/top_navbar";
+import { HeaderMegaMenu } from "@/app/components/home/main_navbar";
 import { SecondNavbar } from "@/app/components/home/second_navbar";
 import { Image, Text } from "@mantine/core";
 
