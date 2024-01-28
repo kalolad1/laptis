@@ -8,7 +8,8 @@ import {
   rem,
   ActionIcon,
   useMantineTheme,
-  TextInput
+  TextInput,
+  Container
 } from '@mantine/core';
 import { IconSearch, IconArrowRight } from '@tabler/icons-react';
 import classes from './main_navbar.module.css';
@@ -17,8 +18,7 @@ export function MainNavbar() {
   const theme = useMantineTheme();
 
   return (
-    <Box>
-      <header className={classes.header}>
+    <Container className={classes.container}>
         <Group justify="space-between" h="100%">
           <Group>
             <Image
@@ -46,7 +46,6 @@ export function MainNavbar() {
             <Button>Sign up</Button>
           </Group>
         </Group>
-      </header>
-    </Box>
+    </Container>
   );
 }
