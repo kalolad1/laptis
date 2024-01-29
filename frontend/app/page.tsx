@@ -23,8 +23,8 @@ export default function HomePage (): any {
   return (
     <>
       <header>
-        <MainNavbar />
-        <SecondNavbar />
+        <MainNavbar/>
+        <SecondNavbar/>
       </header>
       <main>
         <CenterCardsGrid centers={MOCK_CENTERS_DATA}/>
