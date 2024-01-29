@@ -79,11 +79,11 @@ WSGI_APPLICATION = "laptis.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "railway",
+        "NAME": "laptis_dev_db",
         "USER": "postgres",
-        "PASSWORD": "-Edg*A*dG3-dE-gff11DBD24F6CBbbGA",
-        "HOST": "viaduct.proxy.rlwy.net",
-        "PORT": "47390",
+        "PASSWORD": "kfSfeo34jnsdf",
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
     }
 }
 
