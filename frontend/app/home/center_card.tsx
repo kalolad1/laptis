@@ -1,9 +1,14 @@
 'use client'
 
 import { Card, Image, Text, Group, Badge } from '@mantine/core'
-import classes from './center_card.module.css';
+import classes from './center_card.module.css'
+import { type Center } from '../constants/types'
 
-export function CenterCard ({ center }): any {
+interface Props {
+  center: Center
+}
+
+export function CenterCard ({ center }: Props): any {
   return (
     <Card radius="md" p="md" component="a" href="/center/1" target="_blank">
       <Card.Section>

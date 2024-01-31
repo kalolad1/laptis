@@ -1,12 +1,5 @@
 import * as constants from '../constants/endpoints'
-
-interface Center {
-  id: string
-  name: string
-  location: string
-  centerType: string
-  image: string
-}
+import { type Center } from '../constants/types'
 
 export async function getCenters (): Promise<Center> {
   const fetchData = {

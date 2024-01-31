@@ -13,10 +13,11 @@ export default function HomePage (): any {
   useEffect(() => {
     getCenters()
       .then(data => { setCenters(data) })
-      .catch(error => { console.error('Error:', error) })
+      .catch(error => { error('Error:', error) })
   }, [])
 
   return (
+
     <>
       <header>
         <MainNavbar/>
