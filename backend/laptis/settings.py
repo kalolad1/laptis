@@ -24,11 +24,16 @@ SECRET_KEY = "t2kadw*hvuo)3g&yl(@jq%n^6$5x7-ub5)f3*w5glg95n$pkdd"
 
 DEBUG = "True"
 
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:3000",
+]
+
 AUTH_USER_MODEL = "core.User"
 
 # Application definition
 INSTALLED_APPS = [
     "core",
+    "corsheaders",
     "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -41,8 +46,8 @@ INSTALLED_APPS = [
 
 
 MIDDLEWARE = [
-    "djangorestframework_camel_case.middleware.CamelCaseMiddleWare",
     "corsheaders.middleware.CorsMiddleware",
+    "djangorestframework_camel_case.middleware.CamelCaseMiddleWare",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",

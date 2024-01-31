@@ -1,12 +1,16 @@
 import * as constants from '../constants/endpoints'
 
-export async function getCenters (): Promise<any> {
+interface Center {
+  id: string
+  name: string
+  location: string
+  centerType: string
+  image: string
+}
+
+export async function getCenters (): Promise<Center> {
   const fetchData = {
-    method: 'GET',
-    headers: new Headers({
-      Accept: 'application/json',
-      'Content-Type': 'application/json; charset=UTF-8'
-    })
+    method: 'GET'
   }
   const response = await fetch(constants.GET_CENTERS_ENDPOINT, fetchData)
 

@@ -1,6 +1,5 @@
 // API
-export const BASE_API_URL = "http://127.0.0.1:8000"
+export const BASE_API_URL = 'http://127.0.0.1:8000'
 
 // Regimen
 export const GET_CENTERS_ENDPOINT = BASE_API_URL + '/centers'
-
