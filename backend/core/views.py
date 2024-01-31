@@ -13,5 +13,5 @@ def home(request):
 def get_centers(request):
     if request.method == "GET":
         centers = Center.objects.all()
-        serializer = CenterSerializer(centers, many=True)
+        serializer = CenterSerializer(centers, many=True, context={"request": request})
         return Response(serializer.data)
