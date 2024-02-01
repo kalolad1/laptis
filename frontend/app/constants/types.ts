@@ -1,7 +1,7 @@
 export interface Center {
   id: string
   name: string
-  location: string
+  address: string
   centerType: string
   image: string
 }
