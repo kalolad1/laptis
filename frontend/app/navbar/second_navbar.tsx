@@ -2,7 +2,6 @@
 
 import { Group, Flex, Button } from '@mantine/core'
 import { IconHome } from '@tabler/icons-react'
-import classes from './second_navbar.module.css'
 
 // const links = [
 //   { link: '/detox', label: 'Detox' },
@@ -12,7 +11,7 @@ import classes from './second_navbar.module.css'
 // ]
 export default function SecondNavbar (): any {
   return (
-    <Flex className={classes.flex_container} justify="space-between" p="md">
+    <Flex justify="space-between" px="md" pt="md">
       <Group gap="xl">
         <IconHome />
         <IconHome />

@@ -1,7 +1,6 @@
 'use client'
 
 import {
-  Container,
   Grid
 } from '@mantine/core'
 
@@ -14,14 +13,12 @@ interface Props {
 
 export default function CenterCardsGrid ({ centers }: Props): any {
   return (
-    <Container size="lg">
-    <Grid mt="md">
+    <Grid p="md">
       {centers.map((center: any, index: number) => (
-        <Grid.Col key={index} span={{ base: 12, md: 6, lg: 3 }}>
+        <Grid.Col key={index} span={{ base: 12, sm: 6, md: 4 }}>
           <CenterCard center={center} />
         </Grid.Col>
       ))}
     </Grid>
-  </Container>
   )
 }
