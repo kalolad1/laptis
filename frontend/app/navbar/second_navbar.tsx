@@ -10,7 +10,7 @@ import classes from './second_navbar.module.css'
 //   { link: '/tss', label: 'Transitional Support Services' },
 //   { link: '/residential', label: 'Residential' }
 // ]
-export function SecondNavbar (): any {
+export default function SecondNavbar (): any {
   return (
       <Container className={classes.container}>
         <Group py={10} justify='space-between'>

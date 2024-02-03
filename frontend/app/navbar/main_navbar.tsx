@@ -13,7 +13,7 @@ import {
 import { IconSearch, IconArrowRight } from '@tabler/icons-react'
 import classes from './main_navbar.module.css'
 
-export function MainNavbar (): any {
+export default function MainNavbar (): any {
   const theme = useMantineTheme()
 
   return (

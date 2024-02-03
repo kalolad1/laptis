@@ -5,14 +5,14 @@ import {
   Grid
 } from '@mantine/core'
 
-import { CenterCard } from './center_card'
+import CenterCard from './center_card'
 import { type Center } from '../constants/types'
 
 interface Props {
   centers: Center[]
 }
 
-export function CenterCardsGrid ({ centers }: Props): any {
+export default function CenterCardsGrid ({ centers }: Props): any {
   return (
     <Container size="lg">
     <Grid mt="md">
