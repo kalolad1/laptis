@@ -32,7 +32,7 @@ pip freeze > backend/requirements.txt
 
 # Frontend
 cd frontend
-npm run lint -- --fix
+npm run lint
 
 git add -A
 git commit -m "$1"
