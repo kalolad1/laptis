@@ -1,6 +1,6 @@
 'use client'
 
-import { Group, Container, Button } from '@mantine/core'
+import { Group, Flex, Button } from '@mantine/core'
 import { IconHome } from '@tabler/icons-react'
 import classes from './second_navbar.module.css'
 
@@ -12,20 +12,18 @@ import classes from './second_navbar.module.css'
 // ]
 export default function SecondNavbar (): any {
   return (
-      <Container className={classes.container}>
-        <Group py={10} justify='space-between'>
-          <Group gap="xl">
-            <IconHome/>
-            <IconHome/>
-            <IconHome/>
-            <IconHome/>
-          </Group>
-          <Group>
-            <Button>
-              Find for me
-            </Button>
-          </Group>
-        </Group>
-      </Container>
+    <Flex className={classes.flex_container} justify="space-between" p="md">
+      <Group gap="xl">
+        <IconHome />
+        <IconHome />
+        <IconHome />
+        <IconHome />
+      </Group>
+      <Group>
+        <Button>
+          Find for me
+        </Button>
+      </Group>
+    </Flex>
   )
 }
