@@ -1,22 +1,32 @@
 'use client'
 
-import { Group, Flex, Button } from '@mantine/core'
-import { IconHome } from '@tabler/icons-react'
+import { Group, Flex, Button, ActionIcon, Tooltip } from '@mantine/core'
+import { IconArrowGuide, IconHome, IconPillOff, IconReportMedical } from '@tabler/icons-react'
 
-// const links = [
-//   { link: '/detox', label: 'Detox' },
-//   { link: '/css', label: 'Clinical Stabilization Services' },
-//   { link: '/tss', label: 'Transitional Support Services' },
-//   { link: '/residential', label: 'Residential' }
-// ]
 export default function SecondNavbar (): any {
   return (
     <Flex justify="space-between" px="md" pt="md">
       <Group gap="xl">
-        <IconHome />
-        <IconHome />
-        <IconHome />
-        <IconHome />
+        <Tooltip label="Detox" position="bottom">
+          <ActionIcon variant="subtle" color="black" size="xl">
+            <IconPillOff />
+          </ActionIcon>
+        </Tooltip>
+        <Tooltip label="Clinical Stabilization Services" position="bottom">
+          <ActionIcon variant="subtle" color="black" size="xl">
+            <IconReportMedical />
+          </ActionIcon>
+        </Tooltip>
+        <Tooltip label="Transitional Stabilization Services" position="bottom">
+          <ActionIcon variant="subtle" color="black" size="xl">
+            <IconArrowGuide />
+          </ActionIcon>
+        </Tooltip>
+        <Tooltip label="Residential" position="bottom">
+          <ActionIcon variant="subtle" color="black" size="xl">
+            <IconHome />
+          </ActionIcon>
+        </Tooltip>
       </Group>
       <Group>
         <Button>
