@@ -23,11 +23,3 @@ def get_center(request, id: str):
         center = Center.objects.get(id=id)
         serializer = CenterSerializer(center, context={"request": request})
         return Response(serializer.data)
-
-
-@api_view(["GET"])
-def filter_centers(request, center_type: str):
-    if request.method == "GET":
-        centers = Center.objects.filter(center_type=center_type)
-        serializer = CenterSerializer(centers, many=True, context={"request": request})
-        return Response(serializer.data)
