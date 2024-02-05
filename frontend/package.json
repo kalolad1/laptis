@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@mantine/core": "^7.5.0",
+    "@mantine/dates": "^7.5.0",
     "@mantine/hooks": "^7.5.0",
     "@next/bundle-analyzer": "^14.0.1",
     "@tabler/icons-react": "^2.40.0",

@@ -20,11 +20,11 @@ export default function HomePage (): any {
 
     <>
       <header>
-        <MainNavbar/>
-        <SecondNavbar/>
+        <MainNavbar />
+        <SecondNavbar />
       </header>
       <main>
-        <CenterCardsGrid centers={centers}/>
+        <CenterCardsGrid centers={centers} />
       </main>
     </>
   )
