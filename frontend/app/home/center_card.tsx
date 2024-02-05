@@ -10,7 +10,7 @@ interface CenterCardProps {
 
 export default function CenterCard ({ center }: CenterCardProps): any {
   return (
-    <Card radius="md" p="md" component="a" href="/center/1" target="_blank">
+    <Card radius="md" p="md" component="a" href={'/center/' + center.id} target="_blank">
       <PictureArea image={center.image}/>
       <CenterDescription name={center.name} address={center.address} />
     </Card>

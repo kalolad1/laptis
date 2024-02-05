@@ -15,3 +15,11 @@ def get_centers(request):
         centers = Center.objects.all()
         serializer = CenterSerializer(centers, many=True, context={"request": request})
         return Response(serializer.data)
+
+
+@api_view(["GET"])
+def get_center(request, id: str):
+    if request.method == "GET":
+        center = Center.objects.get(id=id)
+        serializer = CenterSerializer(center, context={"request": request})
+        return Response(serializer.data)

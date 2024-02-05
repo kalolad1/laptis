@@ -2,7 +2,9 @@
 
 import '@mantine/dates/styles.css'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { getCenter } from '@/app/api/get_center'
+import { type Center } from '@/app/constants/types'
 
 import { Title, Image, Text, Container, Stack, Divider, Flex, Button } from '@mantine/core'
 import { DatePicker } from '@mantine/dates'
@@ -11,7 +13,15 @@ import MainNavbar from '@/app/navbar/main_navbar'
 
 import classes from './page.module.css'
 
-export default function CenterDetailViewPage (): any {
+export default function CenterDetailViewPage ({ params }: { params: { id: string } }): any {
+  const [center, setCenter] = useState([])
+
+  useEffect(() => {
+    getCenter(params.id)
+      .then(data => { setCenter(data) })
+      .catch(error => { error('Error:', error) })
+  }, [])
+
   return (
     <>
       <header>
@@ -20,9 +30,9 @@ export default function CenterDetailViewPage (): any {
       <main>
         <Container pt="lg">
           <Stack gap="md">
-            <Title>Project Victory</Title>
-            <Image src="https://via.placeholder.com/150" radius="md" w={400} h={200} alt="Center Name" />
-            <CenterDetailViewBody />
+            <Title>{center.name}</Title>
+            <Image src={center.image} radius="md" w={400} h={200} mb="md"/>
+            <CenterDetailViewBody center={center} />
           </Stack>
         </Container>
       </main>
@@ -30,19 +40,27 @@ export default function CenterDetailViewPage (): any {
   )
 }
 
-function CenterDetailViewBody (): any {
+interface CenterDetailViewBodyProps {
+  center: Center
+}
+
+function CenterDetailViewBody ({ center }: CenterDetailViewBodyProps): any {
   return (
     <Flex justify="space-between" gap='xl'>
-      <Information />
+      <Information center={center} />
       <ReserveBox />
     </Flex>
   )
 }
 
-function Information (): any {
+interface InformationProps {
+  center: Center
+}
+
+function Information ({ center }: InformationProps): any {
   return (
     <div>
-      <Title order={2}>22 Sagamore Lane, Bordentown NJ</Title>
+      <Title order={3}>{center.address}</Title>
       <QuickCenterStats />
       <Divider my="md" />
 

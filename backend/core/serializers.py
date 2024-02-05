@@ -5,4 +5,4 @@ from .models import Center
 class CenterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Center
-        fields = ["name", "address", "center_type", "image"]
+        fields = ["name", "address", "center_type", "image", "id"]
