@@ -20,7 +20,7 @@ export default function CenterDetailViewPage ({ params }: { params: { id: string
     getCenter(params.id)
       .then(data => { setCenter(data) })
       .catch(error => { error('Error:', error) })
-  }, [])
+  }, [params.id])
 
   return (
     <>
