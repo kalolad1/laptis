@@ -4,19 +4,14 @@ set -e
 # and running tests.
 
 function alert_failure {
-  echo "Commit has failed! BOOOOOOOOO!";
+  echo "Bro what kind of code are you writing! BOOOOOOOOO!";
   cat rat_ascii_art.txt;
 }
 
 function alert_success {
-  echo "Commit has succeeded!";
+  echo "Looks good to commit! FULL SEND!";
   cat eagle_ascii_art.txt;
 }
-
-# Check if at least one argument is provided
-if [ $# -eq 0 ]; then
-    exit 1
-fi
 
 trap alert_failure ERR
 
@@ -35,8 +30,6 @@ cd frontend
 npm run lint
 
 git add -A
-git commit -m "$1"
-git push
 
 cd ..
 alert_success
