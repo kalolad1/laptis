@@ -31,7 +31,6 @@ CORS_ALLOWED_ORIGINS = [
 
 AUTH_USER_MODEL = "core.User"
 
-# Application definition
 INSTALLED_APPS = [
     "core",
     "rest_framework",
@@ -45,12 +44,11 @@ INSTALLED_APPS = [
     "compressor",
 ]
 
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
-    # "djangorestframework_camel_case.middleware.CamelCaseMiddleWare",
+    "djangorestframework_camel_case.middleware.CamelCaseMiddleWare",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
