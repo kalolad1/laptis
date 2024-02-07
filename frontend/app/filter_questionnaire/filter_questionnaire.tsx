@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 
 import { Fieldset, Stack, Radio } from '@mantine/core'
