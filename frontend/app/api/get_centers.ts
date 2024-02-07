@@ -3,7 +3,11 @@ import { type Center } from '../constants/types'
 
 export async function getCenters (): Promise<Center> {
   const fetchData = {
-    method: 'GET'
+    method: 'GET',
+    headers: new Headers({
+      Accept: 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8'
+    })
   }
   const response = await fetch(constants.GET_CENTERS_ENDPOINT, fetchData)
 

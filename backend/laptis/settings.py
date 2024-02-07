@@ -26,6 +26,7 @@ DEBUG = "True"
 
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
+    "https://localhost:3000",
 ]
 
 AUTH_USER_MODEL = "core.User"
@@ -33,8 +34,8 @@ AUTH_USER_MODEL = "core.User"
 # Application definition
 INSTALLED_APPS = [
     "core",
-    "corsheaders",
     "rest_framework",
+    "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -46,10 +47,10 @@ INSTALLED_APPS = [
 
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
-    "djangorestframework_camel_case.middleware.CamelCaseMiddleWare",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    # "djangorestframework_camel_case.middleware.CamelCaseMiddleWare",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -94,15 +95,15 @@ DATABASES = {
 }
 
 REST_FRAMEWORK = {
-    "DEFAULT_RENDERER_CLASSES": (
-        "djangorestframework_camel_case.render.CamelCaseJSONRenderer",
-        "djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer",
-    ),
-    "DEFAULT_PARSER_CLASSES": (
-        "djangorestframework_camel_case.parser.CamelCaseFormParser",
-        "djangorestframework_camel_case.parser.CamelCaseMultiPartParser",
-        "djangorestframework_camel_case.parser.CamelCaseJSONParser",
-    ),
+    # "DEFAULT_RENDERER_CLASSES": (
+    #     "djangorestframework_camel_case.render.CamelCaseJSONRenderer",
+    #     "djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer",
+    # ),
+    # "DEFAULT_PARSER_CLASSES": (
+    #     "djangorestframework_camel_case.parser.CamelCaseFormParser",
+    #     "djangorestframework_camel_case.parser.CamelCaseMultiPartParser",
+    #     "djangorestframework_camel_case.parser.CamelCaseJSONParser",
+    # ),
     "TEST_REQUEST_RENDERER_CLASSES": (
         "djangorestframework_camel_case.render.CamelCaseJSONRenderer",
     ),
