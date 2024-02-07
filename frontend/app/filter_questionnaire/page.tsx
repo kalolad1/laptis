@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-import { Container, Stack, Fieldset, Radio, Group } from '@mantine/core'
+import { Container, Stack, Fieldset, Radio, Group, NumberInput } from '@mantine/core'
 
 import MainNavbar from '@/app/navbar/main_navbar'
 
@@ -16,7 +16,10 @@ export default function FilterQuestionnairePage (): any {
         <Container pt="lg">
           <Stack gap="md">
             <Fieldset legend="Demographic Information">
-              <SexInput />
+              <Stack gap="md">
+                <SexInput />
+                <AgeInput />
+              </Stack>
             </Fieldset>
           </Stack>
         </Container>
@@ -42,5 +45,21 @@ function SexInput (): any {
         <Radio value="other" label="Other" />
       </Group>
     </Radio.Group>
+  )
+}
+
+function AgeInput (): any {
+  const [value, setValue] = useState(25)
+
+  return (
+    <NumberInput
+      value={value}
+      onChange={setValue}
+      min={12}
+      max={150}
+      label="What is your age?"
+      hideControls
+      withAsterisk
+    />
   )
 }
