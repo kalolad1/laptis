@@ -4,12 +4,12 @@ set -e
 # and running tests.
 
 function alert_failure {
-  echo "Bro what kind of code are you writing! BOOOOOOOOO!";
+  echo "What kind of code are you writing! BOOOOOOOOO!";
   cat rat_ascii_art.txt;
 }
 
 function alert_success {
-  echo "Looks good to commit! FULL SEND!";
+  echo "Looks good to commit!";
   cat eagle_ascii_art.txt;
 }
 

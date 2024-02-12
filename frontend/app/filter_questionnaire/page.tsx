@@ -3,6 +3,8 @@
 import { useState } from 'react'
 
 import { Container, Stack, Fieldset, Radio, Group, NumberInput } from '@mantine/core'
+import { DateInput } from '@mantine/dates'
+import '@mantine/dates/styles.css'
 
 import MainNavbar from '@/app/navbar/main_navbar'
 
@@ -19,6 +21,7 @@ export default function FilterQuestionnairePage (): any {
               <Stack gap="md">
                 <SexInput />
                 <AgeInput />
+                <DateOfBirthInput />
               </Stack>
             </Fieldset>
           </Stack>
@@ -59,6 +62,21 @@ function AgeInput (): any {
       max={150}
       label="What is your age?"
       hideControls
+      withAsterisk
+    />
+  )
+}
+
+function DateOfBirthInput (): any {
+  const [value, setValue] = useState<Date | null>(null)
+
+  return (
+    <DateInput
+      value={value}
+      onChange={setValue}
+      label="What is your date of birth?"
+      placeholder="M/D/YYYY"
+      valueFormat='M/D/YYYY'
       withAsterisk
     />
   )
