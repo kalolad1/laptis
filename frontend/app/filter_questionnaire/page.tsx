@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 
-import { Container, Stack, Fieldset, Radio, Group, NumberInput } from '@mantine/core'
+import { AddressAutofill } from '@mapbox/search-js-react'
+import { Container, Stack, Fieldset, Radio, Group, NumberInput, TextInput } from '@mantine/core'
 import { DateInput } from '@mantine/dates'
 import '@mantine/dates/styles.css'
 
@@ -22,6 +23,11 @@ export default function FilterQuestionnairePage (): any {
                 <SexInput />
                 <AgeInput />
                 <DateOfBirthInput />
+              </Stack>
+            </Fieldset>
+            <Fieldset legend="Address">
+              <Stack gap="md">
+                <AddressInput />
               </Stack>
             </Fieldset>
           </Stack>
@@ -52,7 +58,7 @@ function SexInput (): any {
 }
 
 function AgeInput (): any {
-  const [value, setValue] = useState(25)
+  const [value, setValue] = useState<string | number | undefined>(25)
 
   return (
     <NumberInput
@@ -79,5 +85,44 @@ function DateOfBirthInput (): any {
       valueFormat='M/D/YYYY'
       withAsterisk
     />
+  )
+}
+
+function AddressInput (): any {
+  return (
+    <form>
+      <AddressAutofill accessToken="pk.eyJ1IjoiZGthbG9sYTExIiwiYSI6ImNsc2plODRtZzJxeTMybnQwd2k1N3d0dHAifQ.L1iMOPlcW9TwjRqWrAoh8A">
+        <TextInput
+          name="street-address"
+          label="Street Address"
+          placeholder="Street Address"
+          autoComplete="address-line1"
+        />
+      </AddressAutofill>
+      <TextInput
+        name="city"
+        label="City"
+        placeholder="City"
+        autoComplete="address-level2"
+      />
+      <TextInput
+        name="state"
+        label="State"
+        placeholder="State"
+        autoComplete="address-level1"
+      />
+      <TextInput
+        name="country"
+        label="Country"
+        placeholder="Country"
+        autoComplete="country"
+      />
+      <TextInput
+        name="zip-code"
+        label="ZIP Code"
+        placeholder="ZIP Code"
+        autoComplete="postal-code"
+      />
+    </form>
   )
 }
