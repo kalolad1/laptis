@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-
 import { AddressAutofill } from '@mapbox/search-js-react'
-import { Container, Stack, Fieldset, Radio, Group, NumberInput, TextInput } from '@mantine/core'
+
+import { Container, Stack, Fieldset, Radio, Group, MultiSelect, NumberInput, TextInput } from '@mantine/core'
 import { DateInput } from '@mantine/dates'
 import '@mantine/dates/styles.css'
 
@@ -28,6 +28,11 @@ export default function FilterQuestionnairePage (): any {
             <Fieldset legend="Address">
               <Stack gap="md">
                 <AddressInput />
+              </Stack>
+            </Fieldset>
+            <Fieldset legend="Medical Information">
+              <Stack gap="md">
+                <MedicationAssistedTherapyInput />
               </Stack>
             </Fieldset>
           </Stack>
@@ -124,5 +129,17 @@ function AddressInput (): any {
         autoComplete="postal-code"
       />
     </form>
+  )
+}
+
+function MedicationAssistedTherapyInput (): any {
+  const medications = ['methadone', 'suboxone', 'vivtrol']
+  const label = 'Are you using ' + medications.join(', ').replace(/,([^,]*)$/, ' or$1') + '?'
+  return (
+    <MultiSelect
+      label={label}
+      placeholder="Select a drug"
+      data={medications}
+    />
   )
 }
