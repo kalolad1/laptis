@@ -27,8 +27,3 @@ npm install
 ```
 npm run dev
 ```
-
-
-
-# Laptis
-
