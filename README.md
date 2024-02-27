@@ -29,12 +29,11 @@ npm run dev
 ```
 
 ## Database
-1. Create a local instance of a Postgres database for development purposes. After setting your credentials, set the following environment variables to be used by ```backend/laptis/settings.py```.
-
+1. Create a local instance of a Postgres database for development purposes. After setting your credentials create a file called ```.env``` in the ```/backend``` directory and add the following environment variables.
 ```
-DB_NAME
-DB_USER
-DB_PASSWORD
-DB_HOST
-DB_PORT
+DATABASE_HOST=<your db host, should be "localhost" or "127.0.0.1">
+DATABASE_PORT=<your db port, most likely 5432>
+DATABASE_NAME=<your db name>
+DATABASE_USER=<your db user>
+DATABASE_PASSWORD=<your db password>
 ```

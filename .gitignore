@@ -4,14 +4,14 @@ __pycache__/
 # Environments
 venv/
 
+# Environment variables
+.env
+
 # mypy
 .mypy_cache/
 
 # VSCODE
 .vscode
-
-# Database
-database
 
 # Node
 node_modules/
