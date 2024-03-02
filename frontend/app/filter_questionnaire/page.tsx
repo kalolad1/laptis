@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { AddressAutofill } from '@mapbox/search-js-react'
 
-import { Container, Stack, Fieldset, Radio, Group, MultiSelect, NumberInput, TextInput } from '@mantine/core'
+import { Container, Stack, Fieldset, Radio, Group, MultiSelect, NumberInput, TextInput, Select, Button } from '@mantine/core'
 import { DateInput } from '@mantine/dates'
 import '@mantine/dates/styles.css'
 
@@ -16,7 +16,7 @@ export default function FilterQuestionnairePage (): any {
         <MainNavbar />
       </header>
       <main>
-        <Container pt="lg">
+        <Container pt="lg" mb="xl">
           <Stack gap="md">
             <Fieldset legend="Demographic Information">
               <Stack gap="md">
@@ -33,8 +33,26 @@ export default function FilterQuestionnairePage (): any {
             <Fieldset legend="Medical Information">
               <Stack gap="md">
                 <MedicationAssistedTherapyInput />
+                <SubstanceUseInput />
+                <MentalHealthDiagnosesInput />
+                <SuicidalIdeationInput />
+                <HealthInsuranceInput />
+                <HealthInsuranceIdentifierInput />
               </Stack>
             </Fieldset>
+            <Fieldset legend="Insurance Information">
+              <Stack gap="md">
+                <HealthInsuranceInput />
+                <HealthInsuranceIdentifierInput />
+              </Stack>
+            </Fieldset>
+            <Fieldset legend="Other Information">
+              <Stack gap="md">
+                <MobilityRestrictionsInput />
+                <FaithBasedTreatmentInput />
+              </Stack>
+            </Fieldset>
+            <Button type="submit">Submit</Button>
           </Stack>
         </Container>
       </main>
@@ -138,8 +156,105 @@ function MedicationAssistedTherapyInput (): any {
   return (
     <MultiSelect
       label={label}
-      placeholder="Select a drug"
+      placeholder="Select drugs"
       data={medications}
+    />
+  )
+}
+
+function SubstanceUseInput (): any {
+  const substances = ['alcohol', 'marijuana', 'cocaine', 'methamphetamine', 'heroin', 'prescription opioids', 'bath salts', 'PCP', 'ecstasy']
+  const label = 'What other substances are you using?'
+  return (
+    <MultiSelect
+      label={label}
+      placeholder="Select drugs"
+      data={substances}
+    />
+  )
+}
+
+function MentalHealthDiagnosesInput (): any {
+  const diagnoses = ['depression', 'anxiety', 'bipolar disorder', 'schizophrenia', 'PTSD', 'ADHD', 'OCD', 'eating disorder', 'personality disorder']
+  const label = 'Do you have any of the following mental health diagnoses?'
+  return (
+    <MultiSelect
+      label={label}
+      placeholder="Select drugs"
+      data={diagnoses}
+    />
+  )
+}
+
+function SuicidalIdeationInput (): any {
+  const [value, setValue] = useState<string | null>('')
+
+  return (
+    <Select
+      label="Have you had any thoughts of suicide in the last 90 days?"
+      placeholder="Choose answer"
+      value={value}
+      onChange={setValue}
+      data={['No', 'Yes']}
+    />
+  )
+}
+
+function HealthInsuranceInput (): any {
+  const [value, setValue] = useState<string | null>('')
+
+  const insurances = ['MassHealth', 'Massachusetts Behavioral Health Partnership', 'WellSense', 'Neighborhood Health Plan', 'Fallon Health Plan', 'Tufts Health Plan', 'Commonwealth Care Alliance', 'Community Care Cooperative', 'Blue Cross Blue Shield', 'Aetna', 'Cigna', 'United Health Care', 'Humana', 'Health New England', 'Mass General Brigham Health Plan', 'Other']
+  const label = 'What health insurance provider does you have?'
+
+  return (
+    <Select
+      label={label}
+      placeholder="Choose answer"
+      value={value}
+      onChange={setValue}
+      data={insurances}
+    />
+  )
+}
+
+function HealthInsuranceIdentifierInput (): any {
+  const [value, setValue] = useState('')
+  const label = 'If you have MassHealth, please provide your Social Security Number. If you have a private health insurance, please provide your ID number.'
+
+  return (
+    <TextInput
+      label={label}
+      placeholder="Enter your ID number"
+      value={value}
+      onChange={(event) => { setValue(event.currentTarget.value) }}
+    />
+  )
+}
+
+function MobilityRestrictionsInput (): any {
+  const [value, setValue] = useState<string | null>('')
+
+  return (
+    <Select
+      label="Do you have any mobility restrictions?"
+      placeholder="Choose answer"
+      value={value}
+      onChange={setValue}
+      data={['No', 'Yes']}
+    />
+  )
+}
+
+function FaithBasedTreatmentInput (): any {
+  const [value, setValue] = useState<string | null>('')
+
+  return (
+    <Select
+      label="Are you open to faith-based treatment?"
+      placeholder="Choose answer"
+      value={value}
+      onChange={setValue}
+      data={['Yes', 'No']}
     />
   )
 }
