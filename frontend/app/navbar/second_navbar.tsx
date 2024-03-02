@@ -1,8 +1,7 @@
 'use client'
 
-import Link from 'next/link'
-import { Group, Flex, Button, ActionIcon, Tooltip } from '@mantine/core'
-import { IconAdjustments, IconArrowGuide, IconHome, IconPillOff, IconReportMedical } from '@tabler/icons-react'
+import { Group, Flex, ActionIcon, Tooltip } from '@mantine/core'
+import { IconArrowGuide, IconHome, IconPillOff, IconReportMedical } from '@tabler/icons-react'
 
 export default function SecondNavbar (): any {
   return (
@@ -28,13 +27,6 @@ export default function SecondNavbar (): any {
             <IconHome />
           </ActionIcon>
         </Tooltip>
-      </Group>
-      <Group>
-        <Link href="/filter_questionnaire" passHref>
-          <Button leftSection={<IconAdjustments size={14} />} variant="outline" color="black" size="md">
-            Filters
-          </Button>
-        </Link>
       </Group>
     </Flex>
   )
