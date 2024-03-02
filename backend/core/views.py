@@ -3,6 +3,7 @@ from rest_framework.response import Response
 
 from .models import Center
 from .serializers import CenterSerializer
+from .center_filterer import CenterFilterer
 
 
 def home(request):
@@ -23,3 +24,12 @@ def get_center(request, id: str):
         center = Center.objects.get(id=id)
         serializer = CenterSerializer(center, context={"request": request})
         return Response(serializer.data)
+
+
+@api_view(["POST"])
+def filter_centers(request):
+    centers = CenterFilterer(patient_context=request.data).get_centers()
+    print(centers)
+    # serializer = CenterSerializer(centers, many=True, context={"request": request})
+    # return Response(serializer.data)
+    return Response()

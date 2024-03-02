@@ -1,22 +1,25 @@
 'use client'
 
+import { useSearchParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
-import { getCenters } from '@/app/api/get_centers'
+import { filterCenters } from '@/app/api/filter_centers'
 
 import MainNavbar from '@/app/navbar/main_navbar'
-import CenterCardsGrid from './center_list_view/center_cards_grid'
+import CenterCardsGrid from '@/app/center_list_view/center_cards_grid'
 
 export default function HomePage (): any {
+  const searchParams = useSearchParams()
+  const params = Object.fromEntries(searchParams)
+
   const [centers, setCenters] = useState([])
 
   useEffect(() => {
-    getCenters()
+    filterCenters(params)
       .then(data => { setCenters(data) })
       .catch(error => { console.error('Error:', error) })
-  }, [])
+  })
 
   return (
-
     <>
       <header>
         <MainNavbar />

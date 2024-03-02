@@ -1,13 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { AddressAutofill } from '@mapbox/search-js-react'
 
-import { Container, Stack, Fieldset, Radio, Group, MultiSelect, NumberInput, TextInput, Select, Button } from '@mantine/core'
+import { Container, Stack, Fieldset, Radio, Group, MultiSelect, TextInput, Select, Button } from '@mantine/core'
 import { DateInput } from '@mantine/dates'
 import '@mantine/dates/styles.css'
 
 import MainNavbar from '@/app/navbar/main_navbar'
+import { useForm } from '@mantine/form'
 
 export default function FilterQuestionnairePage (): any {
   return (
@@ -16,60 +17,132 @@ export default function FilterQuestionnairePage (): any {
         <MainNavbar />
       </header>
       <main>
-        <Container pt="lg" mb="xl">
-          <Stack gap="md">
-            <Fieldset legend="Demographic Information">
-              <Stack gap="md">
-                <SexInput />
-                <AgeInput />
-                <DateOfBirthInput />
-              </Stack>
-            </Fieldset>
-            <Fieldset legend="Address">
-              <Stack gap="md">
-                <AddressInput />
-              </Stack>
-            </Fieldset>
-            <Fieldset legend="Medical Information">
-              <Stack gap="md">
-                <MedicationAssistedTherapyInput />
-                <SubstanceUseInput />
-                <MentalHealthDiagnosesInput />
-                <SuicidalIdeationInput />
-                <HealthInsuranceInput />
-                <HealthInsuranceIdentifierInput />
-              </Stack>
-            </Fieldset>
-            <Fieldset legend="Insurance Information">
-              <Stack gap="md">
-                <HealthInsuranceInput />
-                <HealthInsuranceIdentifierInput />
-              </Stack>
-            </Fieldset>
-            <Fieldset legend="Other Information">
-              <Stack gap="md">
-                <MobilityRestrictionsInput />
-                <FaithBasedTreatmentInput />
-              </Stack>
-            </Fieldset>
-            <Button type="submit">Submit</Button>
-          </Stack>
-        </Container>
+        <FilterQuestionnaireForm />
       </main>
     </>
   )
 }
 
-function SexInput (): any {
-  const [value, setValue] = useState('react')
+function FilterQuestionnaireForm (): any {
+  const router = useRouter()
+
+  const form = useForm({
+    initialValues: {
+      sex: '',
+      dateOfBirth: null,
+      streetAddress: '',
+      city: '',
+      state: '',
+      country: '',
+      zipCode: '',
+      medicationAssistedTherapy: [],
+      substanceUse: [],
+      mentalHealthDiagnoses: [],
+      suicidalIdeation: '',
+      healthInsurance: '',
+      healthInsuranceIdentifier: '',
+      mobilityRestrictions: '',
+      faithBasedTreatment: ''
+    }
+  })
+
+  function handleSubmit (event: React.FormEvent<HTMLFormElement>): void {
+    event.preventDefault()
+    const urlParams = new URLSearchParams(form.values)
+    const queryString = urlParams.toString()
+    router.push('/filtered_results?' + queryString)
+  }
 
   return (
+    <Container pt="lg" mb="xl">
+      <form onSubmit={handleSubmit}>
+        <Stack gap="xl">
+          <Fieldset legend="Demographic Information">
+            <Stack gap="md">
+              <SexInput {...form.getInputProps('sex')} />
+              <DateOfBirthInput {...form.getInputProps('dateOfBirth')} />
+            </Stack>
+          </Fieldset>
+          <Fieldset legend="Address">
+            <Stack gap="md">
+              <AddressAutofill accessToken="pk.eyJ1IjoiZGthbG9sYTExIiwiYSI6ImNsc2plODRtZzJxeTMybnQwd2k1N3d0dHAifQ.L1iMOPlcW9TwjRqWrAoh8A">
+                <TextInput
+                  name="street-address"
+                  label="Street Address"
+                  placeholder="Street Address"
+                  autoComplete="address-line1"
+                  withAsterisk
+                  {...form.getInputProps('streetAddress')}
+                />
+              </AddressAutofill>
+              <TextInput
+                name="city"
+                label="City"
+                placeholder="City"
+                autoComplete="address-level2"
+                withAsterisk
+                {...form.getInputProps('city')}
+              />
+              <TextInput
+                name="state"
+                label="State"
+                placeholder="State"
+                autoComplete="address-level1"
+                withAsterisk
+                {...form.getInputProps('state')}
+              />
+              <TextInput
+                name="country"
+                label="Country"
+                placeholder="Country"
+                autoComplete="country"
+                withAsterisk
+                {...form.getInputProps('country')}
+              />
+              <TextInput
+                name="zip-code"
+                label="ZIP Code"
+                placeholder="ZIP Code"
+                autoComplete="postal-code"
+                withAsterisk
+                {...form.getInputProps('zipCode')}
+              />
+            </Stack>
+          </Fieldset>
+          <Fieldset legend="Medical Information">
+            <Stack gap="md">
+              <MedicationAssistedTherapyInput {...form.getInputProps('medicationAssistedTherapy')} />
+              <SubstanceUseInput {...form.getInputProps('substanceUse')} />
+              <MentalHealthDiagnosesInput {...form.getInputProps('mentalHealthDiagnoses')} />
+              <SuicidalIdeationInput {...form.getInputProps('suicidalIdeation')} />
+            </Stack>
+          </Fieldset>
+          <Fieldset legend="Insurance Information">
+            <Stack gap="md">
+              <HealthInsuranceInput {...form.getInputProps('healthInsurance')} />
+              <HealthInsuranceIdentifierInput {...form.getInputProps('healthInsuranceIdentifier')} />
+            </Stack>
+          </Fieldset>
+          <Fieldset legend="Other Information">
+            <Stack gap="md">
+              <MobilityRestrictionsInput {...form.getInputProps('mobilityRestrictions')} />
+              <FaithBasedTreatmentInput {...form.getInputProps('faithBasedTreatment')} />
+            </Stack>
+          </Fieldset>
+          <Button type="submit">Submit</Button>
+        </Stack>
+      </form>
+    </Container>
+  )
+}
+
+function SexInput (props): any {
+  return (
     <Radio.Group
-      value={value}
-      onChange={setValue}
       name="sexInput"
       label="What is your sex?"
       withAsterisk
+      {...props}
     >
       <Group mt="xs">
         <Radio value="male" label="Male" />
@@ -80,77 +153,19 @@ function SexInput (): any {
   )
 }
 
-function AgeInput (): any {
-  const [value, setValue] = useState<string | number | undefined>(25)
-
-  return (
-    <NumberInput
-      value={value}
-      onChange={setValue}
-      min={12}
-      max={150}
-      label="What is your age?"
-      hideControls
-      withAsterisk
-    />
-  )
-}
-
-function DateOfBirthInput (): any {
-  const [value, setValue] = useState<Date | null>(null)
-
+function DateOfBirthInput (props): any {
   return (
     <DateInput
-      value={value}
-      onChange={setValue}
       label="What is your date of birth?"
       placeholder="M/D/YYYY"
       valueFormat='M/D/YYYY'
       withAsterisk
+      {...props}
     />
   )
 }
 
-function AddressInput (): any {
-  return (
-    <form>
-      <AddressAutofill accessToken="pk.eyJ1IjoiZGthbG9sYTExIiwiYSI6ImNsc2plODRtZzJxeTMybnQwd2k1N3d0dHAifQ.L1iMOPlcW9TwjRqWrAoh8A">
-        <TextInput
-          name="street-address"
-          label="Street Address"
-          placeholder="Street Address"
-          autoComplete="address-line1"
-        />
-      </AddressAutofill>
-      <TextInput
-        name="city"
-        label="City"
-        placeholder="City"
-        autoComplete="address-level2"
-      />
-      <TextInput
-        name="state"
-        label="State"
-        placeholder="State"
-        autoComplete="address-level1"
-      />
-      <TextInput
-        name="country"
-        label="Country"
-        placeholder="Country"
-        autoComplete="country"
-      />
-      <TextInput
-        name="zip-code"
-        label="ZIP Code"
-        placeholder="ZIP Code"
-        autoComplete="postal-code"
-      />
-    </form>
-  )
-}
-
-function MedicationAssistedTherapyInput (): any {
+function MedicationAssistedTherapyInput (props): any {
   const medications = ['methadone', 'suboxone', 'vivtrol']
   const label = 'Are you using ' + medications.join(', ').replace(/,([^,]*)$/, ' or$1') + '?'
   return (
@@ -158,11 +173,13 @@ function MedicationAssistedTherapyInput (): any {
       label={label}
       placeholder="Select drugs"
       data={medications}
+      withAsterisk
+      {...props}
     />
   )
 }
 
-function SubstanceUseInput (): any {
+function SubstanceUseInput (props): any {
   const substances = ['alcohol', 'marijuana', 'cocaine', 'methamphetamine', 'heroin', 'prescription opioids', 'bath salts', 'PCP', 'ecstasy']
   const label = 'What other substances are you using?'
   return (
@@ -170,39 +187,43 @@ function SubstanceUseInput (): any {
       label={label}
       placeholder="Select drugs"
       data={substances}
+      withAsterisk
+      {...props}
     />
   )
 }
 
-function MentalHealthDiagnosesInput (): any {
+function MentalHealthDiagnosesInput (props): any {
   const diagnoses = ['depression', 'anxiety', 'bipolar disorder', 'schizophrenia', 'PTSD', 'ADHD', 'OCD', 'eating disorder', 'personality disorder']
   const label = 'Do you have any of the following mental health diagnoses?'
+
   return (
     <MultiSelect
       label={label}
       placeholder="Select drugs"
       data={diagnoses}
+      withAsterisk
+      {...props}
     />
   )
 }
 
-function SuicidalIdeationInput (): any {
-  const [value, setValue] = useState<string | null>('')
-
+function SuicidalIdeationInput (props): any {
   return (
     <Select
       label="Have you had any thoughts of suicide in the last 90 days?"
       placeholder="Choose answer"
-      value={value}
-      onChange={setValue}
-      data={['No', 'Yes']}
+      data={[
+        { value: 'no', label: 'No' },
+        { value: 'yes', label: 'Yes' }
+      ]}
+      withAsterisk
+      {...props}
     />
   )
 }
 
-function HealthInsuranceInput (): any {
-  const [value, setValue] = useState<string | null>('')
-
+function HealthInsuranceInput (props): any {
   const insurances = ['MassHealth', 'Massachusetts Behavioral Health Partnership', 'WellSense', 'Neighborhood Health Plan', 'Fallon Health Plan', 'Tufts Health Plan', 'Commonwealth Care Alliance', 'Community Care Cooperative', 'Blue Cross Blue Shield', 'Aetna', 'Cigna', 'United Health Care', 'Humana', 'Health New England', 'Mass General Brigham Health Plan', 'Other']
   const label = 'What health insurance provider does you have?'
 
@@ -210,51 +231,52 @@ function HealthInsuranceInput (): any {
     <Select
       label={label}
       placeholder="Choose answer"
-      value={value}
-      onChange={setValue}
       data={insurances}
+      withAsterisk
+      {...props}
     />
   )
 }
 
-function HealthInsuranceIdentifierInput (): any {
-  const [value, setValue] = useState('')
+function HealthInsuranceIdentifierInput (props): any {
   const label = 'If you have MassHealth, please provide your Social Security Number. If you have a private health insurance, please provide your ID number.'
 
   return (
     <TextInput
       label={label}
       placeholder="Enter your ID number"
-      value={value}
-      onChange={(event) => { setValue(event.currentTarget.value) }}
+      withAsterisk
+      {...props}
     />
   )
 }
 
-function MobilityRestrictionsInput (): any {
-  const [value, setValue] = useState<string | null>('')
-
+function MobilityRestrictionsInput (props): any {
   return (
     <Select
       label="Do you have any mobility restrictions?"
       placeholder="Choose answer"
-      value={value}
-      onChange={setValue}
-      data={['No', 'Yes']}
+      data={[
+        { value: 'no', label: 'No' },
+        { value: 'yes', label: 'Yes' }
+      ]}
+      withAsterisk
+      {...props}
     />
   )
 }
 
-function FaithBasedTreatmentInput (): any {
-  const [value, setValue] = useState<string | null>('')
-
+function FaithBasedTreatmentInput (props): any {
   return (
     <Select
       label="Are you open to faith-based treatment?"
       placeholder="Choose answer"
-      value={value}
-      onChange={setValue}
-      data={['Yes', 'No']}
+      data={[
+        { value: 'no', label: 'No' },
+        { value: 'yes', label: 'Yes' }
+      ]}
+      withAsterisk
+      {...props}
     />
   )
 }

@@ -33,3 +33,25 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         response_data = json.loads(response.content.decode("utf-8"))
         self.assertEqual(response_data["name"], "Center 1")
+
+    def test_filter_centers(self):
+        SAMPLE_PATIENT_CONTEXT = {
+            "sex": "male",
+            "dateOfBirth": "Sun Feb 08 1998 00:00:00 GMT-0500 (Eastern Standard Time)",
+            "streetAddress": "22 Sagemore Lane",
+            "city": "Bordentown",
+            "state": "NJ",
+            "country": "us",
+            "zipCode": "08505",
+            "medicationAssistedTherapy": "methadone",
+            "substanceUse": "cocaine,heroin",
+            "mentalHealthDiagnoses": "ADHD",
+            "suicidalIdeation": "no",
+            "healthInsurance": "MassHealth",
+            "healthInsuranceIdentifier": "14000000000",
+            "mobilityRestrictions": "no",
+            "faithBasedTreatment": "yes",
+        }
+
+        response = self.client.post("/filter_centers", SAMPLE_PATIENT_CONTEXT)
+        self.assertEqual(response.status_code, 200)
