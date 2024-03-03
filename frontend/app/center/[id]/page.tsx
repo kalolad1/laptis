@@ -15,7 +15,7 @@ import classes from './page.module.css'
 import { IconPhone } from '@tabler/icons-react'
 
 export default function CenterDetailViewPage ({ params }: { params: { id: string } }): any {
-  const [center, setCenter] = useState([])
+  const [center, setCenter] = useState<Center | null>(null)
 
   useEffect(() => {
     getCenter(params.id)
@@ -31,9 +31,9 @@ export default function CenterDetailViewPage ({ params }: { params: { id: string
       <main>
         <Container pt="lg">
           <Stack gap="md">
-            <Title>{center.name}</Title>
-            <Image src={center.image} radius="md" w={400} h={200} mb="md" />
-            <CenterDetailViewBody center={center} />
+            {(center != null) && <Title>{center.name}</Title>}
+            <Image src={center?.image} radius="md" w={400} h={200} mb="md" />
+            {(center != null) && <CenterDetailViewBody center={center} />}
           </Stack>
         </Container>
       </main>

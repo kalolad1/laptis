@@ -1,7 +1,6 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { AddressAutofill } from '@mapbox/search-js-react'
 
 import { Container, Stack, Fieldset, Radio, Group, MultiSelect, TextInput, Select, Button, NumberInput } from '@mantine/core'
 
@@ -27,15 +26,15 @@ function FilterQuestionnaireForm (): any {
   const form = useForm({
     initialValues: {
       sex: '',
-      age: null,
+      age: '',
       streetAddress: '',
       city: '',
       state: '',
       country: '',
       zipCode: '',
-      medicationAssistedTherapy: [],
-      substanceUse: [],
-      mentalHealthDiagnoses: [],
+      medicationAssistedTherapy: [''],
+      substanceUse: [''],
+      mentalHealthDiagnoses: [''],
       suicidalIdeation: 'no',
       healthInsurance: '',
       healthInsuranceIdentifier: '',
@@ -63,16 +62,14 @@ function FilterQuestionnaireForm (): any {
           </Fieldset>
           <Fieldset legend="Address">
             <Stack gap="md">
-              <AddressAutofill accessToken="pk.eyJ1IjoiZGthbG9sYTExIiwiYSI6ImNsc2plODRtZzJxeTMybnQwd2k1N3d0dHAifQ.L1iMOPlcW9TwjRqWrAoh8A">
-                <TextInput
-                  name="street-address"
-                  label="Street Address"
-                  placeholder="Street Address"
-                  autoComplete="address-line1"
-                  withAsterisk
-                  {...form.getInputProps('streetAddress')}
-                />
-              </AddressAutofill>
+              <TextInput
+                name="street-address"
+                label="Street Address"
+                placeholder="Street Address"
+                autoComplete="address-line1"
+                withAsterisk
+                {...form.getInputProps('streetAddress')}
+              />
               <TextInput
                 name="city"
                 label="City"
