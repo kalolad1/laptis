@@ -6,8 +6,7 @@ import { useState, useEffect } from 'react'
 import { getCenter } from '@/app/api/get_center'
 import { type Center } from '@/app/constants/types'
 
-import { Title, Image, Text, Container, Stack, Divider, Flex, Button } from '@mantine/core'
-import { DatePicker } from '@mantine/dates'
+import { Title, Image, Text, Container, Stack, Divider, Button, Grid } from '@mantine/core'
 
 import MainNavbar from '@/app/navbar/main_navbar'
 
@@ -31,7 +30,7 @@ export default function CenterDetailViewPage ({ params }: { params: { id: string
         <Container pt="lg">
           <Stack gap="md">
             <Title>{center.name}</Title>
-            <Image src={center.image} radius="md" w={400} h={200} mb="md"/>
+            <Image src={center.image} radius="md" w={400} h={200} mb="md" />
             <CenterDetailViewBody center={center} />
           </Stack>
         </Container>
@@ -46,10 +45,14 @@ interface CenterDetailViewBodyProps {
 
 function CenterDetailViewBody ({ center }: CenterDetailViewBodyProps): any {
   return (
-    <Flex justify="space-between" gap='xl'>
-      <Information center={center} />
-      <ReserveBox />
-    </Flex>
+    <Grid gutter={{ base: 75 }}>
+      <Grid.Col span={{ base: 8, md: 9, lg: 9 }}>
+        <Information center={center} />
+      </Grid.Col>
+      <Grid.Col span={{ base: 4, md: 3, lg: 3 }}>
+        <ReserveBox />
+      </Grid.Col>
+    </Grid>
   )
 }
 
@@ -78,12 +81,10 @@ function QuickCenterStats (): any {
 }
 
 function ReserveBox (): any {
-  const [value, setValue] = useState<Date | null>(null)
-
   return (
-    <Stack className={classes.reserve_box_stack}>
-      <DatePicker value={value} onChange={setValue} />
-      <Button>Reserve spot</Button>
+    <Stack className={classes.reserve_box_stack} align='center'>
+      <Title order={4}>856-999-4823</Title>
+      <Button disabled>Reserve</Button>
     </Stack>
   )
 }
