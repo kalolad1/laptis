@@ -1,0 +1,56 @@
+[
+  {
+    "model": "core.center",
+    "pk": 1,
+    "fields": {
+      "name": "Victory House",
+      "address": "22 Victory Lane, Cambridge",
+      "center_type": "residential",
+      "image": "centers/images/Victory_House_p7gq3j1.png",
+      "eligible_sexes": "[\"male\"]",
+      "eligible_age_minimum": 18,
+      "eligible_age_maximum": 25,
+      "eligible_medications": "[\"methadone\"]",
+      "eligible_mental_health_diagnoses": "[\"depression\", \"anxiety\", \"ADHD\"]",
+      "eligible_health_insurances": "[\"MassHealth\"]",
+      "is_disability_compatible": true,
+      "is_faith_based_treatment": false
+    }
+  },
+  {
+    "model": "core.center",
+    "pk": 2,
+    "fields": {
+      "name": "Bay Cove Substance Abuse Center",
+      "address": "66 Canal St, Boston, MA 02114",
+      "center_type": "clinical stabilization services",
+      "image": "centers/images/Bay_Cove_Substance_Abuse_Center_Uo2ftX0.png",
+      "eligible_sexes": "[\"male\", \"female\"]",
+      "eligible_age_minimum": 1,
+      "eligible_age_maximum": 9999,
+      "eligible_medications": "[\"methadone\"]",
+      "eligible_mental_health_diagnoses": "[\"depression\", \"anxiety\", \"ADHD\"]",
+      "eligible_health_insurances": "[\"depression\", \"anxiety\", \"ADHD\"]",
+      "is_disability_compatible": true,
+      "is_faith_based_treatment": false
+    }
+  },
+  {
+    "model": "core.center",
+    "pk": 3,
+    "fields": {
+      "name": "PAATHS Program",
+      "address": "774 Albany St, Boston, MA 02118",
+      "center_type": "detox",
+      "image": "centers/images/PAATHS_Program_r4MWCUL.png",
+      "eligible_sexes": "[\"male\", \"female\"]",
+      "eligible_age_minimum": 1,
+      "eligible_age_maximum": 9999,
+      "eligible_medications": "[\"methadone\"]",
+      "eligible_mental_health_diagnoses": "[\"PTSD\", \"anxiety\", \"ADHD\"]",
+      "eligible_health_insurances": "[\"Aetna\"]",
+      "is_disability_compatible": true,
+      "is_faith_based_treatment": false
+    }
+  }
+]

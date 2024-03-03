@@ -3,9 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { AddressAutofill } from '@mapbox/search-js-react'
 
-import { Container, Stack, Fieldset, Radio, Group, MultiSelect, TextInput, Select, Button } from '@mantine/core'
-import { DateInput } from '@mantine/dates'
-import '@mantine/dates/styles.css'
+import { Container, Stack, Fieldset, Radio, Group, MultiSelect, TextInput, Select, Button, NumberInput } from '@mantine/core'
 
 import MainNavbar from '@/app/navbar/main_navbar'
 import { useForm } from '@mantine/form'
@@ -29,7 +27,7 @@ function FilterQuestionnaireForm (): any {
   const form = useForm({
     initialValues: {
       sex: '',
-      dateOfBirth: null,
+      age: null,
       streetAddress: '',
       city: '',
       state: '',
@@ -38,11 +36,11 @@ function FilterQuestionnaireForm (): any {
       medicationAssistedTherapy: [],
       substanceUse: [],
       mentalHealthDiagnoses: [],
-      suicidalIdeation: '',
+      suicidalIdeation: 'no',
       healthInsurance: '',
       healthInsuranceIdentifier: '',
-      mobilityRestrictions: '',
-      faithBasedTreatment: ''
+      hasDisability: 'no',
+      isOpenToFaithBasedTreatment: 'yes'
     }
   })
 
@@ -60,7 +58,7 @@ function FilterQuestionnaireForm (): any {
           <Fieldset legend="Demographic Information">
             <Stack gap="md">
               <SexInput {...form.getInputProps('sex')} />
-              <DateOfBirthInput {...form.getInputProps('dateOfBirth')} />
+              <AgeInput {...form.getInputProps('age')} />
             </Stack>
           </Fieldset>
           <Fieldset legend="Address">
@@ -125,7 +123,7 @@ function FilterQuestionnaireForm (): any {
           </Fieldset>
           <Fieldset legend="Other Information">
             <Stack gap="md">
-              <MobilityRestrictionsInput {...form.getInputProps('mobilityRestrictions')} />
+              <HasDisabilityInput {...form.getInputProps('hasDisability')} />
               <FaithBasedTreatmentInput {...form.getInputProps('faithBasedTreatment')} />
             </Stack>
           </Fieldset>
@@ -153,12 +151,10 @@ function SexInput (props): any {
   )
 }
 
-function DateOfBirthInput (props): any {
+function AgeInput (props): any {
   return (
-    <DateInput
-      label="What is your date of birth?"
-      placeholder="M/D/YYYY"
-      valueFormat='M/D/YYYY'
+    <NumberInput
+      label="What is your age?"
       withAsterisk
       {...props}
     />
@@ -251,10 +247,10 @@ function HealthInsuranceIdentifierInput (props): any {
   )
 }
 
-function MobilityRestrictionsInput (props): any {
+function HasDisabilityInput (props): any {
   return (
     <Select
-      label="Do you have any mobility restrictions?"
+      label="Do you have a disability?"
       placeholder="Choose answer"
       data={[
         { value: 'no', label: 'No' },

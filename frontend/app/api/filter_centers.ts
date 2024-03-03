@@ -2,7 +2,6 @@ import * as constants from '../constants/endpoints'
 import { type Center } from '../constants/types'
 
 export async function filterCenters (patientContext: Record<string, any>): Promise<Center> {
-  console.log(patientContext)
   const fetchData = {
     method: 'POST',
     headers: new Headers({

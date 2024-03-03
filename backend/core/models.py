@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 from typing import List
@@ -72,6 +73,11 @@ class CenterType(models.TextChoices):
     RESIDENTIAL = "residential"
 
 
+class Sex(models.TextChoices):
+    MALE = "male"
+    FEMALE = "female"
+
+
 class Center(models.Model):
     name = models.CharField(max_length=200, default="")
     address = models.CharField(max_length=200, default="")
@@ -80,6 +86,42 @@ class Center(models.Model):
         max_length=200, choices=CenterType.choices, default=CenterType.RESIDENTIAL
     )
     image = models.ImageField(upload_to="centers/images/", blank=True)
+
+    def get_eligible_sex_default(self):
+        return ["male", "female"]
+
+    eligible_sexes = ArrayField(
+        models.CharField(max_length=200, choices=Sex.choices),
+        default=get_eligible_sex_default,
+    )
+
+    eligible_age_minimum = models.IntegerField(default=1)
+    eligible_age_maximum = models.IntegerField(default=9999)
+
+    def get_eligible_medications_default(self):
+        return ["methadone"]
+
+    eligible_medications = ArrayField(
+        models.CharField(max_length=200), default=get_eligible_medications_default
+    )
+
+    def get_eligible_mental_health_diagnoses_default(self):
+        return ["depression", "anxiety", "ADHD"]
+
+    eligible_mental_health_diagnoses = ArrayField(
+        models.CharField(max_length=200),
+        default=get_eligible_mental_health_diagnoses_default,
+    )
+
+    def get_eligible_health_insurances_default(self):
+        return ["MassHealth", "Blue Cross"]
+
+    eligible_health_insurances = ArrayField(
+        models.CharField(max_length=200), default=get_eligible_health_insurances_default
+    )
+
+    is_disability_compatible = models.BooleanField(default=True)
+    is_faith_based_treatment = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

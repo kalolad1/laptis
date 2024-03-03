@@ -15,9 +15,12 @@ export default function HomePage (): any {
 
   useEffect(() => {
     filterCenters(params)
-      .then(data => { setCenters(data) })
+      .then(data => {
+        setCenters(data)
+      })
       .catch(error => { console.error('Error:', error) })
-  })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>

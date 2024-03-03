@@ -29,7 +29,5 @@ def get_center(request, id: str):
 @api_view(["POST"])
 def filter_centers(request):
     centers = CenterFilterer(patient_context=request.data).get_centers()
-    print(centers)
-    # serializer = CenterSerializer(centers, many=True, context={"request": request})
-    # return Response(serializer.data)
-    return Response()
+    serializer = CenterSerializer(centers, many=True, context={"request": request})
+    return Response(serializer.data)
