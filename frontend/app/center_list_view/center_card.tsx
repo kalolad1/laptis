@@ -1,8 +1,10 @@
 'use client'
 
-import { Card, Image, Text, Group, Stack } from '@mantine/core'
+import { Card, Image, Text, Group, Stack, Badge } from '@mantine/core'
 import { IconStarFilled } from '@tabler/icons-react'
 import { type Center } from '../constants/types'
+
+import './center_card.css'
 
 interface CenterCardProps {
   center: Center
@@ -11,7 +13,7 @@ interface CenterCardProps {
 export default function CenterCard ({ center }: CenterCardProps): any {
   return (
     <Card radius="md" p="md" component="a" href={'/center/' + center.id} target="_blank">
-      <PictureArea image={center.image}/>
+      <PictureArea image={center.image} centerType={center.center_type} />
       <CenterDescription name={center.name} address={center.address} />
     </Card>
   )
@@ -19,11 +21,15 @@ export default function CenterCard ({ center }: CenterCardProps): any {
 
 interface PictureAreaProps {
   image: string
+  centerType: string
 }
-function PictureArea ({ image }: PictureAreaProps): any {
+function PictureArea ({ image, centerType }: PictureAreaProps): any {
   return (
     <Card.Section>
-      <Image src={image} height={240} radius="md" />
+      <div style={{ position: 'relative' }}>
+        <Image src={image} height={240} radius="md" />
+        <Badge variant="dot" color="blue" className="image-overlaying-badge">{centerType}</Badge>
+      </div>
     </Card.Section>
   )
 }
@@ -35,7 +41,8 @@ interface CenterDescriptionProps {
 function CenterDescription ({ name, address }: CenterDescriptionProps): any {
   return (
     <Card.Section mt="xs">
-        <FirstLine name={name} />
+
+      <FirstLine name={name} />
       <Stack gap={0}>
         <AddressLine address={address} />
         <AcceptedPaymentsLine />
