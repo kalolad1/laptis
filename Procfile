@@ -1,2 +1,2 @@
-release: python manage.py migrate
-web: gunicorn laptis.wsgi
+release: python ./backend/manage.py migrate
+web: gunicorn --chdir backend laptis.wsgi
