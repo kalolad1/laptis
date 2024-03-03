@@ -23,7 +23,7 @@ python backend/manage.py collectstatic --noinput
 python backend/manage.py makemigrations
 python backend/manage.py migrate
 python backend/manage.py test core
-pip freeze > backend/requirements.txt
+pip freeze > requirements.txt
 
 # Frontend
 cd frontend
