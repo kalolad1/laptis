@@ -86,6 +86,8 @@ class Center(models.Model):
         max_length=200, choices=CenterType.choices, default=CenterType.RESIDENTIAL
     )
     image = models.ImageField(upload_to="centers/images/", blank=True)
+    phone_number = models.CharField(max_length=200, default="")
+    website = models.CharField(max_length=200, default="")
 
     def get_eligible_sex_default(self):
         return ["male", "female"]

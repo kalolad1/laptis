@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 'use client'
 
 import { Card, Image, Text, Group, Stack, Badge } from '@mantine/core'
@@ -14,7 +15,7 @@ export default function CenterCard ({ center }: CenterCardProps): any {
   return (
     <Card radius="md" p="md" component="a" href={'/center/' + center.id} target="_blank">
       <PictureArea image={center.image} centerType={center.center_type} />
-      <CenterDescription name={center.name} address={center.address} />
+      <CenterDescription name={center.name} address={center.address} eligible_health_insurances={center.eligible_health_insurances} />
     </Card>
   )
 }
@@ -37,15 +38,16 @@ function PictureArea ({ image, centerType }: PictureAreaProps): any {
 interface CenterDescriptionProps {
   name: string
   address: string
+  eligible_health_insurances: string[]
 }
-function CenterDescription ({ name, address }: CenterDescriptionProps): any {
+function CenterDescription ({ name, address, eligible_health_insurances }: CenterDescriptionProps): any {
   return (
     <Card.Section mt="xs">
 
       <FirstLine name={name} />
       <Stack gap={0}>
         <AddressLine address={address} />
-        <AcceptedPaymentsLine />
+        <AcceptedPaymentsLine eligible_health_insurances={eligible_health_insurances}/>
       </Stack>
     </Card.Section>
   )
@@ -81,8 +83,14 @@ function AddressLine ({ address }: AddressLineProps): any {
   )
 }
 
-function AcceptedPaymentsLine (): any {
-  return (
-    <Text c="gray" fw={400} size='sm'>Accepts medicaid, medicare</Text>
-  )
+interface AcceptedPaymentsLineProps {
+  eligible_health_insurances: string[]
+}
+
+function AcceptedPaymentsLine ({ eligible_health_insurances }: AcceptedPaymentsLineProps): any {
+  if (eligible_health_insurances !== undefined) {
+    return (
+      <Text c="gray" fw={400} size='sm'>Accepts {eligible_health_insurances.join(', ')}</Text>
+    )
+  }
 }

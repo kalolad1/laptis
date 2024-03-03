@@ -5,4 +5,13 @@ from .models import Center
 class CenterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Center
-        fields = ["name", "address", "center_type", "image", "id"]
+        fields = [
+            "name",
+            "address",
+            "center_type",
+            "image",
+            "id",
+            "phone_number",
+            "website",
+            "eligible_health_insurances",
+        ]

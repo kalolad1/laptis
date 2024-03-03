@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 'use client'
 
 import '@mantine/dates/styles.css'
@@ -6,11 +7,12 @@ import { useState, useEffect } from 'react'
 import { getCenter } from '@/app/api/get_center'
 import { type Center } from '@/app/constants/types'
 
-import { Title, Image, Text, Container, Stack, Divider, Button, Grid } from '@mantine/core'
+import { Title, Image, Text, Container, Stack, Divider, Button, Grid, Anchor } from '@mantine/core'
 
 import MainNavbar from '@/app/navbar/main_navbar'
 
 import classes from './page.module.css'
+import { IconPhone } from '@tabler/icons-react'
 
 export default function CenterDetailViewPage ({ params }: { params: { id: string } }): any {
   const [center, setCenter] = useState([])
@@ -50,7 +52,7 @@ function CenterDetailViewBody ({ center }: CenterDetailViewBodyProps): any {
         <Information center={center} />
       </Grid.Col>
       <Grid.Col span={{ base: 4, md: 3, lg: 3 }}>
-        <ReserveBox />
+        <ReserveBox phone_number={center.phone_number} />
       </Grid.Col>
     </Grid>
   )
@@ -64,8 +66,9 @@ function Information ({ center }: InformationProps): any {
   return (
     <div>
       <Title order={3}>{center.address}</Title>
-      <QuickCenterStats />
-      <Divider my="md" />
+      <QuickCenterStats eligible_health_insurances={center.eligible_health_insurances} />
+      <Anchor href={center.website} target='blank'>Go to website</Anchor>
+      <Divider my="sm" />
 
       <Text>Woburn Addiction Treatment is a top-rated addiction treatment center in Massachusetts that accepts most insurance plans. If you or a loved one are ready to overcome substance addiction and commit to life-changing treatment, our Massachusetts treatment facility is here to help.
 
@@ -74,16 +77,32 @@ function Information ({ center }: InformationProps): any {
   )
 }
 
-function QuickCenterStats (): any {
-  return (
-    <Text>5 beds available • 100 total beds • Accepts medicaid</Text>
-  )
+interface QuickCenterStatsProps {
+  eligible_health_insurances: string[]
 }
 
-function ReserveBox (): any {
+function QuickCenterStats ({ eligible_health_insurances }: QuickCenterStatsProps): any {
+  if (eligible_health_insurances !== undefined) {
+    return (
+      <Text>5 beds available • 100 total beds • Accepts {eligible_health_insurances.join(', ')}</Text>
+    )
+  } else {
+    return (
+      <Text>5 beds available • 100 total beds</Text>
+    )
+  }
+}
+
+interface ReserveBoxProps {
+  phone_number: string
+}
+
+function ReserveBox ({ phone_number }: ReserveBoxProps): any {
   return (
     <Stack className={classes.reserve_box_stack} align='center'>
-      <Title order={4}>856-999-4823</Title>
+      <Button justify="center" size="md" leftSection={<IconPhone />} variant="transparent" color='black'>
+        {phone_number}
+      </Button>
       <Button disabled>Reserve</Button>
     </Stack>
   )
