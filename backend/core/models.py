@@ -72,10 +72,22 @@ class CenterType(models.TextChoices):
     TRANSITIONAL_SUPPORT_SERVICES = "transitional support services"
     RESIDENTIAL = "residential"
 
-
+# ArrayField defaults
 class Sex(models.TextChoices):
     MALE = "male"
     FEMALE = "female"
+
+def get_eligible_sex_default():
+        return ["male", "female"]
+
+def get_eligible_medications_default():
+        return ["methadone"]
+
+def get_eligible_mental_health_diagnoses_default():
+        return ["depression", "anxiety", "ADHD"]
+
+def get_eligible_health_insurances_default():
+        return ["MassHealth", "Blue Cross"]
 
 
 class Center(models.Model):
@@ -89,9 +101,6 @@ class Center(models.Model):
     phone_number = models.CharField(max_length=200, default="")
     website = models.CharField(max_length=200, default="")
 
-    def get_eligible_sex_default(self):
-        return ["male", "female"]
-
     eligible_sexes = ArrayField(
         models.CharField(max_length=200, choices=Sex.choices),
         default=get_eligible_sex_default,
@@ -100,23 +109,14 @@ class Center(models.Model):
     eligible_age_minimum = models.IntegerField(default=1)
     eligible_age_maximum = models.IntegerField(default=9999)
 
-    def get_eligible_medications_default(self):
-        return ["methadone"]
-
     eligible_medications = ArrayField(
         models.CharField(max_length=200), default=get_eligible_medications_default
     )
-
-    def get_eligible_mental_health_diagnoses_default(self):
-        return ["depression", "anxiety", "ADHD"]
 
     eligible_mental_health_diagnoses = ArrayField(
         models.CharField(max_length=200),
         default=get_eligible_mental_health_diagnoses_default,
     )
-
-    def get_eligible_health_insurances_default(self):
-        return ["MassHealth", "Blue Cross"]
 
     eligible_health_insurances = ArrayField(
         models.CharField(max_length=200), default=get_eligible_health_insurances_default
