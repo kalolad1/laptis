@@ -31,7 +31,8 @@ DEBUG = "True"
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "https://localhost:3000",
-    "https://laptis-nknr2tak7-kalolad1.vercel.app"
+    "https://laptis-nknr2tak7-kalolad1.vercel.app",
+    "https://laptis.vercel.app"
 ]
 
 AUTH_USER_MODEL = "core.User"
