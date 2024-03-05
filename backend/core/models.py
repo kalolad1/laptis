@@ -51,21 +51,6 @@ class User(AbstractUser):
     objects = UserManager()
 
 
-class ProviderProfile(models.Model):
-    user = models.OneToOneField(
-        User,
-        related_name="provider_profile",
-        on_delete=models.CASCADE,
-        primary_key=True,
-    )
-
-
-class ClientProfile(models.Model):
-    user = models.OneToOneField(
-        User, related_name="client_profile", on_delete=models.CASCADE, primary_key=True
-    )
-
-
 class CenterType(models.TextChoices):
     DETOX = "detox"
     CLINICAL_STABILIZATION_SERVICES = "clinical stabilization services"
