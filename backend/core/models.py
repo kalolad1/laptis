@@ -10,7 +10,7 @@ class UserManager(BaseUserManager):
 
     use_in_migrations = True
 
-    def _create_user(self, email, password, **extra_fields):
+    def _create_user(self, email: str, password: str, **extra_fields):
         """Create and save a User with the given email and password."""
         if not email:
             raise ValueError("The given email must be set")
@@ -20,7 +20,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_user(self, email, password=None, **extra_fields):
+    def create_user(self, email: str, password: str, **extra_fields):
         """Create and save a regular User with the given email and password."""
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
@@ -72,22 +72,27 @@ class CenterType(models.TextChoices):
     TRANSITIONAL_SUPPORT_SERVICES = "transitional support services"
     RESIDENTIAL = "residential"
 
+
 # ArrayField defaults
 class Sex(models.TextChoices):
     MALE = "male"
     FEMALE = "female"
 
+
 def get_eligible_sex_default():
-        return ["male", "female"]
+    return ["male", "female"]
+
 
 def get_eligible_medications_default():
-        return ["methadone"]
+    return ["methadone"]
+
 
 def get_eligible_mental_health_diagnoses_default():
-        return ["depression", "anxiety", "ADHD"]
+    return ["depression", "anxiety", "ADHD"]
+
 
 def get_eligible_health_insurances_default():
-        return ["MassHealth", "Blue Cross"]
+    return ["MassHealth", "Blue Cross"]
 
 
 class Center(models.Model):

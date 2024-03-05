@@ -1,8 +1,10 @@
+from typing import Dict, Any
+
 from .models import Center
 
 
 class CenterFilterer:
-    def __init__(self, patient_context):
+    def __init__(self, patient_context: Dict[str, Any]):
         self.sex = patient_context["sex"]
         self.age = patient_context["age"]
 

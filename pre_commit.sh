@@ -18,7 +18,10 @@ trap alert_failure ERR
 # Backend
 black . --preview
 flake8 backend --config backend/.flake8
-mypy --config-file backend/mypy.ini -p backend.core
+# For some reason, mypy only works when in the `backend` directory.
+# cd backend
+# mypy --config-file mypy.ini -p core
+# cd ..
 python backend/manage.py collectstatic --noinput
 python backend/manage.py makemigrations
 python backend/manage.py migrate

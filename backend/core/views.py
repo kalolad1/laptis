@@ -6,10 +6,6 @@ from .serializers import CenterSerializer
 from .center_filterer import CenterFilterer
 
 
-def home(request):
-    return "DUMMY HOME"
-
-
 @api_view(["GET"])
 def get_centers(request):
     if request.method == "GET":
