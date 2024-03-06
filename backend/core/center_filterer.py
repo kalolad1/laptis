@@ -1,41 +1,45 @@
-from typing import Dict, Any
+from typing import Any, Dict, List
+
+from django.db.models import QuerySet
 
 from .models import Center
 
 
 class CenterFilterer:
-    def __init__(self, patient_context: Dict[str, Any]):
-        self.sex = patient_context["sex"]
-        self.age = patient_context["age"]
+    def __init__(self, patient_context: Dict[str, Any]) -> None:
+        self.sex: str = patient_context["sex"]
+        self.age: int = patient_context["age"]
 
-        self.street_address = patient_context["streetAddress"]
-        self.city = patient_context["city"]
-        self.state = patient_context["state"]
-        self.country = patient_context["country"]
-        self.zip_code = patient_context["zipCode"]
+        self.street_address: str = patient_context["streetAddress"]
+        self.city: str = patient_context["city"]
+        self.state: str = patient_context["state"]
+        self.country: str = patient_context["country"]
+        self.zip_code: str = patient_context["zipCode"]
 
-        self.medication_assisted_therapy = patient_context[
+        self.medication_assisted_therapy: List[str] = patient_context[
             "medicationAssistedTherapy"
         ].split(",")
-        self.substance_use = patient_context["substanceUse"].split(",")
-        self.mental_health_diagnoses = patient_context["mentalHealthDiagnoses"].split(
-            ","
-        )
-        self.suicidal_ideation = (
+        self.substance_use: List[str] = patient_context["substanceUse"].split(",")
+        self.mental_health_diagnoses: List[str] = patient_context[
+            "mentalHealthDiagnoses"
+        ].split(",")
+        self.suicidal_ideation: bool = (
             True if patient_context["suicidalIdeation"] == "yes" else False
         )
 
-        self.health_insurance = patient_context["healthInsurance"]
-        self.health_insurance_identifier = patient_context["healthInsuranceIdentifier"]
+        self.health_insurance: str = patient_context["healthInsurance"]
+        self.health_insurance_identifier: str = patient_context[
+            "healthInsuranceIdentifier"
+        ]
 
-        self.has_disability = (
+        self.has_disability: bool = (
             True if patient_context["hasDisability"] == "yes" else False
         )
-        self.is_open_to_faith_based_treatment = (
+        self.is_open_to_faith_based_treatment: bool = (
             True if patient_context["isOpenToFaithBasedTreatment"] == "yes" else False
         )
 
-    def get_centers(self):
+    def get_centers(self) -> QuerySet[Center]:
         # Is the patient's sex eligible for the center?
         centers = Center.objects.filter(eligible_sexes__contains=[self.sex])
 

@@ -1,5 +1,6 @@
-from . import views
 from django.urls import path
+
+from . import views
 
 urlpatterns = [
     path("centers", views.get_centers, name="get_centers"),
