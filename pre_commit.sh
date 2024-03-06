@@ -5,12 +5,12 @@ set -e
 
 function alert_failure {
   echo "What kind of code are you writing! BOOOOOOOOO!";
-  cat rat_ascii_art.txt;
+  cat ascii_art/rat_ascii_art.txt;
 }
 
 function alert_success {
   echo "Looks good to commit!";
-  cat eagle_ascii_art.txt;
+  cat ascii_art/eagle_ascii_art.txt;
 }
 
 trap alert_failure ERR
