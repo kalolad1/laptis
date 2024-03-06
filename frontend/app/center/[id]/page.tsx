@@ -52,7 +52,7 @@ function CenterDetailViewBody ({ center }: CenterDetailViewBodyProps): any {
         <Information center={center} />
       </Grid.Col>
       <Grid.Col span={{ base: 4, md: 3, lg: 3 }}>
-        <ReserveBox phone_number={center.phone_number} />
+        <ReserveBox phoneNumber={center.phoneNumber} />
       </Grid.Col>
     </Grid>
   )
@@ -66,7 +66,7 @@ function Information ({ center }: InformationProps): any {
   return (
     <div>
       <Title order={3}>{center.address}</Title>
-      <QuickCenterStats eligible_health_insurances={center.eligible_health_insurances} />
+      <QuickCenterStats eligibleHealthInsurances={center.eligibleHealthInsurances} />
       <Anchor href={center.website} target='blank'>Go to website</Anchor>
       <Divider my="sm" />
 
@@ -78,13 +78,13 @@ function Information ({ center }: InformationProps): any {
 }
 
 interface QuickCenterStatsProps {
-  eligible_health_insurances: string[]
+  eligibleHealthInsurances: string[]
 }
 
-function QuickCenterStats ({ eligible_health_insurances }: QuickCenterStatsProps): any {
-  if (eligible_health_insurances !== undefined) {
+function QuickCenterStats ({ eligibleHealthInsurances }: QuickCenterStatsProps): any {
+  if (eligibleHealthInsurances !== undefined) {
     return (
-      <Text>5 beds available • 100 total beds • Accepts {eligible_health_insurances.join(', ')}</Text>
+      <Text>5 beds available • 100 total beds • Accepts {eligibleHealthInsurances.join(', ')}</Text>
     )
   } else {
     return (
@@ -94,14 +94,14 @@ function QuickCenterStats ({ eligible_health_insurances }: QuickCenterStatsProps
 }
 
 interface ReserveBoxProps {
-  phone_number: string
+  phoneNumber: string
 }
 
-function ReserveBox ({ phone_number }: ReserveBoxProps): any {
+function ReserveBox ({ phoneNumber }: ReserveBoxProps): any {
   return (
     <Stack className={classes.reserve_box_stack} align='center'>
       <Button justify="center" size="md" leftSection={<IconPhone />} variant="transparent" color='black'>
-        {phone_number}
+        {phoneNumber}
       </Button>
       <Button disabled>Reserve</Button>
     </Stack>

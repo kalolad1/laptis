@@ -10,33 +10,35 @@ class CenterFilterer:
         self.sex: str = patient_context["sex"]
         self.age: int = patient_context["age"]
 
-        self.street_address: str = patient_context["streetAddress"]
+        self.street_address: str = patient_context["street_address"]
         self.city: str = patient_context["city"]
         self.state: str = patient_context["state"]
         self.country: str = patient_context["country"]
-        self.zip_code: str = patient_context["zipCode"]
+        self.zip_code: str = patient_context["zip_code"]
 
         self.medication_assisted_therapy: List[str] = patient_context[
-            "medicationAssistedTherapy"
+            "medication_assisted_therapy"
         ].split(",")
-        self.substance_use: List[str] = patient_context["substanceUse"].split(",")
+        self.substance_use: List[str] = patient_context["substance_use"].split(",")
         self.mental_health_diagnoses: List[str] = patient_context[
-            "mentalHealthDiagnoses"
+            "mental_health_diagnoses"
         ].split(",")
         self.suicidal_ideation: bool = (
-            True if patient_context["suicidalIdeation"] == "yes" else False
+            True if patient_context["suicidal_ideation"] == "yes" else False
         )
 
-        self.health_insurance: str = patient_context["healthInsurance"]
+        self.health_insurance: str = patient_context["health_insurance"]
         self.health_insurance_identifier: str = patient_context[
-            "healthInsuranceIdentifier"
+            "health_insurance_identifier"
         ]
 
         self.has_disability: bool = (
-            True if patient_context["hasDisability"] == "yes" else False
+            True if patient_context["has_disability"] == "yes" else False
         )
         self.is_open_to_faith_based_treatment: bool = (
-            True if patient_context["isOpenToFaithBasedTreatment"] == "yes" else False
+            True
+            if patient_context["is_open_to_faith_based_treatment"] == "yes"
+            else False
         )
 
     def get_centers(self) -> QuerySet[Center]:
