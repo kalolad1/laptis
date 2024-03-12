@@ -21,4 +21,5 @@ node_modules/
 .next/
 
 # Media
-media/
+# TODO: Add media to .gitignore after setting up S3 media storage.
+# media/
