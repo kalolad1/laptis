@@ -1,20 +1,18 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 'use client'
 
-import '@mantine/dates/styles.css'
-
 import { useState, useEffect } from 'react'
+
 import { getCenter } from '@/app/api/get_center'
 import { type Center } from '@/app/constants/types'
 
 import { Title, Image, Text, Container, Stack, Divider, Button, Grid, Anchor } from '@mantine/core'
-
+import { IconPhone } from '@tabler/icons-react'
 import MainNavbar from '@/app/navbar/main_navbar'
 
+import '@mantine/dates/styles.css'
 import classes from './page.module.css'
-import { IconPhone } from '@tabler/icons-react'
 
-export default function CenterDetailViewPage ({ params }: { params: { id: string } }): any {
+export default function CenterDetailViewPage ({ params }: { params: { id: string } }): JSX.Element {
   const [center, setCenter] = useState<Center | null>(null)
 
   useEffect(() => {
@@ -31,9 +29,9 @@ export default function CenterDetailViewPage ({ params }: { params: { id: string
       <main>
         <Container pt="lg">
           <Stack gap="md">
-            {(center != null) && <Title>{center.name}</Title>}
+            {center !== null && <Title>{center.name}</Title>}
             <Image src={center?.image} radius="md" w={400} h={200} mb="md" />
-            {(center != null) && <CenterDetailViewBody center={center} />}
+            {center !== null && <CenterDetailViewBody center={center} />}
           </Stack>
         </Container>
       </main>
@@ -45,7 +43,7 @@ interface CenterDetailViewBodyProps {
   center: Center
 }
 
-function CenterDetailViewBody ({ center }: CenterDetailViewBodyProps): any {
+function CenterDetailViewBody ({ center }: CenterDetailViewBodyProps): JSX.Element {
   return (
     <Grid gutter={{ base: 75 }}>
       <Grid.Col span={{ base: 8, md: 9, lg: 9 }}>
@@ -62,7 +60,7 @@ interface InformationProps {
   center: Center
 }
 
-function Information ({ center }: InformationProps): any {
+function Information ({ center }: InformationProps): JSX.Element {
   return (
     <div>
       <Title order={3}>{center.address}</Title>
@@ -82,15 +80,9 @@ interface QuickCenterStatsProps {
 }
 
 function QuickCenterStats ({ eligibleHealthInsurances }: QuickCenterStatsProps): any {
-  if (eligibleHealthInsurances !== undefined) {
-    return (
-      <Text>5 beds available • 100 total beds • Accepts {eligibleHealthInsurances.join(', ')}</Text>
-    )
-  } else {
-    return (
-      <Text>5 beds available • 100 total beds</Text>
-    )
-  }
+  return (
+    <Text>5 beds available • 100 total beds • Accepts {eligibleHealthInsurances.join(', ')}</Text>
+  )
 }
 
 interface ReserveBoxProps {

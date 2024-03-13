@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 'use client'
+
+import { type Center } from '../constants/types'
 
 import { Card, Image, Text, Group, Stack, Badge } from '@mantine/core'
 import { IconStarFilled } from '@tabler/icons-react'
-import { type Center } from '../constants/types'
 
 import './center_card.css'
 
@@ -11,7 +11,7 @@ interface CenterCardProps {
   center: Center
 }
 
-export default function CenterCard ({ center }: CenterCardProps): any {
+export default function CenterCard ({ center }: CenterCardProps): JSX.Element {
   return (
     <Card radius="md" p="md" component="a" href={'/center/' + center.id} target="_blank">
       <PictureArea image={center.image} centerType={center.centerType} />
@@ -24,7 +24,7 @@ interface PictureAreaProps {
   image: string
   centerType: string
 }
-function PictureArea ({ image, centerType }: PictureAreaProps): any {
+function PictureArea ({ image, centerType }: PictureAreaProps): JSX.Element {
   return (
     <Card.Section>
       <div style={{ position: 'relative' }}>
@@ -40,14 +40,13 @@ interface CenterDescriptionProps {
   address: string
   eligibleHealthInsurances: string[]
 }
-function CenterDescription ({ name, address, eligibleHealthInsurances }: CenterDescriptionProps): any {
+function CenterDescription ({ name, address, eligibleHealthInsurances }: CenterDescriptionProps): JSX.Element {
   return (
     <Card.Section mt="xs">
-
       <FirstLine name={name} />
       <Stack gap={0}>
         <AddressLine address={address} />
-        <AcceptedPaymentsLine eligibleHealthInsurances={eligibleHealthInsurances}/>
+        <AcceptedPaymentsLine eligibleHealthInsurances={eligibleHealthInsurances} />
       </Stack>
     </Card.Section>
   )
@@ -56,7 +55,7 @@ function CenterDescription ({ name, address, eligibleHealthInsurances }: CenterD
 interface FirstLineProps {
   name: string
 }
-function FirstLine ({ name }: FirstLineProps): any {
+function FirstLine ({ name }: FirstLineProps): JSX.Element {
   return (
     <Group justify="space-between">
       <Text c="black" fw={500} size='sm'>{name}</Text>
@@ -65,7 +64,7 @@ function FirstLine ({ name }: FirstLineProps): any {
   )
 }
 
-function StarReviewDisplay (): any {
+function StarReviewDisplay (): JSX.Element {
   return (
     <Group gap={4}>
       <IconStarFilled size={12} />
@@ -77,7 +76,7 @@ function StarReviewDisplay (): any {
 interface AddressLineProps {
   address: string
 }
-function AddressLine ({ address }: AddressLineProps): any {
+function AddressLine ({ address }: AddressLineProps): JSX.Element {
   return (
     <Text c="gray" fw={400} size='sm'>{address}</Text>
   )
@@ -87,10 +86,8 @@ interface AcceptedPaymentsLineProps {
   eligibleHealthInsurances: string[]
 }
 
-function AcceptedPaymentsLine ({ eligibleHealthInsurances }: AcceptedPaymentsLineProps): any {
-  if (eligibleHealthInsurances !== undefined) {
-    return (
-      <Text c="gray" fw={400} size='sm'>Accepts {eligibleHealthInsurances.join(', ')}</Text>
-    )
-  }
+function AcceptedPaymentsLine ({ eligibleHealthInsurances }: AcceptedPaymentsLineProps): JSX.Element {
+  return (
+    <Text c="gray" fw={400} size='sm'>Accepts {eligibleHealthInsurances.join(', ')}</Text>
+  )
 }

@@ -1,7 +1,7 @@
 import * as constants from '../constants/endpoints'
 import { type Center } from '../constants/types'
 
-export async function getCenters (): Promise<Center> {
+export async function getCenters (): Promise<Center[]> {
   const fetchData = {
     method: 'GET',
     headers: new Headers({

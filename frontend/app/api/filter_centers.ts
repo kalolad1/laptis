@@ -1,7 +1,7 @@
 import * as constants from '../constants/endpoints'
 import { type Center } from '../constants/types'
 
-export async function filterCenters (patientContext: Record<string, any>): Promise<Center> {
+export async function filterCenters (patientContext: Record<string, any>): Promise<Center[]> {
   const fetchData = {
     method: 'POST',
     headers: new Headers({

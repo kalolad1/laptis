@@ -1,13 +1,15 @@
-import '@mantine/core/styles.css'
-import { MantineProvider } from '@mantine/core'
 import { theme } from './mantine_theme'
+
+import { MantineProvider } from '@mantine/core'
+
+import '@mantine/core/styles.css'
 
 export const metadata = {
   title: 'Laptis',
   description: 'A platform to find the best drug treatment center for you.'
 }
 
-export default function RootLayout ({ children }: { children: any }): any {
+export default function RootLayout ({ children }: { children: any }): JSX.Element {
   return (
     <html lang="en">
       <head>
@@ -19,9 +21,7 @@ export default function RootLayout ({ children }: { children: any }): any {
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;0,6..12,1000;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700;1,6..12,800;1,6..12,900;1,6..12,1000&display=swap" rel="stylesheet" />
       </head>
       <body>
-        <MantineProvider theme={theme}
-          withGlobalStyles
-        >
+        <MantineProvider theme={theme}>
           {children}
         </MantineProvider>
       </body>

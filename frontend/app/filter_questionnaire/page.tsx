@@ -1,13 +1,13 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { useForm } from '@mantine/form'
 
 import { Container, Stack, Fieldset, Radio, Group, MultiSelect, TextInput, Select, Button, NumberInput } from '@mantine/core'
 
 import MainNavbar from '@/app/navbar/main_navbar'
-import { useForm } from '@mantine/form'
 
-export default function FilterQuestionnairePage (): any {
+export default function FilterQuestionnairePage (): JSX.Element {
   return (
     <>
       <header>
@@ -20,7 +20,7 @@ export default function FilterQuestionnairePage (): any {
   )
 }
 
-function FilterQuestionnaireForm (): any {
+function FilterQuestionnaireForm (): JSX.Element {
   const router = useRouter()
 
   const form = useForm({
@@ -45,6 +45,7 @@ function FilterQuestionnaireForm (): any {
 
   function handleSubmit (event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault()
+
     const urlParams = new URLSearchParams(form.values)
     const queryString = urlParams.toString()
     router.push('/filtered_results?' + queryString)
@@ -131,7 +132,7 @@ function FilterQuestionnaireForm (): any {
   )
 }
 
-function SexInput (props): any {
+function SexInput (props: any): JSX.Element {
   return (
     <Radio.Group
       name="sexInput"
@@ -148,7 +149,7 @@ function SexInput (props): any {
   )
 }
 
-function AgeInput (props): any {
+function AgeInput (props: any): JSX.Element {
   return (
     <NumberInput
       label="What is your age?"
@@ -158,7 +159,7 @@ function AgeInput (props): any {
   )
 }
 
-function MedicationAssistedTherapyInput (props): any {
+function MedicationAssistedTherapyInput (props: any): React.FC {
   const medications = ['methadone', 'suboxone', 'vivtrol']
   const label = 'Are you using ' + medications.join(', ').replace(/,([^,]*)$/, ' or$1') + '?'
   return (
@@ -172,7 +173,7 @@ function MedicationAssistedTherapyInput (props): any {
   )
 }
 
-function SubstanceUseInput (props): any {
+function SubstanceUseInput (props: any): React.FC {
   const substances = ['alcohol', 'marijuana', 'cocaine', 'methamphetamine', 'heroin', 'prescription opioids', 'bath salts', 'PCP', 'ecstasy']
   const label = 'What other substances are you using?'
   return (
@@ -186,7 +187,7 @@ function SubstanceUseInput (props): any {
   )
 }
 
-function MentalHealthDiagnosesInput (props): any {
+function MentalHealthDiagnosesInput (props: any): JSX.Element {
   const diagnoses = ['depression', 'anxiety', 'bipolar disorder', 'schizophrenia', 'PTSD', 'ADHD', 'OCD', 'eating disorder', 'personality disorder']
   const label = 'Do you have any of the following mental health diagnoses?'
 
@@ -201,7 +202,7 @@ function MentalHealthDiagnosesInput (props): any {
   )
 }
 
-function SuicidalIdeationInput (props): any {
+function SuicidalIdeationInput (props: any): JSX.Element {
   return (
     <Select
       label="Have you had any thoughts of suicide in the last 90 days?"
@@ -216,7 +217,7 @@ function SuicidalIdeationInput (props): any {
   )
 }
 
-function HealthInsuranceInput (props): any {
+function HealthInsuranceInput (props: any): JSX.Element {
   const insurances = ['MassHealth', 'Massachusetts Behavioral Health Partnership', 'WellSense', 'Neighborhood Health Plan', 'Fallon Health Plan', 'Tufts Health Plan', 'Commonwealth Care Alliance', 'Community Care Cooperative', 'Blue Cross Blue Shield', 'Aetna', 'Cigna', 'United Health Care', 'Humana', 'Health New England', 'Mass General Brigham Health Plan', 'Other']
   const label = 'What health insurance provider does you have?'
 
@@ -231,7 +232,7 @@ function HealthInsuranceInput (props): any {
   )
 }
 
-function HealthInsuranceIdentifierInput (props): any {
+function HealthInsuranceIdentifierInput (props: any): JSX.Element {
   const label = 'If you have MassHealth, please provide your Social Security Number. If you have a private health insurance, please provide your ID number.'
 
   return (
@@ -244,7 +245,7 @@ function HealthInsuranceIdentifierInput (props): any {
   )
 }
 
-function HasDisabilityInput (props): any {
+function HasDisabilityInput (props: any): JSX.Element {
   return (
     <Select
       label="Do you have a disability?"
@@ -259,7 +260,7 @@ function HasDisabilityInput (props): any {
   )
 }
 
-function FaithBasedTreatmentInput (props): any {
+function FaithBasedTreatmentInput (props: any): JSX.Element {
   return (
     <Select
       label="Are you open to faith-based treatment?"

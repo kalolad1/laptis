@@ -1,17 +1,13 @@
 'use client'
 
-import {
-  Image,
-  Group,
-  Button,
-  Flex,
-  Title
-} from '@mantine/core'
-import { IconAdjustments } from '@tabler/icons-react'
-import classes from './main_navbar.module.css'
 import Link from 'next/link'
 
-export default function MainNavbar (): any {
+import { Image, Group, Button, Flex, Title } from '@mantine/core'
+import { IconAdjustments } from '@tabler/icons-react'
+
+import classes from './main_navbar.module.css'
+
+export default function MainNavbar (): JSX.Element {
   return (
     <Flex className={classes.flex_container} justify="space-between" p="md">
       <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }} passHref>

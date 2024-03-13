@@ -2,10 +2,12 @@
 
 import { useSearchParams } from 'next/navigation'
 import { useState, useEffect, Suspense } from 'react'
+
 import { filterCenters } from '@/app/api/filter_centers'
 
-import MainNavbar from '@/app/navbar/main_navbar'
 import CenterCardsGrid from '@/app/center_list_view/center_cards_grid'
+import MainNavbar from '@/app/navbar/main_navbar'
+import { type Center } from '../constants/types'
 
 export default function HomePageSuspenseWrapper (): any {
   return (
@@ -17,12 +19,11 @@ export default function HomePageSuspenseWrapper (): any {
 
 function HomePage (): any {
   const searchParams = useSearchParams()
-  const params = Object.fromEntries(searchParams)
 
-  const [centers, setCenters] = useState([])
+  const [centers, setCenters] = useState<Center[]>([])
 
   useEffect(() => {
-    filterCenters(params)
+    filterCenters(Object.fromEntries(searchParams))
       .then(data => {
         setCenters(data)
       })
