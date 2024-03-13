@@ -1,3 +1,5 @@
+'use client'
+
 import { Stack } from '@mantine/core'
 
 import Navbar from '@/app/provider_home/Navbar'
