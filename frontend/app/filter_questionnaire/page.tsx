@@ -5,7 +5,7 @@ import { useForm } from '@mantine/form'
 
 import { Container, Stack, Fieldset, Radio, Group, MultiSelect, TextInput, Select, Button, NumberInput } from '@mantine/core'
 
-import MainNavbar from '@/app/navbar/main_navbar'
+import MainNavbar from '@/app/components/navbar/main_navbar'
 
 export default function FilterQuestionnairePage (): JSX.Element {
   return (

@@ -1,6 +1,6 @@
 'use client'
 
-import { type Center } from '../constants/types'
+import { type Center } from '../../constants/types'
 
 import { Card, Image, Text, Group, Stack, Badge } from '@mantine/core'
 import { IconStarFilled } from '@tabler/icons-react'

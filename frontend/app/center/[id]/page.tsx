@@ -7,7 +7,7 @@ import { type Center } from '@/app/constants/types'
 
 import { Title, Image, Text, Container, Stack, Divider, Button, Grid, Anchor } from '@mantine/core'
 import { IconPhone } from '@tabler/icons-react'
-import MainNavbar from '@/app/navbar/main_navbar'
+import MainNavbar from '@/app/components/navbar/main_navbar'
 
 import '@mantine/dates/styles.css'
 import classes from './page.module.css'

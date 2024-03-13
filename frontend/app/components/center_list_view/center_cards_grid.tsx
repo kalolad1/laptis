@@ -1,6 +1,6 @@
 'use client'
 
-import { type Center } from '../constants/types'
+import { type Center } from '../../constants/types'
 
 import { Grid } from '@mantine/core'
 
