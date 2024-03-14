@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from .models.center import Center
+from .models.user import Patient
 
 
 class CenterSerializer(serializers.ModelSerializer[Center]):
@@ -16,3 +17,9 @@ class CenterSerializer(serializers.ModelSerializer[Center]):
             "website",
             "eligible_health_insurances",
         ]
+
+
+class PatientSerializer(serializers.ModelSerializer[Patient]):
+    class Meta:
+        model = Patient
+        fields = ["first_name", "last_name", "age"]

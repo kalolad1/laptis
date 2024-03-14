@@ -11,4 +11,6 @@ urlpatterns = [
         views.get_typeform_response,
         name="get_typeform_response",
     ),
+    path("create_new_patient", views.create_new_patient, name="create_new_patient"),
+    path("get_patients", views.get_patients, name="get_patients"),
 ]

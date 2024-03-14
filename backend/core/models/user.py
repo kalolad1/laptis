@@ -18,6 +18,7 @@ class CustomUserManager(UserManager["User"]):
         password = self._generate_random_string()
 
         user = User.objects.create(username=username, email=email)
+        user.is_patient = True
         user.set_password(password)
         user.save()
 
