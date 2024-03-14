@@ -1,6 +1,6 @@
 import * as constants from '../constants/endpoints'
 
-export async function getTypeformResponse (formId: string, responseId: string): Promise<any> {
+export async function getTypeformResponse (formId: string, responseId: string): Promise<string> {
   const fetchData = {
     method: 'GET',
     headers: new Headers({

@@ -8,3 +8,15 @@ export interface Center {
   website: string
   eligibleHealthInsurances: string[]
 }
+
+export interface NewPatientInfo {
+  firstName: string
+  lastName: string
+  age: number
+}
+
+export interface Patient {
+  first_name: string
+  last_name: string
+  age: number
+}

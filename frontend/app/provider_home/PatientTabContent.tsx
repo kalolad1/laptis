@@ -1,7 +1,10 @@
 import { Button, Flex, Table } from '@mantine/core'
 import { PopupButton } from '@typeform/embed-react'
 import { IconUserCircle } from '@tabler/icons-react'
-import { getTypeformResponse } from '../api/get_typeform_response'
+
+import { getTypeformResponse } from '@/app/api/get_typeform_response'
+import { createNewPatient } from '@/app/api/create_new_patient'
+import { type NewPatientInfo } from '@/app/constants/types'
 
 export default function PatientTabContent (): JSX.Element {
   return (
@@ -41,13 +44,26 @@ function PatientTable (): JSX.Element {
 
 function NewPatientButton (): JSX.Element {
   function handleSubmit ({ formId, responseId }: { formId: string, responseId: string }): void {
-    getTypeformResponse(formId, responseId)
-      .then(answers => {
-        console.log(answers)
-      })
-      .catch(error => {
-        console.error(error)
-      })
+    // There is a wierd race going on in which the response is not available immediately
+    // after the form is submitted. This is a temporary fix to wait for some time before
+    // fetching the response.
+    setTimeout(() => {
+      getTypeformResponse(formId, responseId)
+        .then(answers => {
+          const newPatientInfo: NewPatientInfo = JSON.parse(answers)
+
+          createNewPatient(newPatientInfo.firstName, newPatientInfo.lastName, newPatientInfo.age)
+            .then(response => {
+              console.log(response)
+            })
+            .catch(error => {
+              console.error(error)
+            })
+        })
+        .catch(error => {
+          console.error(error)
+        })
+    }, 1000)
   }
 
   return (
