@@ -16,7 +16,8 @@ export interface NewPatientInfo {
 }
 
 export interface Patient {
-  first_name: string
-  last_name: string
+  firstName: string
+  lastName: string
   age: number
+  userId: string
 }

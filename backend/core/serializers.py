@@ -22,4 +22,4 @@ class CenterSerializer(serializers.ModelSerializer[Center]):
 class PatientSerializer(serializers.ModelSerializer[Patient]):
     class Meta:
         model = Patient
-        fields = ["first_name", "last_name", "age"]
+        fields = ["first_name", "last_name", "age", "user_id"]

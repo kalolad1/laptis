@@ -20,7 +20,7 @@ class TypeformResponseGetter:
             request_url,
             headers={"Authorization": f"Bearer {BEARER_TOKEN}"},
         )
-        print(response.__dict__)
+
         answers = {}
         for field in response.json()["items"][0]["answers"]:
             field_name = field["field"]["ref"]
