@@ -2,7 +2,7 @@ from typing import Any, Dict, List
 
 from django.db.models import QuerySet
 
-from .models import Center
+from .models.center import Center
 
 
 class CenterFilterer:

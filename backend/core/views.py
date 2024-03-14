@@ -5,7 +5,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 from .center_filterer import CenterFilterer
-from .models import Center
+from .models.center import Center
 from .serializers import CenterSerializer
 from .api.typeform_response_getter import TypeformResponseGetter
 

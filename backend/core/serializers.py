@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Center
+from .models.center import Center
 
 
 class CenterSerializer(serializers.ModelSerializer[Center]):

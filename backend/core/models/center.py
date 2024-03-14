@@ -1,12 +1,7 @@
-from django.db import models
-from django.contrib.auth.models import AbstractUser
-from django.contrib.postgres.fields import ArrayField
-
 from typing import List
 
-
-class User(AbstractUser):
-    pass
+from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 
 class CenterType(models.TextChoices):

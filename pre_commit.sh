@@ -16,9 +16,11 @@ trap alert_failure ERR
 
 # Backend
 black . --preview
+echo "Running flake.";
 flake8 backend --config backend/.flake8
 # For some reason, mypy only works when in the `backend` directory.
 cd backend
+echo "Running mypy.";
 mypy --config-file mypy.ini -p core
 cd ..
 python backend/manage.py collectstatic --noinput
