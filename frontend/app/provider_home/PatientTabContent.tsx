@@ -1,5 +1,7 @@
 import { Button, Flex, Table } from '@mantine/core'
-import { IconSearch, IconUserCircle } from '@tabler/icons-react'
+import { PopupButton } from '@typeform/embed-react'
+import { IconUserCircle } from '@tabler/icons-react'
+import { getTypeformResponse } from '../api/get_typeform_response'
 
 export default function PatientTabContent (): JSX.Element {
   return (
@@ -25,13 +27,7 @@ function PatientTable (): JSX.Element {
       <Table.Td>{patient.name}</Table.Td>
       <Table.Td>{patient.applicationStatus}</Table.Td>
       <Table.Td>
-        <a
-          onClick={(event) => {
-            event.preventDefault()
-          }}
-        >
-          <IconSearch />
-        </a>
+        <Button>Find a treatment center</Button>
       </Table.Td>
     </Table.Tr>
   ))
@@ -44,9 +40,19 @@ function PatientTable (): JSX.Element {
 }
 
 function NewPatientButton (): JSX.Element {
+  function handleSubmit ({ formId, responseId }: { formId: string, responseId: string }): void {
+    getTypeformResponse(formId, responseId)
+      .then(answers => {
+        console.log(answers)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
+
   return (
-    <Button style={{ position: 'absolute', bottom: 24, right: 24 }}>
+    <PopupButton id={process.env.NEXT_PUBLIC_NEW_PATIENT_FORM_ID} onSubmit={handleSubmit} style={{ position: 'absolute', bottom: 24, right: 24 }}>
       New Patient
-    </Button>
+    </PopupButton>
   )
 }
