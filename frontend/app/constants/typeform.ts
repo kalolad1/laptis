@@ -1,0 +1,2 @@
+export const NEW_PATIENT_FORM_ID = 'a1k3MHMx'
+export const PATIENT_APPLICATION_CONTEXT_FORM_ID = 'ViGS8x2u'

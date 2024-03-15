@@ -15,6 +15,12 @@ export interface NewPatientInfo {
   age: number
 }
 
+export interface PatientApplicationContext {
+  userId: string
+  hasHadSuicidalThoughtsInLast90Days: boolean
+  hasUsedDrugsInLast90Days: boolean
+}
+
 export interface Patient {
   firstName: string
   lastName: string

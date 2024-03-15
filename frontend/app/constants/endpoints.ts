@@ -6,3 +6,5 @@ export const GET_TYPEFORM_RESPONSE_ENDPOINT = BASE_API_ENDPOINT + '/get_typeform
 
 export const CREATE_NEW_PATIENT_ENDPOINT = BASE_API_ENDPOINT + '/create_new_patient'
 export const GET_PATIENTS_ENDPOINT = BASE_API_ENDPOINT + '/get_patients'
+
+export const CREATE_NEW_PATIENT_APPLICATION_CONTEXT_ENDPOINT = BASE_API_ENDPOINT + '/create_new_patient_application_context'
