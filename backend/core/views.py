@@ -6,8 +6,13 @@ from rest_framework.response import Response
 
 from .api.typeform_response_getter import TypeformResponseGetter
 from .center_filterer import CenterFilterer
-from .serializers import CenterSerializer, PatientSerializer
+from .serializers import (
+    CenterSerializer,
+    PatientSerializer,
+    PatientApplicationContextSerializer,
+)
 
+from .models.application import PatientApplicationContext
 from .models.center import Center
 from .models.user import User
 
@@ -59,4 +64,24 @@ def get_patients(request: Request) -> Response:
     users = User.objects.filter(is_patient=True)
     patients = [user.patient for user in users]
     serializer = PatientSerializer(patients, many=True, context={"request": request})
+    return Response(serializer.data)
+
+
+@api_view(["POST"])
+def create_new_patient_application_context(request: Request) -> Response:
+    user_id = request.data["user_id"]
+    has_had_suicidal_thoughts_in_last_90_days = request.data[
+        "has_had_suicidal_thoughts_in_last_90_days"
+    ]
+    has_used_drugs_in_last_90_days = request.data["has_used_drugs_in_last_90_days"]
+
+    pac = PatientApplicationContext.objects.create(
+        user=User.objects.get(id=user_id),
+    )
+    pac.has_had_suicidal_thoughts_in_last_90_days = (
+        has_had_suicidal_thoughts_in_last_90_days
+    )
+    pac.has_used_drugs_in_last_90_days = has_used_drugs_in_last_90_days
+    pac.save()
+    serializer = PatientApplicationContextSerializer(pac, context={"request": request})
     return Response(serializer.data)

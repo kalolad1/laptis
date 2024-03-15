@@ -81,6 +81,7 @@ function FindTreatmentButton ({ userId }: FindTreatmentButtonProps): JSX.Element
       getTypeformResponse(formId, responseId)
         .then(answers => {
           const patientApplicationContextAnswers = JSON.parse(answers)
+          console.log(patientApplicationContextAnswers)
           const patientApplicationContext: PatientApplicationContext = {
             userId,
             hasHadSuicidalThoughtsInLast90Days: patientApplicationContextAnswers.hasHadSuicidalThoughtsInLast90Days === 'Yes',

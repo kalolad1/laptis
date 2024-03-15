@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from .models.application import PatientApplicationContext
 from .models.center import Center
 from .models.user import Patient
 
@@ -23,3 +24,13 @@ class PatientSerializer(serializers.ModelSerializer[Patient]):
     class Meta:
         model = Patient
         fields = ["first_name", "last_name", "age", "user_id"]
+
+
+class PatientApplicationContextSerializer(
+    serializers.ModelSerializer[PatientApplicationContext]
+):
+    class Meta:
+        model = PatientApplicationContext
+        fields = [
+            "patient_application_context_id",
+        ]

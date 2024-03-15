@@ -13,4 +13,9 @@ urlpatterns = [
     ),
     path("create_new_patient", views.create_new_patient, name="create_new_patient"),
     path("get_patients", views.get_patients, name="get_patients"),
+    path(
+        "create_new_patient_application_context",
+        views.create_new_patient_application_context,
+        name="create_new_patient_application_context",
+    ),
 ]
