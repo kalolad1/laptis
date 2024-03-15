@@ -9,8 +9,8 @@ import { IconUsers, IconLogout, IconHome } from '@tabler/icons-react'
 import classes from './Sidebar.module.css'
 
 const tabs = [
-  { link: '', label: 'Patients', icon: IconUsers },
-  { link: '', label: 'Centers', icon: IconHome }
+  { link: '/provider_dashboard/patients', label: 'Patients', icon: IconUsers },
+  { link: '/provider_dashboard/centers', label: 'Centers', icon: IconHome }
 ]
 
 export default function Sidebar (): JSX.Element {

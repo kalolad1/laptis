@@ -7,7 +7,7 @@ import { filterCenters } from '@/app/api/filter_centers'
 
 import CenterCardsGrid from '@/app/components/center_list_view/center_cards_grid'
 import MainNavbar from '@/app/components/navbar/main_navbar'
-import { type Center } from '../constants/types'
+import { type Center } from '@/app/constants/types'
 
 export default function HomePageSuspenseWrapper (): any {
   return (
@@ -28,8 +28,7 @@ function HomePage (): any {
         setCenters(data)
       })
       .catch(error => { console.error('Error:', error) })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [searchParams])
 
   return (
     <>
