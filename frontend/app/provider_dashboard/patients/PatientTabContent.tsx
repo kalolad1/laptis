@@ -85,12 +85,7 @@ function FindTreatmentButton ({ userId }: FindTreatmentButtonProps): JSX.Element
     setTimeout(() => {
       getTypeformResponse(formId, responseId)
         .then(answers => {
-          const patientApplicationContextAnswers = JSON.parse(answers)
-          const patientApplicationContext: PatientApplicationContext = {
-            userId,
-            hasHadSuicidalThoughtsInLast90Days: patientApplicationContextAnswers.hasHadSuicidalThoughtsInLast90Days === 'Yes',
-            hasUsedDrugsInLast90Days: patientApplicationContextAnswers.hasUsedDrugsInLast90Days === 'Yes'
-          }
+          const patientApplicationContext: PatientApplicationContext = JSON.parse(answers)
 
           createNewPatientApplicationContext(patientApplicationContext)
             .then(response => {
@@ -120,6 +115,20 @@ interface NewPatientButtonProps {
 }
 
 function NewPatientButton ({ handleNewPatientFormClose }: NewPatientButtonProps): JSX.Element {
+  function parseTypeformAnswers (jsonAnswers: string): NewPatientInfo {
+    const answers = JSON.parse(jsonAnswers)
+    console.log(answers)
+    const newPatientInfo: NewPatientInfo = {
+      ...answers,
+      sex: answers.sex.label,
+      usingMedicationAssistedTherapies: 'usingMedicationAssistedTherapies' in answers ? answers.usingMedicationAssistedTherapies.labels : [],
+      usingSubstances: 'usingSubstances' in answers ? answers.usingSubstances.labels : [],
+      mentalHealthDiagnoses: 'mentalHealthDiagnoses' in answers ? answers.mentalHealthDiagnoses.labels : [],
+      healthInsurance: answers.healthInsurance.label
+    }
+    return newPatientInfo
+  }
+
   function handleSubmit ({ formId, responseId }: { formId: string, responseId: string }): void {
     // There is a wierd race going on in which the response is not available immediately
     // after the form is submitted. This is a temporary fix to wait for some time before
@@ -127,9 +136,8 @@ function NewPatientButton ({ handleNewPatientFormClose }: NewPatientButtonProps)
     setTimeout(() => {
       getTypeformResponse(formId, responseId)
         .then(answers => {
-          const newPatientInfo: NewPatientInfo = JSON.parse(answers)
-
-          createNewPatient(newPatientInfo.firstName, newPatientInfo.lastName, newPatientInfo.age)
+          const newPatientInfo: NewPatientInfo = parseTypeformAnswers(answers)
+          createNewPatient(newPatientInfo)
             .then(response => {
               console.log(response)
             })

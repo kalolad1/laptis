@@ -58,11 +58,7 @@ def get_typeform_response(request: Request) -> Response:
 
 @api_view(["POST"])
 def create_new_patient(request: Request) -> Response:
-    first_name = request.data["first_name"]
-    last_name = request.data["last_name"]
-    age = request.data["age"]
-
-    User.objects.create_patient(first_name=first_name, last_name=last_name, age=age)
+    User.objects.create_patient(**request.data)
     return Response(status=200)
 
 

@@ -1,5 +1,6 @@
 import random
 import string
+from typing import List
 
 from django.contrib.auth.models import UserManager
 from django.contrib.auth.models import AbstractUser
@@ -11,7 +12,21 @@ class CustomUserManager(UserManager["User"]):
     def _generate_random_string(self) -> str:
         return "".join(random.choice(string.ascii_letters) for _ in range(12))
 
-    def create_patient(self, first_name: str, last_name: str, age: int) -> "User":
+    def create_patient(
+        self,
+        first_name: str,
+        last_name: str,
+        age: int,
+        sex: str,
+        address: str,
+        using_medication_assisted_therapies: List[str],
+        using_substances: List[str],
+        mental_health_diagnoses: List[str],
+        health_insurance: str,
+        health_insurance_identifier: str,
+        has_disability: bool,
+        is_open_to_faith_based_treatment: bool,
+    ) -> "User":
         # Randomize username, email, and password for now as patients
         # don't need this right away.
         username = self._generate_random_string()
@@ -24,7 +39,19 @@ class CustomUserManager(UserManager["User"]):
         user.save()
 
         Patient.objects.create(
-            user=user, first_name=first_name, last_name=last_name, age=age
+            user=user,
+            first_name=first_name,
+            last_name=last_name,
+            age=age,
+            sex=sex,
+            address=address,
+            using_medication_assisted_therapies=using_medication_assisted_therapies,
+            using_substances=using_substances,
+            mental_health_diagnoses=mental_health_diagnoses,
+            health_insurance=health_insurance,
+            health_insurance_identifier=health_insurance_identifier,
+            has_disability=has_disability,
+            is_open_to_faith_based_treatment=is_open_to_faith_based_treatment,
         )
 
         return user
