@@ -3,6 +3,7 @@ import string
 
 from django.contrib.auth.models import UserManager
 from django.contrib.auth.models import AbstractUser
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 
@@ -44,4 +45,17 @@ class Patient(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     first_name = models.CharField(max_length=200, default="")
     last_name = models.CharField(max_length=200, default="")
+    sex = models.CharField(max_length=200, default="")
     age = models.IntegerField(default=-1)
+    address = models.CharField(max_length=200, default="")
+
+    using_medication_assisted_therapies = ArrayField(
+        models.CharField(max_length=200), default=list
+    )
+    using_substances = ArrayField(models.CharField(max_length=200), default=list)
+    mental_health_diagnoses = ArrayField(models.CharField(max_length=200), default=list)
+
+    health_insurance = models.CharField(max_length=200, default="")
+    health_insurance_identifier = models.CharField(max_length=200, default="")
+    has_disability = models.BooleanField(default=False)
+    is_open_to_faith_based_treatment = models.BooleanField(default=False)
