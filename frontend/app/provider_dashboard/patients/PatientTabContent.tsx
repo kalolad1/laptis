@@ -85,8 +85,10 @@ function FindTreatmentButton ({ userId }: FindTreatmentButtonProps): JSX.Element
     setTimeout(() => {
       getTypeformResponse(formId, responseId)
         .then(answers => {
-          const patientApplicationContext: PatientApplicationContext = JSON.parse(answers)
-
+          const patientApplicationContext: PatientApplicationContext = {
+            userId,
+            ...JSON.parse(answers)
+          }
           createNewPatientApplicationContext(patientApplicationContext)
             .then(response => {
               const urlParams = new URLSearchParams({ userId, patientApplicationContextId: response.patientApplicationContextId })

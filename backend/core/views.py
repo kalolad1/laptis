@@ -73,6 +73,7 @@ def get_patients(request: Request) -> Response:
 
 @api_view(["POST"])
 def create_new_patient_application_context(request: Request) -> Response:
+    print(request.data)
     user_id = request.data["user_id"]
     has_had_suicidal_thoughts_in_last_90_days = request.data[
         "has_had_suicidal_thoughts_in_last_90_days"
