@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { type Center } from '../../../constants/types'
 
 import { Card, Image, Text, Group, Stack, Badge } from '@mantine/core'
@@ -16,11 +16,13 @@ interface CenterCardProps {
 
 export default function CenterCard ({ center, userId, patientApplicationContextId }: CenterCardProps): JSX.Element {
   const router = useRouter()
+  const pathname = usePathname()
 
   function handleClick (): void {
     const urlParams = new URLSearchParams({ userId, patientApplicationContextId })
     const queryString = urlParams.toString()
-    router.push(`/provider_dashboard/center/${center.id}?${queryString}`)
+    console.log(pathname)
+    router.push(`center/${center.id}?${queryString}`)
   }
 
   return (

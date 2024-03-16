@@ -5,10 +5,9 @@ import { useState, useEffect } from 'react'
 import { getCenters } from '@/app/api/get_centers'
 import { type Center } from '@/app/constants/types'
 
-import CenterCardsGrid from '@/app/components/centers/list_view/center_cards_grid'
-import MainNavbar from '@/app/components/navbar/main_navbar'
+import CenterCardsGrid from '@/app/shared_components/centers/list_view/center_cards_grid'
 
-export default function HomePage (): JSX.Element {
+export default function Home (): JSX.Element {
   const [centers, setCenters] = useState<Center[]>([])
 
   useEffect(() => {
@@ -18,13 +17,6 @@ export default function HomePage (): JSX.Element {
   }, [])
 
   return (
-    <>
-      <header>
-        <MainNavbar />
-      </header>
-      <main>
-        <CenterCardsGrid centers={centers} />
-      </main>
-    </>
+    <CenterCardsGrid centers={centers} userId={''} patientApplicationContextId={''} />
   )
 }
