@@ -18,4 +18,9 @@ urlpatterns = [
         views.create_new_patient_application_context,
         name="create_new_patient_application_context",
     ),
+    path(
+        "create_new_application",
+        views.create_new_application,
+        name="create_new_application",
+    ),
 ]

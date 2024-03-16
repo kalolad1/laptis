@@ -11,5 +11,5 @@ export async function createNewApplication (userId: string, patientApplicationCo
   }
   const response = await fetch(constants.CREATE_NEW_APPLICATION_ENDPOINT, fetchData)
 
-  return await response.json()
+  return response
 }

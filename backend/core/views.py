@@ -12,7 +12,7 @@ from .serializers import (
     PatientApplicationContextSerializer,
 )
 
-from .models.application import PatientApplicationContext
+from .models.application import Application, PatientApplicationContext
 from .models.center import Center
 from .models.user import User
 
@@ -73,7 +73,6 @@ def get_patients(request: Request) -> Response:
 
 @api_view(["POST"])
 def create_new_patient_application_context(request: Request) -> Response:
-    print(request.data)
     user_id = request.data["user_id"]
     has_had_suicidal_thoughts_in_last_90_days = request.data[
         "has_had_suicidal_thoughts_in_last_90_days"
@@ -90,3 +89,9 @@ def create_new_patient_application_context(request: Request) -> Response:
     pac.save()
     serializer = PatientApplicationContextSerializer(pac, context={"request": request})
     return Response(serializer.data)
+
+
+@api_view(["POST"])
+def create_new_application(request: Request) -> Response:
+    Application.objects.create(**request.data)
+    return Response(status=200)
