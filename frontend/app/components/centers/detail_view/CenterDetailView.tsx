@@ -1,7 +1,9 @@
 'use client'
 
+import { useSearchParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
+import { createNewApplication } from '@/app/api/create_new_application'
 import { getCenter } from '@/app/api/get_center'
 import { type Center } from '@/app/constants/types'
 
@@ -16,6 +18,10 @@ interface CenterDetailViewProps {
 }
 
 export default function CenterDetailView ({ centerId }: CenterDetailViewProps): JSX.Element {
+  const searchParams = useSearchParams()
+  const userId = searchParams.get('userId') ?? ''
+  const patientApplicationContextId = searchParams.get('patientApplicationContextId') ?? ''
+
   const [center, setCenter] = useState<Center | null>(null)
 
   useEffect(() => {
@@ -28,23 +34,25 @@ export default function CenterDetailView ({ centerId }: CenterDetailViewProps): 
       <Stack gap="md">
         {center !== null && <Title>{center.name}</Title>}
         <Image src={center?.image} radius="md" w={400} h={200} mb="md" />
-        {center !== null && <CenterDetailViewBody center={center} />}
+      {center !== null && <CenterDetailViewBody center={center} userId={userId} patientApplicationContextId={patientApplicationContextId} />}
       </Stack>
   )
 }
 
 interface CenterDetailViewBodyProps {
   center: Center
+  userId: string
+  patientApplicationContextId: string
 }
 
-function CenterDetailViewBody ({ center }: CenterDetailViewBodyProps): JSX.Element {
+function CenterDetailViewBody ({ center, userId, patientApplicationContextId }: CenterDetailViewBodyProps): JSX.Element {
   return (
     <Grid gutter={{ base: 75 }}>
       <Grid.Col span={{ base: 8, md: 9, lg: 9 }}>
         <Information center={center} />
       </Grid.Col>
       <Grid.Col span={{ base: 4, md: 3, lg: 3 }}>
-        <ReserveBox phoneNumber={center.phoneNumber} />
+        <ReserveBox phoneNumber={center.phoneNumber} centerId={center.id} userId={userId} patientApplicationContextId={patientApplicationContextId}/>
       </Grid.Col>
     </Grid>
   )
@@ -81,15 +89,28 @@ function QuickCenterStats ({ eligibleHealthInsurances }: QuickCenterStatsProps):
 
 interface ReserveBoxProps {
   phoneNumber: string
+  userId: string
+  patientApplicationContextId: string
+  centerId: string
 }
 
-function ReserveBox ({ phoneNumber }: ReserveBoxProps): any {
+function ReserveBox ({ phoneNumber, userId, patientApplicationContextId, centerId }: ReserveBoxProps): any {
+  function handleApplyButtonClick (): void {
+    createNewApplication(userId, patientApplicationContextId, centerId)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
+
   return (
     <Stack className={classes.reserve_box_stack} align='center'>
       <Button justify="center" size="md" leftSection={<IconPhone />} variant="transparent" color='black'>
         {phoneNumber}
       </Button>
-      <Button disabled>Reserve</Button>
+      <Button onClick={handleApplyButtonClick}>Apply</Button>
     </Stack>
   )
 }

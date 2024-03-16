@@ -4,9 +4,9 @@ import { useSearchParams } from 'next/navigation'
 import { useState, useEffect, Suspense } from 'react'
 
 import { filterCenters } from '@/app/api/filter_centers'
+import { type Center } from '@/app/constants/types'
 
 import CenterCardsGrid from '@/app/components/centers/list_view/center_cards_grid'
-import { type Center } from '@/app/constants/types'
 
 export default function SuspenseWrapper (): JSX.Element {
   return (

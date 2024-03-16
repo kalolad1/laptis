@@ -8,3 +8,5 @@ export const CREATE_NEW_PATIENT_ENDPOINT = BASE_API_ENDPOINT + '/create_new_pati
 export const GET_PATIENTS_ENDPOINT = BASE_API_ENDPOINT + '/get_patients'
 
 export const CREATE_NEW_PATIENT_APPLICATION_CONTEXT_ENDPOINT = BASE_API_ENDPOINT + '/create_new_patient_application_context'
+
+export const CREATE_NEW_APPLICATION_ENDPOINT = BASE_API_ENDPOINT + '/create_new_application'
