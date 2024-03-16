@@ -1,3 +1,6 @@
+'use client'
+
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { Flex, ScrollArea, Table } from '@mantine/core'
@@ -73,6 +76,8 @@ interface FindTreatmentButtonProps {
 }
 
 function FindTreatmentButton ({ userId }: FindTreatmentButtonProps): JSX.Element {
+  const router = useRouter()
+
   function handleSubmit ({ formId, responseId }: { formId: string, responseId: string }): void {
     // There is a wierd race going on in which the response is not available immediately
     // after the form is submitted. This is a temporary fix to wait for some time before
@@ -81,7 +86,6 @@ function FindTreatmentButton ({ userId }: FindTreatmentButtonProps): JSX.Element
       getTypeformResponse(formId, responseId)
         .then(answers => {
           const patientApplicationContextAnswers = JSON.parse(answers)
-          console.log(patientApplicationContextAnswers)
           const patientApplicationContext: PatientApplicationContext = {
             userId,
             hasHadSuicidalThoughtsInLast90Days: patientApplicationContextAnswers.hasHadSuicidalThoughtsInLast90Days === 'Yes',
@@ -90,7 +94,9 @@ function FindTreatmentButton ({ userId }: FindTreatmentButtonProps): JSX.Element
 
           createNewPatientApplicationContext(patientApplicationContext)
             .then(response => {
-              console.log(response.patientApplicationContextId)
+              const urlParams = new URLSearchParams({ userId, patientApplicationContextId: response.patientApplicationContextId })
+              const queryString = urlParams.toString()
+              router.push('/provider_dashboard/filtered_centers?' + queryString)
             })
             .catch(error => {
               console.error(error)
