@@ -5,7 +5,7 @@ import { useState, useEffect, Suspense } from 'react'
 
 import { filterCenters } from '@/app/api/filter_centers'
 
-import CenterCardsGrid from '@/app/components/center_list_view/center_cards_grid'
+import CenterCardsGrid from '@/app/components/centers/list_view/center_cards_grid'
 import MainNavbar from '@/app/components/navbar/main_navbar'
 import { type Center } from '@/app/constants/types'
 

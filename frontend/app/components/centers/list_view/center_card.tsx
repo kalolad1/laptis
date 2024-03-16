@@ -1,6 +1,7 @@
 'use client'
 
-import { type Center } from '../../constants/types'
+import { useRouter } from 'next/navigation'
+import { type Center } from '../../../constants/types'
 
 import { Card, Image, Text, Group, Stack, Badge } from '@mantine/core'
 import { IconStarFilled } from '@tabler/icons-react'
@@ -9,11 +10,21 @@ import './center_card.css'
 
 interface CenterCardProps {
   center: Center
+  userId: string
+  patientApplicationContextId: string
 }
 
-export default function CenterCard ({ center }: CenterCardProps): JSX.Element {
+export default function CenterCard ({ center, userId, patientApplicationContextId }: CenterCardProps): JSX.Element {
+  const router = useRouter()
+
+  function handleClick (): void {
+    const urlParams = new URLSearchParams({ userId, patientApplicationContextId })
+    const queryString = urlParams.toString()
+    router.push(`/provider_dashboard/center/${center.id}?${queryString}`)
+  }
+
   return (
-    <Card radius="md" p="md" component="a" href={'/center/' + center.id} target="_blank">
+    <Card radius="md" p="md" component="a" onClick={handleClick}>
       <PictureArea image={center.image} centerType={center.centerType} />
       <CenterDescription name={center.name} address={center.address} eligibleHealthInsurances={center.eligibleHealthInsurances} />
     </Card>
