@@ -6,9 +6,7 @@ export default function HomeLayout ({ children }: { children: any }): JSX.Elemen
       <header>
         <MainNavbar />
       </header>
-      <main>
-        {children}
-      </main>
+      <main>{children}</main>
     </>
   )
 }
