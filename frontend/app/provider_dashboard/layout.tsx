@@ -2,8 +2,8 @@
 
 import { Grid, Stack } from '@mantine/core'
 
-import Sidebar from '@/app/provider_dashboard/sidebar/Sidebar'
-import Navbar from '@/app/provider_dashboard/navbar/Navbar'
+import Sidebar from '@/app/shared_components/sidebar/Sidebar'
+import Navbar from '@/app/shared_components/navbar/dashboard/DashboardNavbar'
 
 export default function ProviderDashboardLayout ({ children }: { children: any }): JSX.Element {
   return (

@@ -1,9 +1,9 @@
 import { Container, Title } from '@mantine/core'
 import { IconUserCircle } from '@tabler/icons-react'
 
-import classes from './Navbar.module.css'
+import classes from './DashboardNavbar.module.css'
 
-export default function Navbar (): JSX.Element {
+export default function DashboardNavbar (): JSX.Element {
   return (
     <header className={classes.header}>
       <Container size="lg">
