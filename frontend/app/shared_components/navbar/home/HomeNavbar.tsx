@@ -22,12 +22,12 @@ export default function HomeNavbar (): JSX.Element {
       <Group>
         <Link href="/home/login" passHref>
           <Button variant="outline" color="black" size="md">
-            Login
+            Log in
           </Button>
         </Link>
         <Link href="/home/signup" passHref>
           <Button variant="filled" color="black" size="md">
-            Signup
+            Sign up
           </Button>
         </Link>
       </Group>

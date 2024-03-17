@@ -1,41 +1,44 @@
+'use client'
+
 import { useForm } from '@mantine/form'
 
 import {
   TextInput,
   PasswordInput,
-  Checkbox,
   Anchor,
   Paper,
   Title,
   Text,
   Container,
-  Group,
   Button
 } from '@mantine/core'
 
-export default function LoginPage (): JSX.Element {
-  const form = useForm({
-    initialValues: {
-      email: '',
-      password: ''
-    }
-  })
+import { createProvider } from '@/app/api/create_provider'
 
-  function handleSubmit (): void {
-    console.log('SUBMITTING')
-    console.log(form.values)
+export default function SignupPage (): JSX.Element {
+  const form = useForm({ initialValues: { email: '', password: '' } })
+
+  function handleSubmit (e: React.FormEvent<HTMLFormElement>): void {
+    e.preventDefault()
+    createProvider(form.values.email, form.values.password)
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   return (
     <Container size={420} my={40}>
       <form onSubmit={handleSubmit}>
         <Title ta="center">
-          Welcome back!
+          Welcome!
         </Title>
         <Text c="dimmed" size="sm" ta="center" mt={5}>
-          Do not have an account yet?{' '}
+          Already have an account?{' '}
           <Anchor size="sm" component="button">
-            Create account
+            Log in
           </Anchor>
         </Text>
 
@@ -52,14 +55,8 @@ export default function LoginPage (): JSX.Element {
             required mt="md"
             {...form.getInputProps('password')}
           />
-          <Group justify="space-between" mt="lg">
-            <Checkbox label="Remember me" />
-            <Anchor component="button" size="sm">
-              Forgot password?
-            </Anchor>
-          </Group>
           <Button type="submit" fullWidth mt="xl">
-            Sign in
+            Sign up
           </Button>
         </Paper>
       </form>
