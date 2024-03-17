@@ -6,7 +6,7 @@ import { type Center } from '../../../constants/types'
 import { Card, Image, Text, Group, Stack, Badge } from '@mantine/core'
 import { IconStarFilled } from '@tabler/icons-react'
 
-import './center_card.css'
+import classes from './CenterCard.module.css'
 
 interface CenterCardProps {
   center: Center
@@ -40,7 +40,7 @@ function PictureArea ({ image, centerType }: PictureAreaProps): JSX.Element {
     <Card.Section>
       <div style={{ position: 'relative' }}>
         <Image src={image} height={240} radius="md" />
-        <Badge variant="dot" color="blue" className="image-overlaying-badge">{centerType}</Badge>
+        <Badge variant="dot" color="blue" className={classes.image_overlaying_badge}>{centerType}</Badge>
       </div>
     </Card.Section>
   )

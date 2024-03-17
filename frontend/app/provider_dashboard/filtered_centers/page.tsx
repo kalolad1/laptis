@@ -6,7 +6,7 @@ import { useState, useEffect, Suspense } from 'react'
 import { filterCenters } from '@/app/api/filter_centers'
 import { type Center } from '@/app/constants/types'
 
-import CenterCardsGrid from '@/app/shared_components/centers/list_view/center_cards_grid'
+import CenterCardsGrid from '@/app/shared_components/centers/list_view/CenterCardsGrid'
 
 export default function SuspenseWrapper (): JSX.Element {
   return (

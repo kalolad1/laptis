@@ -4,7 +4,7 @@ import { type Center } from '../../../constants/types'
 
 import { Grid } from '@mantine/core'
 
-import CenterCard from './center_card'
+import CenterCard from './CenterCard'
 
 interface Props {
   centers: Center[]
