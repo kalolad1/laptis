@@ -3,7 +3,7 @@
 import { useSearchParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
-import { createNewApplication } from '@/app/api/create_new_application'
+import { createApplication } from '@/app/api/create_application'
 import { getCenter } from '@/app/api/get_center'
 import { type Center } from '@/app/constants/types'
 
@@ -31,11 +31,11 @@ export default function CenterDetailView ({ centerId }: CenterDetailViewProps): 
   }, [centerId])
 
   return (
-      <Stack gap="md">
-        {center !== null && <Title>{center.name}</Title>}
-        <Image src={center?.image} radius="md" w={400} h={200} mb="md" />
+    <Stack gap="md">
+      {center !== null && <Title>{center.name}</Title>}
+      <Image src={center?.image} radius="md" w={400} h={200} mb="md" />
       {center !== null && <CenterDetailViewBody center={center} userId={userId} patientApplicationContextId={patientApplicationContextId} />}
-      </Stack>
+    </Stack>
   )
 }
 
@@ -52,7 +52,7 @@ function CenterDetailViewBody ({ center, userId, patientApplicationContextId }: 
         <Information center={center} />
       </Grid.Col>
       <Grid.Col span={{ base: 4, md: 3, lg: 3 }}>
-        <ReserveBox phoneNumber={center.phoneNumber} centerId={center.id} userId={userId} patientApplicationContextId={patientApplicationContextId}/>
+        <ReserveBox phoneNumber={center.phoneNumber} centerId={center.id} userId={userId} patientApplicationContextId={patientApplicationContextId} />
       </Grid.Col>
     </Grid>
   )
@@ -96,7 +96,7 @@ interface ReserveBoxProps {
 
 function ReserveBox ({ phoneNumber, userId, patientApplicationContextId, centerId }: ReserveBoxProps): any {
   function handleApplyButtonClick (): void {
-    createNewApplication(userId, patientApplicationContextId, centerId)
+    createApplication(userId, patientApplicationContextId, centerId)
       .then(response => {
         console.log(response)
       })

@@ -1,6 +1,6 @@
 import * as constants from '@/app/constants/endpoints'
 
-export async function createNewApplication (userId: string, patientApplicationContextId: string, centerId: string): Promise<any> {
+export async function createApplication (userId: string, patientApplicationContextId: string, centerId: string): Promise<any> {
   const fetchData = {
     method: 'POST',
     headers: new Headers({
@@ -9,7 +9,7 @@ export async function createNewApplication (userId: string, patientApplicationCo
     }),
     body: JSON.stringify({ userId, patientApplicationContextId, centerId })
   }
-  const response = await fetch(constants.CREATE_NEW_APPLICATION_ENDPOINT, fetchData)
+  const response = await fetch(constants.CREATE_APPLICATION_ENDPOINT, fetchData)
 
   return response
 }

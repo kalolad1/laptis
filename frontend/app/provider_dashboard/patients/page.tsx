@@ -7,12 +7,12 @@ import { Flex, ScrollArea, Table } from '@mantine/core'
 import { PopupButton } from '@typeform/embed-react'
 import { IconUserCircle } from '@tabler/icons-react'
 
-import { createNewPatient } from '@/app/api/create_new_patient'
+import { createPatient } from '@/app/api/create_patient'
 import { getTypeformResponse } from '@/app/api/get_typeform_response'
 import { getPatients } from '@/app/api/get_patients'
 import { type Patient, type NewPatientInfo, type PatientApplicationContext } from '@/app/constants/types'
 import { PATIENT_APPLICATION_CONTEXT_FORM_ID } from '@/app/constants/typeform'
-import { createNewPatientApplicationContext } from '@/app/api/create_new_patient_application_context'
+import { createPatientApplicationContext } from '@/app/api/create_patient_application_context'
 
 export default function PatientsTab (): JSX.Element {
   const [patients, setPatients] = useState<Patient[]>([])
@@ -89,7 +89,7 @@ function FindTreatmentButton ({ userId }: FindTreatmentButtonProps): JSX.Element
             userId,
             ...JSON.parse(answers)
           }
-          createNewPatientApplicationContext(patientApplicationContext)
+          createPatientApplicationContext(patientApplicationContext)
             .then(response => {
               const urlParams = new URLSearchParams({ userId, patientApplicationContextId: response.patientApplicationContextId })
               const queryString = urlParams.toString()
@@ -139,7 +139,7 @@ function NewPatientButton ({ handleNewPatientFormClose }: NewPatientButtonProps)
       getTypeformResponse(formId, responseId)
         .then(answers => {
           const newPatientInfo: NewPatientInfo = parseTypeformAnswers(answers)
-          createNewPatient(newPatientInfo)
+          createPatient(newPatientInfo)
             .then(response => {
               console.log(response)
             })

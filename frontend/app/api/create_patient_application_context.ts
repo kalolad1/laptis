@@ -5,7 +5,7 @@ interface ReturnType {
   patientApplicationContextId: string
 }
 
-export async function createNewPatientApplicationContext (patientApplicationContext: PatientApplicationContext): Promise<ReturnType> {
+export async function createPatientApplicationContext (patientApplicationContext: PatientApplicationContext): Promise<ReturnType> {
   const fetchData = {
     method: 'POST',
     headers: new Headers({
@@ -14,7 +14,7 @@ export async function createNewPatientApplicationContext (patientApplicationCont
     }),
     body: JSON.stringify(patientApplicationContext)
   }
-  const response = await fetch(constants.CREATE_NEW_PATIENT_APPLICATION_CONTEXT_ENDPOINT, fetchData)
+  const response = await fetch(constants.CREATE_PATIENT_APPLICATION_CONTEXT_ENDPOINT, fetchData)
 
   return await response.json()
 }

@@ -1,7 +1,7 @@
 import * as constants from '@/app/constants/endpoints'
 import { type NewPatientInfo } from '@/app/constants/types'
 
-export async function createNewPatient (newPatientInfo: NewPatientInfo): Promise<any> {
+export async function createPatient (newPatientInfo: NewPatientInfo): Promise<any> {
   const fetchData = {
     method: 'POST',
     headers: new Headers({
@@ -10,7 +10,7 @@ export async function createNewPatient (newPatientInfo: NewPatientInfo): Promise
     }),
     body: JSON.stringify(newPatientInfo)
   }
-  const response = await fetch(constants.CREATE_NEW_PATIENT_ENDPOINT, fetchData)
+  const response = await fetch(constants.CREATE_PATIENT_ENDPOINT, fetchData)
 
   return response
 }

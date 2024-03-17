@@ -57,7 +57,7 @@ def get_typeform_response(request: Request) -> Response:
 
 
 @api_view(["POST"])
-def create_new_patient(request: Request) -> Response:
+def create_patient(request: Request) -> Response:
     User.objects.create_patient(**request.data)
     return Response(status=200)
 
@@ -72,7 +72,7 @@ def get_patients(request: Request) -> Response:
 
 
 @api_view(["POST"])
-def create_new_patient_application_context(request: Request) -> Response:
+def create_patient_application_context(request: Request) -> Response:
     user_id = request.data["user_id"]
     has_had_suicidal_thoughts_in_last_90_days = request.data[
         "has_had_suicidal_thoughts_in_last_90_days"
@@ -92,6 +92,6 @@ def create_new_patient_application_context(request: Request) -> Response:
 
 
 @api_view(["POST"])
-def create_new_application(request: Request) -> Response:
+def create_application(request: Request) -> Response:
     Application.objects.create(**request.data)
     return Response(status=200)
