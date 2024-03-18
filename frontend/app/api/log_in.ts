@@ -1,6 +1,6 @@
 import * as constants from '@/app/constants/endpoints'
 
-export async function createProvider (email: string, password: string): Promise<any> {
+export async function logIn (email: string, password: string): Promise<any> {
   const fetchData = {
     method: 'POST',
     headers: new Headers({
@@ -9,7 +9,7 @@ export async function createProvider (email: string, password: string): Promise<
     }),
     body: JSON.stringify({ email, password })
   }
-  const response = await fetch(constants.CREATE_PATIENT_ENDPOINT, fetchData)
+  const response = await fetch(constants.LOG_IN, fetchData)
 
   return response
 }

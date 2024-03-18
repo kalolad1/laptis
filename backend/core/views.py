@@ -95,3 +95,28 @@ def create_patient_application_context(request: Request) -> Response:
 def create_application(request: Request) -> Response:
     Application.objects.create(**request.data)
     return Response(status=200)
+
+
+# User
+@api_view(["POST"])
+def sign_up(request: Request) -> Response:
+    # Check if user with email already exists
+    if User.objects.filter(email=request.data["email"]).exists():
+        return Response(status=400)
+
+    # Pop email from dict
+    email = request.data.pop("email")
+    password = request.data.pop("password")
+    user_type = request.data.pop("user_type")
+    is_patient = user_type == "patient"
+    is_provider = user_type == "provider"
+
+    user = User.objects.create_new_user(
+        email=email,
+        password=password,
+        is_patient=is_patient,
+        is_provider=is_provider,
+        **request.data
+    )
+    user_id_json = json.dumps(user.id)
+    return Response(user_id_json)

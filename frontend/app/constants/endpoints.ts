@@ -15,8 +15,8 @@ export const CREATE_PATIENT_ENDPOINT = BASE_API_ENDPOINT + '/create_patient'
 export const GET_PATIENTS_ENDPOINT = BASE_API_ENDPOINT + '/get_patients'
 
 // Providers
-export const CREATE_PROVIDER = BASE_API_ENDPOINT + '/create_provider'
-export const LOGIN_PROVIDER = BASE_API_ENDPOINT + '/login_provider'
+export const SIGN_UP = BASE_API_ENDPOINT + '/sign_up'
+export const LOG_IN = BASE_API_ENDPOINT + '/log_in'
 
 // Applications
 export const CREATE_PATIENT_APPLICATION_CONTEXT_ENDPOINT = BASE_API_ENDPOINT + '/create_patient_application_context'

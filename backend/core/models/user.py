@@ -1,6 +1,5 @@
 import random
 import string
-from typing import List
 
 from django.contrib.auth.models import UserManager
 from django.contrib.auth.models import AbstractUser
@@ -12,47 +11,32 @@ class CustomUserManager(UserManager["User"]):
     def _generate_random_string(self) -> str:
         return "".join(random.choice(string.ascii_letters) for _ in range(12))
 
-    def create_patient(
-        self,
-        first_name: str,
-        last_name: str,
-        age: int,
-        sex: str,
-        address: str,
-        using_medication_assisted_therapies: List[str],
-        using_substances: List[str],
-        mental_health_diagnoses: List[str],
-        health_insurance: str,
-        health_insurance_identifier: str,
-        has_disability: bool,
-        is_open_to_faith_based_treatment: bool,
-    ) -> "User":
+    def create_patient(self, **fields) -> "User":
         # Randomize username, email, and password for now as patients
         # don't need this right away.
-        username = self._generate_random_string()
         email = self._generate_random_string() + "@example.com"
         password = self._generate_random_string()
 
-        user = User.objects.create(username=username, email=email)
-        user.is_patient = True
-        user.set_password(password)
-        user.save()
-
-        Patient.objects.create(
-            user=user,
-            first_name=first_name,
-            last_name=last_name,
-            age=age,
-            sex=sex,
-            address=address,
-            using_medication_assisted_therapies=using_medication_assisted_therapies,
-            using_substances=using_substances,
-            mental_health_diagnoses=mental_health_diagnoses,
-            health_insurance=health_insurance,
-            health_insurance_identifier=health_insurance_identifier,
-            has_disability=has_disability,
-            is_open_to_faith_based_treatment=is_open_to_faith_based_treatment,
+        user = User.objects.create(
+            username=email, email=email, password=password, is_patient=True
         )
+        Patient.objects.create(user=user, **fields)
+        return user
+
+    def create_provider(self, email: str, password: str, **fields) -> "User":
+        user = User.objects.create(
+            username=email, email=email, password=password, is_provider=True
+        )
+        Provider.objects.create(user=user, **fields)
+        return user
+
+    def create_new_user(
+        self, email: str, password: str, is_patient=False, is_provider=False, **fields
+    ) -> "User":
+        if is_patient:
+            user = self.create_patient(**fields)
+        elif is_provider:
+            user = self.create_provider(email=email, password=password, **fields)
 
         return user
 
@@ -64,12 +48,21 @@ class CustomUserManager(UserManager["User"]):
 
 class User(AbstractUser):
     is_patient = models.BooleanField(default=False)
+    is_provider = models.BooleanField(default=False)
 
     objects = CustomUserManager()  # type: ignore
 
 
+class Provider(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    first_name = models.CharField(max_length=200, default="")
+    last_name = models.CharField(max_length=200, default="")
+
+
 class Patient(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    provider = models.ForeignKey(Provider, on_delete=models.SET_NULL, null=True)
+
     first_name = models.CharField(max_length=200, default="")
     last_name = models.CharField(max_length=200, default="")
     sex = models.CharField(max_length=200, default="")

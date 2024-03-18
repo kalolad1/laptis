@@ -15,14 +15,14 @@ import {
   Button
 } from '@mantine/core'
 
-import { loginProvider } from '@/app/api/login_provider'
+import { logIn } from '@/app/api/log_in'
 
 export default function LoginPage (): JSX.Element {
   const form = useForm({ initialValues: { email: '', password: '' } })
 
   function handleSubmit (e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault()
-    loginProvider(form.values.email, form.values.password)
+    logIn(form.values.email, form.values.password)
       .then((response) => {
         console.log(response)
       })

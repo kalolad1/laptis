@@ -13,14 +13,14 @@ import {
   Button
 } from '@mantine/core'
 
-import { createProvider } from '@/app/api/create_provider'
+import { signUpProvider } from '@/app/api/sign_up_provider'
 
 export default function SignupPage (): JSX.Element {
   const form = useForm({ initialValues: { email: '', password: '' } })
 
   function handleSubmit (e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault()
-    createProvider(form.values.email, form.values.password)
+    signUpProvider(form.values.email, form.values.password)
       .then((response) => {
         console.log(response)
       })
