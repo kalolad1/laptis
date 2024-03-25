@@ -14,15 +14,18 @@ import {
 } from '@mantine/core'
 
 import { signUpProvider } from '@/app/api/sign_up_provider'
+import { useRouter } from 'next/navigation'
 
 export default function SignupPage (): JSX.Element {
   const form = useForm({ initialValues: { email: '', password: '' } })
+  const router = useRouter()
 
   function handleSubmit (e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault()
     signUpProvider(form.values.email, form.values.password)
       .then((response) => {
         console.log(response)
+        router.push('/provider_dashboard/patients')
       })
       .catch((error) => {
         console.error(error)

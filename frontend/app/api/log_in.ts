@@ -11,5 +11,5 @@ export async function logIn (email: string, password: string): Promise<any> {
   }
   const response = await fetch(constants.LOG_IN, fetchData)
 
-  return response
+  return await response.json()
 }

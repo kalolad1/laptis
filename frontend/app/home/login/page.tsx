@@ -1,6 +1,7 @@
 'use client'
 
 import { useForm } from '@mantine/form'
+import { useRouter } from 'next/navigation'
 
 import {
   TextInput,
@@ -19,12 +20,14 @@ import { logIn } from '@/app/api/log_in'
 
 export default function LoginPage (): JSX.Element {
   const form = useForm({ initialValues: { email: '', password: '' } })
+  const router = useRouter()
 
   function handleSubmit (e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault()
     logIn(form.values.email, form.values.password)
       .then((response) => {
         console.log(response)
+        router.push('/provider_dashboard/patients')
       })
       .catch((error) => {
         console.error(error)
