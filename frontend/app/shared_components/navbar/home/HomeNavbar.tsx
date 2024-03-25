@@ -20,17 +20,37 @@ export default function HomeNavbar (): JSX.Element {
         </Group>
       </Link>
       <Group>
-        <Link href="/home/login" passHref>
-          <Button variant="outline" color="black" size="md">
-            Log in
-          </Button>
-        </Link>
-        <Link href="/home/signup" passHref>
-          <Button variant="filled" color="black" size="md">
-            Sign up
-          </Button>
-        </Link>
+        <LogInSignUpButtons />
       </Group>
     </Flex>
+  )
+}
+
+function LogInSignUpButtons (): JSX.Element {
+  return (
+    <>
+      <LogInButton />
+      <SignUpButton />
+    </>
+  )
+}
+
+function LogInButton (): JSX.Element {
+  return (
+    <Link href="/home/login" passHref>
+      <Button variant="outline" color="black" size="md">
+        Log in
+      </Button>
+    </Link>
+  )
+}
+
+function SignUpButton (): JSX.Element {
+  return (
+    <Link href="/home/signup" passHref>
+      <Button variant="filled" color="black" size="md">
+        Sign up
+      </Button>
+    </Link>
   )
 }
