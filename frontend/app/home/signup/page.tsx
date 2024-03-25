@@ -1,6 +1,10 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { useForm } from '@mantine/form'
+
+import { signUpProvider } from '@/app/api/sign_up_provider'
+import { PROVIDER_DASHBOARD_PATIENT_TAB_PATH } from '@/app/constants/paths'
 
 import {
   TextInput,
@@ -13,9 +17,6 @@ import {
   Button
 } from '@mantine/core'
 
-import { signUpProvider } from '@/app/api/sign_up_provider'
-import { useRouter } from 'next/navigation'
-
 export default function SignupPage (): JSX.Element {
   const form = useForm({ initialValues: { email: '', password: '' } })
   const router = useRouter()
@@ -25,7 +26,7 @@ export default function SignupPage (): JSX.Element {
     signUpProvider(form.values.email, form.values.password)
       .then((response) => {
         console.log(response)
-        router.push('/provider_dashboard/patients')
+        router.push(PROVIDER_DASHBOARD_PATIENT_TAB_PATH)
       })
       .catch((error) => {
         console.error(error)

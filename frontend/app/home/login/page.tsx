@@ -17,6 +17,7 @@ import {
 } from '@mantine/core'
 
 import { logIn } from '@/app/api/log_in'
+import { PROVIDER_DASHBOARD_PATIENT_TAB_PATH } from '@/app/constants/paths'
 
 export default function LoginPage (): JSX.Element {
   const form = useForm({ initialValues: { email: '', password: '' } })
@@ -27,7 +28,7 @@ export default function LoginPage (): JSX.Element {
     logIn(form.values.email, form.values.password)
       .then((response) => {
         console.log(response)
-        router.push('/provider_dashboard/patients')
+        router.push(PROVIDER_DASHBOARD_PATIENT_TAB_PATH)
       })
       .catch((error) => {
         console.error(error)

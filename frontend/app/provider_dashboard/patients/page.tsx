@@ -3,16 +3,17 @@
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
-import { Flex, ScrollArea, Table } from '@mantine/core'
-import { PopupButton } from '@typeform/embed-react'
-import { IconUserCircle } from '@tabler/icons-react'
-
 import { createPatient } from '@/app/api/create_patient'
 import { getTypeformResponse } from '@/app/api/get_typeform_response'
 import { getPatients } from '@/app/api/get_patients'
+import { PROVIDER_DASHBOARD_FILTERED_CENTERS } from '@/app/constants/paths'
 import { type Patient, type NewPatientInfo, type PatientApplicationContext } from '@/app/constants/types'
 import { PATIENT_APPLICATION_CONTEXT_FORM_ID } from '@/app/constants/typeform'
 import { createPatientApplicationContext } from '@/app/api/create_patient_application_context'
+
+import { Flex, ScrollArea, Table } from '@mantine/core'
+import { PopupButton } from '@typeform/embed-react'
+import { IconUserCircle } from '@tabler/icons-react'
 
 export default function PatientsTab (): JSX.Element {
   const [patients, setPatients] = useState<Patient[]>([])
@@ -93,7 +94,7 @@ function FindTreatmentButton ({ userId }: FindTreatmentButtonProps): JSX.Element
             .then(response => {
               const urlParams = new URLSearchParams({ userId, patientApplicationContextId: response.patientApplicationContextId })
               const queryString = urlParams.toString()
-              router.push('/provider_dashboard/filtered_centers?' + queryString)
+              router.push(`${PROVIDER_DASHBOARD_FILTERED_CENTERS}?` + queryString)
             })
             .catch(error => {
               console.error(error)

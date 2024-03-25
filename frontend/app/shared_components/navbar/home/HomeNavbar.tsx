@@ -2,6 +2,8 @@
 
 import Link from 'next/link'
 
+import { HOME_CENTERS_PATH, LOGIN_PATH, SIGNUP_PATH } from '@/app/constants/paths'
+
 import { Image, Group, Button, Flex, Title } from '@mantine/core'
 
 import classes from './HomeNavbar.module.css'
@@ -9,7 +11,7 @@ import classes from './HomeNavbar.module.css'
 export default function HomeNavbar (): JSX.Element {
   return (
     <Flex className={classes.flex_container} justify="space-between" p="md">
-      <Link href="/home/centers" style={{ textDecoration: 'none', color: 'inherit' }} passHref>
+      <Link href={HOME_CENTERS_PATH} style={{ textDecoration: 'none', color: 'inherit' }} passHref>
         <Group>
           <Image
             src="/logo.svg"
@@ -37,7 +39,7 @@ function LogInSignUpButtons (): JSX.Element {
 
 function LogInButton (): JSX.Element {
   return (
-    <Link href="/home/login" passHref>
+    <Link href={LOGIN_PATH} passHref>
       <Button variant="outline" color="black" size="md">
         Log in
       </Button>
@@ -47,7 +49,7 @@ function LogInButton (): JSX.Element {
 
 function SignUpButton (): JSX.Element {
   return (
-    <Link href="/home/signup" passHref>
+    <Link href={SIGNUP_PATH} passHref>
       <Button variant="filled" color="black" size="md">
         Sign up
       </Button>
