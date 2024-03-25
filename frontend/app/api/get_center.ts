@@ -1,15 +1,9 @@
-import * as constants from '../constants/endpoints'
-import { type Center } from '../constants/types'
+import axios from 'axios'
+
+import * as constants from '@/app/constants/endpoints'
+import { type Center } from '@/app/constants/types'
 
 export async function getCenter (centerId: string): Promise<Center> {
-  const fetchData = {
-    method: 'GET',
-    headers: new Headers({
-      Accept: 'application/json',
-      'Content-Type': 'application/json; charset=UTF-8'
-    })
-  }
-  const response = await fetch(constants.GET_CENTERS_ENDPOINT + '/' + centerId, fetchData)
-
-  return await response.json()
+  const response = await axios.get(`${constants.GET_CENTERS_ENDPOINT}/${centerId}`)
+  return response.data
 }

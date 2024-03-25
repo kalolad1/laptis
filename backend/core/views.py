@@ -47,10 +47,10 @@ def filter_centers(request: Request) -> Response:
     return Response(serializer.data)
 
 
-@api_view(["GET"])
+@api_view(["POST"])
 def get_typeform_response(request: Request) -> Response:
-    form_id = request.query_params.get("form_id", "")
-    response_id = request.query_params.get("response_id", "")
+    form_id = request.data.get("form_id", "")
+    response_id = request.data.get("response_id", "")
 
     answers = TypeformResponseGetter(form_id, response_id).get_answers()
     answers_json = json.dumps(answers)

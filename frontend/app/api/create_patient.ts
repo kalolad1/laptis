@@ -1,16 +1,10 @@
+import axios from 'axios'
+
 import * as constants from '@/app/constants/endpoints'
 import { type NewPatientInfo } from '@/app/constants/types'
 
 export async function createPatient (newPatientInfo: NewPatientInfo): Promise<any> {
-  const fetchData = {
-    method: 'POST',
-    headers: new Headers({
-      Accept: 'application/json',
-      'Content-Type': 'application/json; charset=UTF-8'
-    }),
-    body: JSON.stringify(newPatientInfo)
-  }
-  const response = await fetch(constants.CREATE_PATIENT_ENDPOINT, fetchData)
-
-  return response
+  const data = { newPatientInfo }
+  const response = await axios.post(constants.CREATE_PATIENT_ENDPOINT, data)
+  return response.data
 }

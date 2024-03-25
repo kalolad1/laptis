@@ -1,15 +1,9 @@
-import * as constants from '../constants/endpoints'
+import axios from 'axios'
+
+import * as constants from '@/app/constants/endpoints'
 
 export async function getTypeformResponse (formId: string, responseId: string): Promise<string> {
-  const fetchData = {
-    method: 'GET',
-    headers: new Headers({
-      Accept: 'application/json',
-      'Content-Type': 'application/json; charset=UTF-8'
-    })
-  }
-  const url = `${constants.GET_TYPEFORM_RESPONSE_ENDPOINT}?form_id=${formId}&response_id=${responseId}`
-  const response = await fetch(url, fetchData)
-
-  return await response.json()
+  const data = { formId, responseId }
+  const response = await axios.post(constants.GET_TYPEFORM_RESPONSE_ENDPOINT, data)
+  return response.data
 }

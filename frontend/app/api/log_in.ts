@@ -1,15 +1,9 @@
+import axios from 'axios'
+
 import * as constants from '@/app/constants/endpoints'
 
 export async function logIn (email: string, password: string): Promise<any> {
-  const fetchData = {
-    method: 'POST',
-    headers: new Headers({
-      Accept: 'application/json',
-      'Content-Type': 'application/json; charset=UTF-8'
-    }),
-    body: JSON.stringify({ email, password })
-  }
-  const response = await fetch(constants.LOG_IN, fetchData)
-
-  return await response.json()
+  const data = { email, password }
+  const response = await axios.post(constants.LOG_IN, data)
+  return response.data
 }

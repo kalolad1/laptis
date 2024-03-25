@@ -1,20 +1,9 @@
+import axios from 'axios'
+
 import * as constants from '@/app/constants/endpoints'
-import { type PatientApplicationContext } from '@/app/constants/types'
 
-interface ReturnType {
-  patientApplicationContextId: string
-}
-
-export async function createPatientApplicationContext (patientApplicationContext: PatientApplicationContext): Promise<ReturnType> {
-  const fetchData = {
-    method: 'POST',
-    headers: new Headers({
-      Accept: 'application/json',
-      'Content-Type': 'application/json; charset=UTF-8'
-    }),
-    body: JSON.stringify(patientApplicationContext)
-  }
-  const response = await fetch(constants.CREATE_PATIENT_APPLICATION_CONTEXT_ENDPOINT, fetchData)
-
-  return await response.json()
+export async function createPatientApplicationContext (patientApplicationContext: PatientApplicationContext): Promise<any> {
+  const data = { patientApplicationContext }
+  const response = await axios.post(constants.CREATE_PATIENT_APPLICATION_CONTEXT_ENDPOINT, data)
+  return response.data
 }
