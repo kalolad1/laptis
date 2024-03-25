@@ -22,7 +22,7 @@ export default function Sidebar (): JSX.Element {
   return (
     <nav className={classes.navbar}>
       <Center>
-        <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }} passHref>
+        <Link href="/home/centers" style={{ textDecoration: 'none', color: 'inherit' }} passHref>
           <Image
             src="/logo.svg"
             w="auto"
