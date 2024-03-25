@@ -1,9 +1,12 @@
 import json
 
-from django.contrib.auth import login, logout
+from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from .api.typeform_response_getter import TypeformResponseGetter
 from .center_filterer import CenterFilterer
@@ -123,23 +126,14 @@ def sign_up(request: Request) -> Response:
     return Response(user_id_json)
 
 
-@api_view(["POST"])
-def log_in(request: Request) -> Response:
-    email = request.data["email"]
-    password = request.data["password"]
+class LogoutView(APIView):
+    permission_classes = (IsAuthenticated,)
 
-    user = User.objects.get_user(email, password)
-    if not user:
-        return Response(status=400)
-
-    login(request, user)
-
-    user_id_json = json.dumps({"user_id": user.id})
-    return Response(user_id_json)
-
-
-# Logout user view
-@api_view(["POST"])
-def log_out(request: Request) -> Response:
-    logout(request)
-    return Response(status=200)
+    def post(self, request):
+        try:
+            refresh_token = request.data["refresh_token"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception:
+            return Response(status=status.HTTP_400_BAD_REQUEST)

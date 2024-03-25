@@ -11,23 +11,20 @@ class CustomUserManager(UserManager["User"]):
     def _generate_random_string(self) -> str:
         return "".join(random.choice(string.ascii_letters) for _ in range(12))
 
-    def get_user(self, email: str, password: str) -> "User":
-        return super().get(email=email, password=password)
-
     def create_patient(self, **fields) -> "User":
         # Randomize username, email, and password for now as patients
         # don't need this right away.
         email = self._generate_random_string() + "@example.com"
         password = self._generate_random_string()
 
-        user = User.objects.create(
+        user = User.objects.create_user(
             username=email, email=email, password=password, is_patient=True
         )
         Patient.objects.create(user=user, **fields)
         return user
 
     def create_provider(self, email: str, password: str, **fields) -> "User":
-        user = User.objects.create(
+        user = User.objects.create_user(
             username=email, email=email, password=password, is_provider=True
         )
         Provider.objects.create(user=user, **fields)
