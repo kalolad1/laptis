@@ -1,6 +1,7 @@
 import axiosInstance from '@/app/api/interceptors/interceptor'
 
 import * as constants from '@/app/constants/endpoints'
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '@/app/constants/local_storage'
 
 export async function logIn (email: string, password: string): Promise<any> {
   const data = { username: email, password }
@@ -10,7 +11,7 @@ export async function logIn (email: string, password: string): Promise<any> {
   const accessToken = String(response.data.access)
   const refreshToken = String(response.data.refresh)
   localStorage.clear()
-  localStorage.setItem('accessToken', accessToken)
-  localStorage.setItem('refreshToken', refreshToken)
+  localStorage.setItem(ACCESS_TOKEN, accessToken)
+  localStorage.setItem(REFRESH_TOKEN, refreshToken)
   return response
 }
