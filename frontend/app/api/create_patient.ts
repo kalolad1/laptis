@@ -1,10 +1,9 @@
-import axios from 'axios'
+import axiosInstance from '@/app/api/interceptors/interceptor'
 
 import * as constants from '@/app/constants/endpoints'
 import { type NewPatientInfo } from '@/app/constants/types'
 
 export async function createPatient (newPatientInfo: NewPatientInfo): Promise<any> {
-  const data = { newPatientInfo }
-  const response = await axios.post(constants.CREATE_PATIENT_ENDPOINT, data)
+  const response = await axiosInstance.post(constants.CREATE_PATIENT_ENDPOINT, newPatientInfo)
   return response.data
 }

@@ -58,6 +58,9 @@ class Provider(models.Model):
     first_name = models.CharField(max_length=200, default="")
     last_name = models.CharField(max_length=200, default="")
 
+    def __str__(self):
+        return f"{self.user.email}"
+
 
 class Patient(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
@@ -79,3 +82,6 @@ class Patient(models.Model):
     health_insurance_identifier = models.CharField(max_length=200, default="")
     has_disability = models.BooleanField(default=False)
     is_open_to_faith_based_treatment = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"

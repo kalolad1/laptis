@@ -1,9 +1,9 @@
-import axios from 'axios'
+import axiosInstance from '@/app/api/interceptors/interceptor'
 
 import * as constants from '@/app/constants/endpoints'
-import { type Centers } from '@/app/constants/types'
+import { type Center } from '@/app/constants/types'
 
-export async function getCenters (): Promise<Centers[]> {
-  const response = await axios.get(constants.GET_CENTERS_ENDPOINT)
+export async function getCenters (): Promise<Center[]> {
+  const response = await axiosInstance.get(constants.GET_CENTERS_ENDPOINT)
   return response.data
 }

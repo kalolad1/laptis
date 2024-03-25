@@ -1,7 +1,7 @@
 import json
 
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -61,21 +61,27 @@ def get_typeform_response(request: Request) -> Response:
 
 
 @api_view(["POST"])
+@permission_classes([IsAuthenticated])
 def create_patient(request: Request) -> Response:
-    User.objects.create_patient(**request.data)
+    if not request.user.is_anonymous:
+        User.objects.create_patient(provider=request.user.provider, **request.data)
     return Response(status=200)
 
 
-# TODO: Implement such that provider gets their own patients, rather than all
 @api_view(["GET"])
+@permission_classes([IsAuthenticated])
 def get_patients(request: Request) -> Response:
-    users = User.objects.filter(is_patient=True)
-    patients = [user.patient for user in users]
-    serializer = PatientSerializer(patients, many=True, context={"request": request})
-    return Response(serializer.data)
+    if not request.user.is_anonymous:
+        patients = request.user.provider.patient_set.all()
+        serializer = PatientSerializer(
+            patients, many=True, context={"request": request}
+        )
+        return Response(serializer.data)
+    assert False
 
 
 @api_view(["POST"])
+@permission_classes([IsAuthenticated])
 def create_patient_application_context(request: Request) -> Response:
     user_id = request.data["user_id"]
     has_had_suicidal_thoughts_in_last_90_days = request.data[
