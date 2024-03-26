@@ -25,7 +25,6 @@ export default function SignupPage (): JSX.Element {
     e.preventDefault()
     signUpProvider(form.values.email, form.values.password)
       .then((response) => {
-        console.log(response)
         router.push(PROVIDER_DASHBOARD_PATIENT_TAB_PATH)
       })
       .catch((error) => {

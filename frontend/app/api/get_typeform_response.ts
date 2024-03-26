@@ -1,5 +1,4 @@
-import axiosInstance from '@/app/api/interceptors/interceptor'
-
+import { axiosInstance } from '@/app/api/axios/instance'
 import * as constants from '@/app/constants/endpoints'
 
 export async function getTypeformResponse (formId: string, responseId: string): Promise<string> {

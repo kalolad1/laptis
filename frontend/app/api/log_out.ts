@@ -1,5 +1,4 @@
-import axiosInstance from '@/app/api/interceptors/interceptor'
-
+import { axiosInstance } from '@/app/api/axios/instance'
 import * as constants from '@/app/constants/endpoints'
 import { REFRESH_TOKEN } from '@/app/constants/local_storage'
 import { HOME_CENTERS_PATH } from '@/app/constants/paths'

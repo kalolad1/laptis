@@ -1,5 +1,4 @@
-import axiosInstance from '@/app/api/interceptors/interceptor'
-
+import { axiosInstance } from '@/app/api/axios/instance'
 import { type PatientApplicationContext } from '@/app/constants/types'
 import * as constants from '@/app/constants/endpoints'
 

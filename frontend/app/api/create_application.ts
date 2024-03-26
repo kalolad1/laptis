@@ -1,5 +1,4 @@
-import axiosInstance from './interceptors/interceptor'
-
+import { axiosInstance } from '@/app/api/axios/instance'
 import * as constants from '@/app/constants/endpoints'
 
 export async function createApplication (userPatientId: string, patientApplicationContextId: string, centerId: string): Promise<any> {
