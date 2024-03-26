@@ -8,10 +8,10 @@ import Navbar from '@/app/shared_components/navbar/dashboard/DashboardNavbar'
 export default function ProviderDashboardLayout ({ children }: { children: any }): JSX.Element {
   return (
     <Grid gutter={0}>
-      <Grid.Col span={2}>
+      <Grid.Col span={3}>
         <Sidebar></Sidebar>
       </Grid.Col>
-      <Grid.Col span={10}>
+      <Grid.Col span={9}>
         <Stack justify='flex-start' gap='lg' style={{ height: '100vh' }}>
           <Navbar></Navbar>
           {children}

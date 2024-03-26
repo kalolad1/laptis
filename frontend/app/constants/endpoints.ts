@@ -8,15 +8,15 @@ export const GET_TYPEFORM_RESPONSE_ENDPOINT = BASE_API_ENDPOINT + '/get_typeform
 
 // Users
 // Base
-export const LOGOUT_USER = BASE_API_ENDPOINT + '/logout_user'
+export const LOG_OUT_ENDPOINT = BASE_API_ENDPOINT + '/log_out'
 
 // Patients
 export const CREATE_PATIENT_ENDPOINT = BASE_API_ENDPOINT + '/create_patient'
 export const GET_PATIENTS_ENDPOINT = BASE_API_ENDPOINT + '/get_patients'
 
 // Providers
-export const SIGN_UP = BASE_API_ENDPOINT + '/sign_up'
-export const GET_TOKEN = BASE_API_ENDPOINT + '/token'
+export const SIGN_UP_ENDPOINT = BASE_API_ENDPOINT + '/sign_up'
+export const GET_TOKEN_ENDPOINT = BASE_API_ENDPOINT + '/token'
 
 // Applications
 export const CREATE_PATIENT_APPLICATION_CONTEXT_ENDPOINT = BASE_API_ENDPOINT + '/create_patient_application_context'

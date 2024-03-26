@@ -1,7 +1,11 @@
 import json
 
 from rest_framework import status
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import (
+    api_view,
+    permission_classes,
+    authentication_classes,
+)
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -22,6 +26,7 @@ from .models.user import User
 
 
 @api_view(["GET"])
+@authentication_classes([])
 def get_centers(request: Request) -> Response:
     centers = Center.objects.all()
     serializer = CenterSerializer(centers, many=True, context={"request": request})
@@ -29,6 +34,7 @@ def get_centers(request: Request) -> Response:
 
 
 @api_view(["GET"])
+@authentication_classes([])
 def get_center(request: Request, id: str) -> Response:
     center = Center.objects.get(id=id)
     serializer = CenterSerializer(center, context={"request": request})
@@ -52,6 +58,7 @@ def filter_centers(request: Request) -> Response:
 
 
 @api_view(["POST"])
+@permission_classes([IsAuthenticated])
 def get_typeform_response(request: Request) -> Response:
     form_id = request.data.get("form_id", "")
     response_id = request.data.get("response_id", "")
@@ -104,6 +111,7 @@ def create_patient_application_context(request: Request) -> Response:
 
 
 @api_view(["POST"])
+@permission_classes([IsAuthenticated])
 def create_application(request: Request) -> Response:
     Application.objects.create(**request.data)
     return Response(status=200)
@@ -111,6 +119,7 @@ def create_application(request: Request) -> Response:
 
 # User
 @api_view(["POST"])
+@authentication_classes([])
 def sign_up(request: Request) -> Response:
     # Check if user with email already exists
     if User.objects.filter(email=request.data["email"]).exists():
@@ -135,8 +144,6 @@ def sign_up(request: Request) -> Response:
 
 
 class LogoutView(APIView):
-    permission_classes = (IsAuthenticated,)
-
     def post(self, request):
         try:
             refresh_token = request.data["refresh_token"]
