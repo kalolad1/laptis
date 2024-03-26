@@ -25,7 +25,7 @@ export interface NewPatientInfo {
 }
 
 export interface PatientApplicationContext {
-  userId: string
+  userPatientId: string
   hasHadSuicidalThoughtsInLast90Days: boolean
   hasUsedDrugsInLast90Days: boolean
 }

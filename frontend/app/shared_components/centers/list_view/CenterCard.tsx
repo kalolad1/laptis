@@ -10,15 +10,15 @@ import classes from './CenterCard.module.css'
 
 interface CenterCardProps {
   center: Center
-  userId: string
+  userPatientId: string
   patientApplicationContextId: string
 }
 
-export default function CenterCard ({ center, userId, patientApplicationContextId }: CenterCardProps): JSX.Element {
+export default function CenterCard ({ center, userPatientId, patientApplicationContextId }: CenterCardProps): JSX.Element {
   const router = useRouter()
 
   function handleClick (): void {
-    const urlParams = new URLSearchParams({ userId, patientApplicationContextId })
+    const urlParams = new URLSearchParams({ userPatientId, patientApplicationContextId })
     const queryString = urlParams.toString()
     router.push(`center/${center.id}?${queryString}`)
   }

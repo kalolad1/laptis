@@ -18,20 +18,20 @@ export default function SuspenseWrapper (): JSX.Element {
 
 function FilteredCentersContent (): JSX.Element {
   const searchParams = useSearchParams()
-  const userId = searchParams.get('userId') ?? ''
+  const userPatientId = searchParams.get('userPatientId') ?? ''
   const patientApplicationContextId = searchParams.get('patientApplicationContextId') ?? ''
 
   const [centers, setCenters] = useState<Center[]>([])
 
   useEffect(() => {
-    filterCenters(userId, patientApplicationContextId)
+    filterCenters(userPatientId, patientApplicationContextId)
       .then(data => {
         setCenters(data)
       })
       .catch(error => { console.error('Error:', error) })
-  }, [userId, patientApplicationContextId])
+  }, [userPatientId, patientApplicationContextId])
 
   return (
-    <CenterCardsGrid centers={centers} userId={userId} patientApplicationContextId={patientApplicationContextId} />
+    <CenterCardsGrid centers={centers} userPatientId={userPatientId} patientApplicationContextId={patientApplicationContextId} />
   )
 }

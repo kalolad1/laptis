@@ -8,16 +8,16 @@ import CenterCard from './CenterCard'
 
 interface Props {
   centers: Center[]
-  userId: string
+  userPatientId: string
   patientApplicationContextId: string
 }
 
-export default function CenterCardsGrid ({ centers, userId, patientApplicationContextId }: Props): JSX.Element {
+export default function CenterCardsGrid ({ centers, userPatientId, patientApplicationContextId }: Props): JSX.Element {
   return (
     <Grid p="md">
       {centers.map((center: any, index: number) => (
         <Grid.Col key={index} span={{ base: 12, sm: 6, md: 4 }}>
-          <CenterCard center={center} userId={userId} patientApplicationContextId={patientApplicationContextId} />
+          <CenterCard center={center} userPatientId={userPatientId} patientApplicationContextId={patientApplicationContextId} />
         </Grid.Col>
       ))}
     </Grid>

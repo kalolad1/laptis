@@ -19,7 +19,7 @@ interface CenterDetailViewProps {
 
 export default function CenterDetailView ({ centerId }: CenterDetailViewProps): JSX.Element {
   const searchParams = useSearchParams()
-  const userId = searchParams.get('userId') ?? ''
+  const userPatientId = searchParams.get('userPatientId') ?? ''
   const patientApplicationContextId = searchParams.get('patientApplicationContextId') ?? ''
 
   const [center, setCenter] = useState<Center | null>(null)
@@ -34,25 +34,25 @@ export default function CenterDetailView ({ centerId }: CenterDetailViewProps): 
     <Stack gap="md">
       {center !== null && <Title>{center.name}</Title>}
       <Image src={center?.image} radius="md" w={400} h={200} mb="md" />
-      {center !== null && <CenterDetailViewBody center={center} userId={userId} patientApplicationContextId={patientApplicationContextId} />}
+      {center !== null && <CenterDetailViewBody center={center} userPatientId={userPatientId} patientApplicationContextId={patientApplicationContextId} />}
     </Stack>
   )
 }
 
 interface CenterDetailViewBodyProps {
   center: Center
-  userId: string
+  userPatientId: string
   patientApplicationContextId: string
 }
 
-function CenterDetailViewBody ({ center, userId, patientApplicationContextId }: CenterDetailViewBodyProps): JSX.Element {
+function CenterDetailViewBody ({ center, userPatientId, patientApplicationContextId }: CenterDetailViewBodyProps): JSX.Element {
   return (
     <Grid gutter={{ base: 75 }}>
       <Grid.Col span={{ base: 8, md: 9, lg: 9 }}>
         <Information center={center} />
       </Grid.Col>
       <Grid.Col span={{ base: 4, md: 3, lg: 3 }}>
-        <ReserveBox phoneNumber={center.phoneNumber} centerId={center.id} userId={userId} patientApplicationContextId={patientApplicationContextId} />
+        <ReserveBox phoneNumber={center.phoneNumber} centerId={center.id} userPatientId={userPatientId} patientApplicationContextId={patientApplicationContextId} />
       </Grid.Col>
     </Grid>
   )
@@ -89,14 +89,14 @@ function QuickCenterStats ({ eligibleHealthInsurances }: QuickCenterStatsProps):
 
 interface ReserveBoxProps {
   phoneNumber: string
-  userId: string
+  userPatientId: string
   patientApplicationContextId: string
   centerId: string
 }
 
-function ReserveBox ({ phoneNumber, userId, patientApplicationContextId, centerId }: ReserveBoxProps): any {
+function ReserveBox ({ phoneNumber, userPatientId, patientApplicationContextId, centerId }: ReserveBoxProps): any {
   function handleApplyButtonClick (): void {
-    createApplication(userId, patientApplicationContextId, centerId)
+    createApplication(userPatientId, patientApplicationContextId, centerId)
       .then(response => {
         console.log(response)
       })

@@ -62,7 +62,7 @@ function PatientTable ({ patients }: PatientTableProps): JSX.Element {
       <Table.Td>{`${patient.firstName} ${patient.lastName}`}</Table.Td>
       <Table.Td>{patient.placementStatus}</Table.Td>
       <Table.Td>
-        <FindTreatmentButton userId={patient.userId} />
+        <FindTreatmentButton userPatientId={patient.userId} />
       </Table.Td>
     </Table.Tr>
   ))
@@ -77,10 +77,10 @@ function PatientTable ({ patients }: PatientTableProps): JSX.Element {
 }
 
 interface FindTreatmentButtonProps {
-  userId: string
+  userPatientId: string
 }
 
-function FindTreatmentButton ({ userId }: FindTreatmentButtonProps): JSX.Element {
+function FindTreatmentButton ({ userPatientId }: FindTreatmentButtonProps): JSX.Element {
   const router = useRouter()
 
   function handleSubmit ({ formId, responseId }: { formId: string, responseId: string }): void {
@@ -91,12 +91,12 @@ function FindTreatmentButton ({ userId }: FindTreatmentButtonProps): JSX.Element
       getTypeformResponse(formId, responseId)
         .then(answers => {
           const patientApplicationContext: PatientApplicationContext = {
-            userId,
+            userPatientId,
             ...JSON.parse(answers)
           }
           createPatientApplicationContext(patientApplicationContext)
             .then(response => {
-              const urlParams = new URLSearchParams({ userId, patientApplicationContextId: response.patientApplicationContextId })
+              const urlParams = new URLSearchParams({ userPatientId, patientApplicationContextId: response.patientApplicationContextId })
               const queryString = urlParams.toString()
               router.push(`${PROVIDER_DASHBOARD_FILTERED_CENTERS}?` + queryString)
             })

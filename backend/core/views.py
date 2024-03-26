@@ -36,11 +36,12 @@ def get_center(request: Request, id: str) -> Response:
 
 
 @api_view(["POST"])
+@permission_classes([IsAuthenticated])
 def filter_centers(request: Request) -> Response:
-    user_id = request.data["user_id"]
+    user_patient_id = request.data["user_patient_id"]
     patient_application_context_id = request.data["patient_application_context_id"]
 
-    user = User.objects.get(id=user_id)
+    user = User.objects.get(id=user_patient_id)
     pac = PatientApplicationContext.objects.get(
         patient_application_context_id=patient_application_context_id
     )
@@ -83,14 +84,15 @@ def get_patients(request: Request) -> Response:
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def create_patient_application_context(request: Request) -> Response:
-    user_id = request.data["user_id"]
+    print(request.data)
+    user_patient_id = request.data["user_patient_id"]
     has_had_suicidal_thoughts_in_last_90_days = request.data[
         "has_had_suicidal_thoughts_in_last_90_days"
     ]
     has_used_drugs_in_last_90_days = request.data["has_used_drugs_in_last_90_days"]
 
     pac = PatientApplicationContext.objects.create(
-        user=User.objects.get(id=user_id),
+        user=User.objects.get(id=user_patient_id),
     )
     pac.has_had_suicidal_thoughts_in_last_90_days = (
         has_had_suicidal_thoughts_in_last_90_days
