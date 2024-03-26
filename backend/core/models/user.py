@@ -62,6 +62,16 @@ class Provider(models.Model):
         return f"{self.user.email}"
 
 
+PLACEMENT_STATUSES = [
+    ("pending", "Pending"),
+    ("applied", "Applied"),
+    ("accepted", "Accepted"),
+    ("rejected", "Rejected"),
+    ("in_treatment", "In treatment"),
+    ("completed_treatment", "Completed treatment"),
+]
+
+
 class Patient(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     provider = models.ForeignKey(Provider, on_delete=models.SET_NULL, null=True)
@@ -71,6 +81,9 @@ class Patient(models.Model):
     sex = models.CharField(max_length=200, default="")
     age = models.IntegerField(default=-1)
     address = models.CharField(max_length=200, default="")
+    placement_status = models.CharField(
+        max_length=200, choices=PLACEMENT_STATUSES, default="pending"
+    )
 
     using_medication_assisted_therapies = ArrayField(
         models.CharField(max_length=200), default=list

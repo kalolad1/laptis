@@ -35,4 +35,5 @@ export interface Patient {
   lastName: string
   age: number
   userId: string
+  placementStatus: string
 }

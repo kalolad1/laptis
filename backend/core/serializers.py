@@ -21,9 +21,14 @@ class CenterSerializer(serializers.ModelSerializer[Center]):
 
 
 class PatientSerializer(serializers.ModelSerializer[Patient]):
+    def get_placement_status(self, patient):
+        return patient.get_placement_status_display()
+
+    placement_status = serializers.SerializerMethodField()
+
     class Meta:
         model = Patient
-        fields = ["first_name", "last_name", "age", "user_id"]
+        fields = ["first_name", "last_name", "age", "user_id", "placement_status"]
 
 
 class PatientApplicationContextSerializer(

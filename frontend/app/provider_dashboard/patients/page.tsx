@@ -60,7 +60,7 @@ function PatientTable ({ patients }: PatientTableProps): JSX.Element {
         <IconUserCircle />
       </Table.Td>
       <Table.Td>{`${patient.firstName} ${patient.lastName}`}</Table.Td>
-      <Table.Td>Accepted</Table.Td>
+      <Table.Td>{patient.placementStatus}</Table.Td>
       <Table.Td>
         <FindTreatmentButton userId={patient.userId} />
       </Table.Td>
