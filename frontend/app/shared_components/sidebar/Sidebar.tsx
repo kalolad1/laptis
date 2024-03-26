@@ -3,13 +3,12 @@
 import Link from 'next/link'
 
 import { Center, Image } from '@mantine/core'
-import { IconUsers, IconLogout, IconHome } from '@tabler/icons-react'
+import { IconUsers, IconLogout } from '@tabler/icons-react'
 
 import classes from './Sidebar.module.css'
 
 const tabs = [
-  { link: 'patients', label: 'Patients', icon: <IconUsers /> },
-  { link: 'centers', label: 'Centers', icon: <IconHome /> }
+  { link: 'patients', label: 'Patients', icon: <IconUsers /> }
 ]
 
 export default function Sidebar (): JSX.Element {
