@@ -17,6 +17,6 @@ export default function Home (): JSX.Element {
   }, [])
 
   return (
-    <CenterCardsGrid centers={centers} userId={''} patientApplicationContextId={''} />
+    <CenterCardsGrid centers={centers} userPatientId={''} patientApplicationContextId={''} />
   )
 }

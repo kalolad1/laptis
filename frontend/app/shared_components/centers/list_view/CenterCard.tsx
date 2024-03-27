@@ -7,6 +7,7 @@ import { Card, Image, Text, Group, Stack, Badge } from '@mantine/core'
 import { IconStarFilled } from '@tabler/icons-react'
 
 import classes from './CenterCard.module.css'
+import baseClasses from '@/app/base.module.css'
 
 interface CenterCardProps {
   center: Center
@@ -69,7 +70,7 @@ interface FirstLineProps {
 function FirstLine ({ name }: FirstLineProps): JSX.Element {
   return (
     <Group justify="space-between">
-      <Text c="black" fw={500} size='sm'>{name}</Text>
+      <Text className={baseClasses.normal_text}>{name}</Text>
       <StarReviewDisplay />
     </Group>
   )
@@ -79,7 +80,7 @@ function StarReviewDisplay (): JSX.Element {
   return (
     <Group gap={4}>
       <IconStarFilled size={12} />
-      <Text c="black" fw={500} size='sm'>4.5</Text>
+      <Text className={baseClasses.normal_text}>4.5</Text>
     </Group>
   )
 }
@@ -89,7 +90,7 @@ interface AddressLineProps {
 }
 function AddressLine ({ address }: AddressLineProps): JSX.Element {
   return (
-    <Text c="gray" fw={400} size='sm'>{address}</Text>
+    <Text className={baseClasses.sub_text}>{address}</Text>
   )
 }
 
@@ -99,6 +100,6 @@ interface AcceptedPaymentsLineProps {
 
 function AcceptedPaymentsLine ({ eligibleHealthInsurances }: AcceptedPaymentsLineProps): JSX.Element {
   return (
-    <Text c="gray" fw={400} size='sm'>Accepts {eligibleHealthInsurances.join(', ')}</Text>
+    <Text className={baseClasses.sub_text}>Accepts {eligibleHealthInsurances.join(', ')}</Text>
   )
 }

@@ -7,11 +7,12 @@ import { createApplication } from '@/app/api/create_application'
 import { getCenter } from '@/app/api/get_center'
 import { type Center } from '@/app/constants/types'
 
-import { Title, Image, Text, Stack, Divider, Button, Grid, Anchor } from '@mantine/core'
+import { Image, Text, Stack, Divider, Button, Grid, Anchor } from '@mantine/core'
 import { IconPhone } from '@tabler/icons-react'
 
 import '@mantine/dates/styles.css'
 import classes from './CenterDetailView.module.css'
+import baseClasses from '@/app/base.module.css'
 
 interface CenterDetailViewProps {
   centerId: string
@@ -32,7 +33,7 @@ export default function CenterDetailView ({ centerId }: CenterDetailViewProps): 
 
   return (
     <Stack gap="md">
-      {center !== null && <Title>{center.name}</Title>}
+      {center !== null && <Text className={baseClasses.title_main}>{center.name}</Text>}
       <Image src={center?.image} radius="md" w={400} h={200} mb="md" />
       {center !== null && <CenterDetailViewBody center={center} userPatientId={userPatientId} patientApplicationContextId={patientApplicationContextId} />}
     </Stack>
@@ -65,12 +66,12 @@ interface InformationProps {
 function Information ({ center }: InformationProps): JSX.Element {
   return (
     <div>
-      <Title order={3}>{center.address}</Title>
+      <Text className={baseClasses.title_secondary}>{center.address}</Text>
       <QuickCenterStats eligibleHealthInsurances={center.eligibleHealthInsurances} />
-      <Anchor href={center.website} target='blank'>Go to website</Anchor>
+      <Anchor className={baseClasses.normal_text} href={center.website} target='blank'>Go to website</Anchor>
       <Divider my="sm" />
 
-      <Text>Woburn Addiction Treatment is a top-rated addiction treatment center in Massachusetts that accepts most insurance plans. If you or a loved one are ready to overcome substance addiction and commit to life-changing treatment, our Massachusetts treatment facility is here to help.
+      <Text className={baseClasses.normal_text}>Woburn Addiction Treatment is a top-rated addiction treatment center in Massachusetts that accepts most insurance plans. If you or a loved one are ready to overcome substance addiction and commit to life-changing treatment, our Massachusetts treatment facility is here to help.
 
         From drug and alcohol detox to individualized treatment at the outpatient level of care, the programs at our addiction treatment center and partner facilities are meticulously designed to empower you to overcome your addictions and create a lasting foundation for recovery. Our multi-faceted substance abuse services are designed to help identify and diminish the compulsive obsession to use drugs and alcohol.</Text>
     </div>
@@ -83,7 +84,7 @@ interface QuickCenterStatsProps {
 
 function QuickCenterStats ({ eligibleHealthInsurances }: QuickCenterStatsProps): any {
   return (
-    <Text>5 beds available • 100 total beds • Accepts {eligibleHealthInsurances.join(', ')}</Text>
+    <Text className={baseClasses.sub_text}>5 beds available • 100 total beds • Accepts {eligibleHealthInsurances.join(', ')}</Text>
   )
 }
 
@@ -107,7 +108,7 @@ function ReserveBox ({ phoneNumber, userPatientId, patientApplicationContextId, 
 
   return (
     <Stack className={classes.reserve_box_stack} align='center'>
-      <Button justify="center" size="md" leftSection={<IconPhone />} variant="transparent" color='black'>
+      <Button className={baseClasses.normal_text} justify="center" size="md" leftSection={<IconPhone />} variant="transparent" color='black'>
         {phoneNumber}
       </Button>
       <Button onClick={handleApplyButtonClick}>Apply</Button>

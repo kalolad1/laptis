@@ -10,6 +10,8 @@ import CenterCardsGrid from '@/app/shared_components/centers/list_view/CenterCar
 import NoFilteredCentersPlaceholder from '@/app/shared_components/no_results_placeholders/NoFilteredCentersPlaceholder'
 import { Stack, Text } from '@mantine/core'
 
+import baseClasses from '@/app/base.module.css'
+
 export default function SuspenseWrapper (): JSX.Element {
   return (
     <Suspense>
@@ -62,10 +64,10 @@ function CenterResultsCountTitle ({ count }: { count: number }): JSX.Element {
     <>
       {count === 1
         ? (
-          <Text>Found {count} center that meets your client&apos;s criteria.</Text>
+          <Text className={baseClasses.normal_text}>Found {count} center that meets your client&apos;s criteria.</Text>
           )
         : (
-          <Text>Found {count} centers that meet your client&apos;s criteria.</Text>
+          <Text className={baseClasses.normal_text}>Found {count} centers that meet your client&apos;s criteria.</Text>
           )}
     </>
   )

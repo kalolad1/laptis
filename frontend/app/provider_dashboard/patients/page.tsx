@@ -11,11 +11,13 @@ import { type Patient, type NewPatientInfo, type PatientApplicationContext } fro
 import { PATIENT_APPLICATION_CONTEXT_FORM_ID } from '@/app/constants/typeform'
 import { createPatientApplicationContext } from '@/app/api/create_patient_application_context'
 
-import { Flex, ScrollArea, Table } from '@mantine/core'
+import { Flex, Paper, ScrollArea, Table } from '@mantine/core'
 import { PopupButton } from '@typeform/embed-react'
-import { IconUserCircle } from '@tabler/icons-react'
 
 import NoPatientsPlaceholder from '@/app/shared_components/no_results_placeholders/NoPatientsPlaceholder'
+
+import baseClasses from '@/app/base.module.css'
+import classes from '@/app/provider_dashboard/patients/page.module.css'
 
 export default function PatientsTab (): JSX.Element {
   const [patients, setPatients] = useState<Patient[]>([])
@@ -57,11 +59,9 @@ interface PatientTableProps {
 function PatientTable ({ patients }: PatientTableProps): JSX.Element {
   const sortedPatients = [...patients].sort((a, b) => Number(b.userId) - Number(a.userId))
   const rows = sortedPatients.map((patient) => (
-    <Table.Tr key={patient.userId}>
-      <Table.Td>
-        <IconUserCircle />
-      </Table.Td>
+    <Table.Tr className={baseClasses.normal_text} key={patient.userId}>
       <Table.Td>{`${patient.firstName} ${patient.lastName}`}</Table.Td>
+      <Table.Td>{patient.age} years old</Table.Td>
       <Table.Td>{patient.placementStatus}</Table.Td>
       <Table.Td>
         <FindTreatmentButton userPatientId={patient.userId} />
@@ -70,10 +70,20 @@ function PatientTable ({ patients }: PatientTableProps): JSX.Element {
   ))
 
   return (
+
     <ScrollArea w={'100%'} h={'75vh'}>
-      <Table highlightOnHover>
-        <Table.Tbody>{rows}</Table.Tbody>
-      </Table>
+      <Paper shadow="xs" radius="lg" pb="xl" px="xl" pt="lg">
+        <Table verticalSpacing="xl" horizontalSpacing="xl" highlightOnHover>
+          <Table.Thead>
+            <Table.Tr className={baseClasses.normal_text}>
+              <Table.Th>Name</Table.Th>
+              <Table.Th>Age</Table.Th>
+              <Table.Th>Placement Status</Table.Th>
+            </Table.Tr>
+          </Table.Thead>
+          <Table.Tbody>{rows}</Table.Tbody>
+        </Table>
+      </Paper>
     </ScrollArea>
   )
 }
@@ -113,7 +123,7 @@ function FindTreatmentButton ({ userPatientId }: FindTreatmentButtonProps): JSX.
   }
 
   return (
-    <PopupButton id={PATIENT_APPLICATION_CONTEXT_FORM_ID} onSubmit={handleSubmit}>
+    <PopupButton className={classes.find_treatment_button} id={PATIENT_APPLICATION_CONTEXT_FORM_ID} onSubmit={handleSubmit}>
       Find a treatment center
     </PopupButton>
   )
@@ -162,7 +172,7 @@ function NewPatientButton ({ handleNewPatientFormClose }: NewPatientButtonProps)
   }
 
   return (
-    <PopupButton id={process.env.NEXT_PUBLIC_NEW_PATIENT_FORM_ID} onSubmit={handleSubmit} style={{ position: 'absolute', bottom: 24, right: 24 }} autoClose>
+    <PopupButton id={process.env.NEXT_PUBLIC_NEW_PATIENT_FORM_ID} onSubmit={handleSubmit} className={classes.new_patient_button} autoClose>
       New Patient
     </PopupButton>
   )

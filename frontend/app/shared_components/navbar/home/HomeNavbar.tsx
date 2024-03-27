@@ -4,9 +4,10 @@ import Link from 'next/link'
 
 import { HOME_CENTERS_PATH, LOGIN_PATH, SIGNUP_PATH } from '@/app/constants/paths'
 
-import { Image, Group, Button, Flex, Title } from '@mantine/core'
+import { Image, Group, Button, Flex, Text } from '@mantine/core'
 
 import classes from './HomeNavbar.module.css'
+import baseClasses from '@/app/base.module.css'
 
 export default function HomeNavbar (): JSX.Element {
   return (
@@ -18,7 +19,7 @@ export default function HomeNavbar (): JSX.Element {
             width={50}
             height={50}
           />
-          <Title>Laptis</Title>
+          <Text className={baseClasses.title_main}>Laptis</Text>
         </Group>
       </Link>
       <Group>
@@ -40,7 +41,7 @@ function LogInSignUpButtons (): JSX.Element {
 function LogInButton (): JSX.Element {
   return (
     <Link href={LOGIN_PATH} passHref>
-      <Button variant="outline" color="black" size="md">
+      <Button className={baseClasses.normal_text} variant="outline" color="black" size="md">
         Log in
       </Button>
     </Link>

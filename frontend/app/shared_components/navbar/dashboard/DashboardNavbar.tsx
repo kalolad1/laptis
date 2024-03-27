@@ -1,19 +1,52 @@
-import { Container, Title } from '@mantine/core'
+import Link from 'next/link'
+
+import { ActionIcon, Button, Group, Image, Menu } from '@mantine/core'
 import { IconUserCircle } from '@tabler/icons-react'
 
-import classes from './DashboardNavbar.module.css'
+import { logOutUser } from '@/app/api/log_out'
+import { PROVIDER_DASHBOARD_PATIENTS_TAB_PATH } from '@/app/constants/paths'
+
+import baseClasses from '@/app/base.module.css'
 
 export default function DashboardNavbar ({ loggedInUserName }: { loggedInUserName: string }): JSX.Element {
+  function handleLogOutButtonClick (event: React.MouseEvent<HTMLAnchorElement>): void {
+    event.preventDefault()
+    void logOutUser()
+  }
+
   return (
-    <header className={classes.header}>
-      <Container size="lg">
-        <div className={classes.inner}>
-          <Title order={3}>{loggedInUserName}</Title>
-          <a href="#" className={classes.profileOptionsButton} onClick={(event) => { event.preventDefault() }}>
-            <IconUserCircle className={classes.profileOptionsButtonIcon} stroke={1.5} />
-          </a>
-        </div>
-      </Container>
-    </header>
+    <Group justify='space-between' bg="white" py="md" px="xl">
+      <Group gap="xl">
+        <Link href={PROVIDER_DASHBOARD_PATIENTS_TAB_PATH} style={{ textDecoration: 'none', color: 'inherit' }} passHref>
+          <Image
+            src="/logo.svg"
+            w="auto"
+            fit="contain"
+            height={50}
+          />
+        </Link>
+
+        <Button component={Link} href={PROVIDER_DASHBOARD_PATIENTS_TAB_PATH} className={baseClasses.normal_text} variant='subtle'>
+          Patients
+        </Button>
+        <Button className={baseClasses.normal_text} variant='subtle'>
+          Centers
+        </Button>
+      </Group>
+      <Group>
+        <Menu trigger="hover" transitionProps={{ exitDuration: 0 }} withinPortal>
+          <Menu.Target>
+            <ActionIcon variant="transparent">
+              <IconUserCircle size={48} color='black' />
+            </ActionIcon>
+          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Item component='a' onClick={handleLogOutButtonClick}>
+              Log out
+            </Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
+      </Group>
+    </Group >
   )
 }

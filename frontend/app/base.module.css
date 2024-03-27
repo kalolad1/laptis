@@ -1,0 +1,22 @@
+/* Typography */
+.normal_text {
+  font-size: medium;
+  font-weight: 500;
+  color: black;
+}
+
+.sub_text {
+  font-size: medium;
+  font-weight: 400;
+  color: var(--mantine-color-gray-3);
+}
+
+.title_main {
+  font-size: xx-large;
+  font-weight: 700;
+}
+
+.title_secondary {
+  font-size: large;
+  font-weight: 700;
+}
