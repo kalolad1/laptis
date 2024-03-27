@@ -3,7 +3,9 @@ import axios from 'axios'
 import { ACCESS_TOKEN } from '@/app/constants/local_storage'
 import { LOGIN_PATH } from '@/app/constants/paths'
 
-export const axiosInstance = axios.create()
+export const axiosInstance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_BASE_API_ENDPOINT
+})
 
 // Request interceptor for API calls
 axiosInstance.interceptors.request.use(
