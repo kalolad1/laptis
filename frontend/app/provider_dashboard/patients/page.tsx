@@ -147,6 +147,7 @@ function NewPatientButton ({ handleNewPatientFormClose }: NewPatientButtonProps)
           createPatient(newPatientInfo)
             .then(response => {
               console.log(response)
+              handleNewPatientFormClose()
             })
             .catch(error => {
               console.error(error)
@@ -159,7 +160,7 @@ function NewPatientButton ({ handleNewPatientFormClose }: NewPatientButtonProps)
   }
 
   return (
-    <PopupButton id={process.env.NEXT_PUBLIC_NEW_PATIENT_FORM_ID} onSubmit={handleSubmit} onClose={handleNewPatientFormClose} style={{ position: 'absolute', bottom: 24, right: 24 }}>
+    <PopupButton id={process.env.NEXT_PUBLIC_NEW_PATIENT_FORM_ID} onSubmit={handleSubmit} style={{ position: 'absolute', bottom: 24, right: 24 }} autoClose>
       New Patient
     </PopupButton>
   )

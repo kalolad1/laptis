@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from '@mantine/form'
 
 import { signUpProvider } from '@/app/api/sign_up_provider'
-import { PROVIDER_DASHBOARD_PATIENT_TAB_PATH } from '@/app/constants/paths'
+import { PROVIDER_DASHBOARD_PATIENTS_TAB_PATH } from '@/app/constants/paths'
 
 import {
   TextInput,
@@ -25,7 +25,7 @@ export default function SignupPage (): JSX.Element {
     e.preventDefault()
     signUpProvider(form.values.email, form.values.password)
       .then((response) => {
-        router.push(PROVIDER_DASHBOARD_PATIENT_TAB_PATH)
+        router.push(PROVIDER_DASHBOARD_PATIENTS_TAB_PATH)
       })
       .catch((error) => {
         console.error(error)
