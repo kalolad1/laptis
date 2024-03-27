@@ -17,16 +17,20 @@ import {
 } from '@mantine/core'
 
 import { logIn } from '@/app/api/log_in'
-import { PROVIDER_DASHBOARD_PATIENTS_TAB_PATH } from '@/app/constants/paths'
+import { PROVIDER_DASHBOARD_PATIENTS_TAB_PATH, SIGNUP_PATH } from '@/app/constants/paths'
 
 export default function LoginPage (): JSX.Element {
   const form = useForm({ initialValues: { email: '', password: '' } })
   const router = useRouter()
 
+  function handleCreateAccountButtonClick (): void {
+    router.push(SIGNUP_PATH)
+  }
+
   function handleSubmit (e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault()
     logIn(form.values.email, form.values.password)
-      .then((response) => {
+      .then(() => {
         router.push(PROVIDER_DASHBOARD_PATIENTS_TAB_PATH)
       })
       .catch((error) => {
@@ -42,7 +46,7 @@ export default function LoginPage (): JSX.Element {
         </Title>
         <Text c="dimmed" size="sm" ta="center" mt={5}>
           Do not have an account yet?{' '}
-          <Anchor size="sm" component="button">
+          <Anchor size="sm" component="button" onClick={handleCreateAccountButtonClick}>
             Create account
           </Anchor>
         </Text>

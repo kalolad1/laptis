@@ -7,6 +7,7 @@ export const FILTER_CENTERS_ENDPOINT = BASE_API_ENDPOINT + '/filter_centers'
 export const GET_TYPEFORM_RESPONSE_ENDPOINT = BASE_API_ENDPOINT + '/get_typeform_response'
 
 // Users
+export const GET_LOGGED_IN_USER_ENDPOINT = BASE_API_ENDPOINT + '/get_logged_in_user'
 
 // Auth
 export const SIGN_UP_ENDPOINT = BASE_API_ENDPOINT + '/sign_up'

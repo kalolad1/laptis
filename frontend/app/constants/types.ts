@@ -1,3 +1,5 @@
+export const USER_TYPES = ['provider', 'patient', 'center']
+
 export interface Center {
   id: string
   name: string
@@ -37,3 +39,11 @@ export interface Patient {
   userId: string
   placementStatus: string
 }
+
+export interface ProviderUser {
+  firstName: string
+  lastName: string
+  id: string
+}
+
+export type User = ProviderUser | Patient

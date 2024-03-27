@@ -2,7 +2,32 @@ from rest_framework import serializers
 
 from .models.application import PatientApplicationContext
 from .models.center import Center
-from .models.user import Patient
+from .models.user import User, Patient
+
+
+class UserSerializer(serializers.ModelSerializer[User]):
+    def get_first_name(self, user):
+        if user.is_provider:
+            return user.provider.first_name
+        elif user.is_patient:
+            return user.patient.first_name
+
+        assert False
+
+    def get_last_name(self, user):
+        if user.is_provider:
+            return user.provider.last_name
+        elif user.is_patient:
+            return user.patient.last_name
+
+        assert False
+
+    first_name = serializers.SerializerMethodField()
+    last_name = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ["first_name", "last_name", "id"]
 
 
 class CenterSerializer(serializers.ModelSerializer[Center]):

@@ -18,6 +18,7 @@ from .serializers import (
     CenterSerializer,
     PatientSerializer,
     PatientApplicationContextSerializer,
+    UserSerializer,
 )
 
 from .models.application import Application, PatientApplicationContext
@@ -125,7 +126,7 @@ def sign_up(request: Request) -> Response:
     if User.objects.filter(email=request.data["email"]).exists():
         return Response(status=400)
 
-    # Pop email from dict
+    # Pop email and password from dict
     email = request.data.pop("email")
     password = request.data.pop("password")
     user_type = request.data.pop("user_type")
@@ -152,3 +153,13 @@ class LogoutView(APIView):
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_logged_in_user(request: Request) -> Response:
+    if request.user.is_anonymous:
+        return Response(status=400)
+
+    serializer = UserSerializer(request.user, context={"request": request})
+    return Response(serializer.data)
