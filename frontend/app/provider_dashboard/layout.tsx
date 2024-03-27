@@ -23,6 +23,13 @@ export default function ProviderDashboardLayout ({ children }: { children: any }
       })
   }, [])
 
+  function getFullName (): string {
+    if (providerUser !== null) {
+      return `${providerUser.firstName} ${providerUser.lastName}`
+    }
+    return ''
+  }
+
   return (
     <Grid gutter={0}>
       <Grid.Col span={3}>
@@ -30,7 +37,7 @@ export default function ProviderDashboardLayout ({ children }: { children: any }
       </Grid.Col>
       <Grid.Col span={9}>
         <Stack justify='flex-start' gap='lg' style={{ height: '100vh' }}>
-          <Navbar loggedInUserName={`${providerUser?.firstName} ${providerUser?.lastName}`} ></Navbar>
+          <Navbar loggedInUserName={getFullName()} ></Navbar>
           {children}
         </Stack>
       </Grid.Col>
