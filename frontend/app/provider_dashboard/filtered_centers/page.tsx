@@ -8,6 +8,7 @@ import { type Center } from '@/app/constants/types'
 
 import CenterCardsGrid from '@/app/shared_components/centers/list_view/CenterCardsGrid'
 import NoFilteredCentersPlaceholder from '@/app/shared_components/no_results_placeholders/NoFilteredCentersPlaceholder'
+import { Stack, Text } from '@mantine/core'
 
 export default function SuspenseWrapper (): JSX.Element {
   return (
@@ -40,14 +41,31 @@ function FilteredCentersContent (): JSX.Element {
     <>
       {hasCenters
         ? (
-          <CenterCardsGrid
-            centers={centers}
-            userPatientId={userPatientId}
-            patientApplicationContextId={patientApplicationContextId}
-          />
+          <Stack >
+            <CenterResultsCountTitle count={centers.length} />
+            <CenterCardsGrid
+              centers={centers}
+              userPatientId={userPatientId}
+              patientApplicationContextId={patientApplicationContextId}
+            />
+          </Stack>
           )
         : (
           <NoFilteredCentersPlaceholder />
+          )}
+    </>
+  )
+}
+
+function CenterResultsCountTitle ({ count }: { count: number }): JSX.Element {
+  return (
+    <>
+      {count === 1
+        ? (
+          <Text>Found {count} center that meets your client&apos;s criteria.</Text>
+          )
+        : (
+          <Text>Found {count} centers that meet your client&apos;s criteria.</Text>
           )}
     </>
   )
