@@ -11,9 +11,11 @@ import { type Patient, type NewPatientInfo, type PatientApplicationContext } fro
 import { PATIENT_APPLICATION_CONTEXT_FORM_ID } from '@/app/constants/typeform'
 import { createPatientApplicationContext } from '@/app/api/create_patient_application_context'
 
-import { Flex, ScrollArea, Stack, Table, Title, Text } from '@mantine/core'
+import { Flex, ScrollArea, Table } from '@mantine/core'
 import { PopupButton } from '@typeform/embed-react'
-import { IconPackages, IconUserCircle } from '@tabler/icons-react'
+import { IconUserCircle } from '@tabler/icons-react'
+
+import NoPatientsPlaceholder from '@/app/shared_components/no_results_placeholders/NoPatientsPlaceholder'
 
 export default function PatientsTab (): JSX.Element {
   const [patients, setPatients] = useState<Patient[]>([])
@@ -163,15 +165,5 @@ function NewPatientButton ({ handleNewPatientFormClose }: NewPatientButtonProps)
     <PopupButton id={process.env.NEXT_PUBLIC_NEW_PATIENT_FORM_ID} onSubmit={handleSubmit} style={{ position: 'absolute', bottom: 24, right: 24 }} autoClose>
       New Patient
     </PopupButton>
-  )
-}
-
-function NoPatientsPlaceholder (): JSX.Element {
-  return (
-    <Stack align='center'>
-      <IconPackages />
-      <Title>No patients added yet.</Title>
-      <Text>Patients added to your roster will appear here. Click the button at the bottom to add a patient.</Text>
-    </Stack >
   )
 }
