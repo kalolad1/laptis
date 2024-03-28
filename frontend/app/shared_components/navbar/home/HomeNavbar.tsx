@@ -6,12 +6,11 @@ import { HOME_CENTERS_PATH, LOGIN_PATH, SIGNUP_PATH } from '@/app/constants/path
 
 import { Image, Group, Button, Flex, Text } from '@mantine/core'
 
-import classes from './HomeNavbar.module.css'
 import baseClasses from '@/app/base.module.css'
 
 export default function HomeNavbar (): JSX.Element {
   return (
-    <Flex className={classes.flex_container} justify="space-between" p="md">
+    <Flex justify="space-between" p="md" bg="white">
       <Link href={HOME_CENTERS_PATH} style={{ textDecoration: 'none', color: 'inherit' }} passHref>
         <Group>
           <Image

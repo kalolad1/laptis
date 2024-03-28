@@ -20,7 +20,7 @@ export default function RootLayout ({ children }: { children: any }): JSX.Elemen
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
       </head>
-      <body>
+      <body style={{ backgroundColor: '#f6f6f6' }}>
         <MantineProvider theme={theme}>
           {children}
         </MantineProvider>

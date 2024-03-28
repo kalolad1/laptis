@@ -7,12 +7,11 @@ import { createApplication } from '@/app/api/create_application'
 import { getCenter } from '@/app/api/get_center'
 import { type Center } from '@/app/constants/types'
 
-import { Image, Text, Stack, Divider, Button, Grid, Anchor } from '@mantine/core'
-import { IconPhone } from '@tabler/icons-react'
+import { Image, Text, Stack, Divider, Anchor, Flex } from '@mantine/core'
 
 import '@mantine/dates/styles.css'
-import classes from './CenterDetailView.module.css'
 import baseClasses from '@/app/base.module.css'
+import PrimaryButton from '../../buttons/PrimaryButton'
 
 interface CenterDetailViewProps {
   centerId: string
@@ -34,7 +33,7 @@ export default function CenterDetailView ({ centerId }: CenterDetailViewProps): 
   return (
     <Stack gap="md">
       {center !== null && <Text className={baseClasses.title_main}>{center.name}</Text>}
-      <Image src={center?.image} radius="md" w={400} h={200} mb="md" />
+      <Image src={center?.image} radius="md" w={400} h={200} />
       {center !== null && <CenterDetailViewBody center={center} userPatientId={userPatientId} patientApplicationContextId={patientApplicationContextId} />}
     </Stack>
   )
@@ -48,27 +47,38 @@ interface CenterDetailViewBodyProps {
 
 function CenterDetailViewBody ({ center, userPatientId, patientApplicationContextId }: CenterDetailViewBodyProps): JSX.Element {
   return (
-    <Grid gutter={{ base: 75 }}>
-      <Grid.Col span={{ base: 8, md: 9, lg: 9 }}>
-        <Information center={center} />
-      </Grid.Col>
-      <Grid.Col span={{ base: 4, md: 3, lg: 3 }}>
-        <ReserveBox phoneNumber={center.phoneNumber} centerId={center.id} userPatientId={userPatientId} patientApplicationContextId={patientApplicationContextId} />
-      </Grid.Col>
-    </Grid>
+    <Information center={center} userPatientId={userPatientId} patientApplicationContextId={patientApplicationContextId} />
   )
 }
 
 interface InformationProps {
   center: Center
+  userPatientId: string
+  patientApplicationContextId: string
 }
 
-function Information ({ center }: InformationProps): JSX.Element {
+function Information ({ center, userPatientId, patientApplicationContextId }: InformationProps): JSX.Element {
+  function handleApplyButtonClick (): void {
+    createApplication(userPatientId, patientApplicationContextId, center.id)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
+
   return (
     <div>
-      <Text className={baseClasses.title_secondary}>{center.address}</Text>
-      <QuickCenterStats eligibleHealthInsurances={center.eligibleHealthInsurances} />
-      <Anchor className={baseClasses.normal_text} href={center.website} target='blank'>Go to website</Anchor>
+      <Flex justify="space-between" gap="lg" align="center">
+        <Stack gap={0}>
+          <Text className={baseClasses.title_secondary}>{center.address}</Text>
+          <QuickCenterStats eligibleHealthInsurances={center.eligibleHealthInsurances} />
+          <Anchor className={baseClasses.normal_text} href={center.website} target='blank'>Go to website</Anchor>
+        </Stack>
+        <PrimaryButton onClick={handleApplyButtonClick}>Apply</PrimaryButton>
+      </Flex>
+
       <Divider my="sm" />
 
       <Text className={baseClasses.normal_text}>Woburn Addiction Treatment is a top-rated addiction treatment center in Massachusetts that accepts most insurance plans. If you or a loved one are ready to overcome substance addiction and commit to life-changing treatment, our Massachusetts treatment facility is here to help.
@@ -85,33 +95,5 @@ interface QuickCenterStatsProps {
 function QuickCenterStats ({ eligibleHealthInsurances }: QuickCenterStatsProps): any {
   return (
     <Text className={baseClasses.sub_text}>5 beds available • 100 total beds • Accepts {eligibleHealthInsurances.join(', ')}</Text>
-  )
-}
-
-interface ReserveBoxProps {
-  phoneNumber: string
-  userPatientId: string
-  patientApplicationContextId: string
-  centerId: string
-}
-
-function ReserveBox ({ phoneNumber, userPatientId, patientApplicationContextId, centerId }: ReserveBoxProps): any {
-  function handleApplyButtonClick (): void {
-    createApplication(userPatientId, patientApplicationContextId, centerId)
-      .then(response => {
-        console.log(response)
-      })
-      .catch(error => {
-        console.error(error)
-      })
-  }
-
-  return (
-    <Stack className={classes.reserve_box_stack} align='center'>
-      <Button className={baseClasses.normal_text} justify="center" size="md" leftSection={<IconPhone />} variant="transparent" color='black'>
-        {phoneNumber}
-      </Button>
-      <Button onClick={handleApplyButtonClick}>Apply</Button>
-    </Stack>
   )
 }

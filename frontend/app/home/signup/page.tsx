@@ -14,12 +14,13 @@ import {
   Paper,
   Text,
   Container,
-  Button,
   Stack,
-  Select
+  Select,
+  Group
 } from '@mantine/core'
 
 import baseClasses from '@/app/base.module.css'
+import PrimaryButton from '@/app/shared_components/buttons/PrimaryButton'
 
 export default function SignupPage (): JSX.Element {
   const form = useForm({ initialValues: { firstName: '', lastName: '', email: '', password: '', userType: '' } })
@@ -48,7 +49,7 @@ export default function SignupPage (): JSX.Element {
   }
 
   return (
-    <Container size={420} my={40}>
+    <Container size={420} mt="md">
       <form onSubmit={handleSubmit}>
         <Text className={baseClasses.title_main} ta="center">
           Welcome!
@@ -94,9 +95,11 @@ export default function SignupPage (): JSX.Element {
               {...form.getInputProps('userType')}
             />
           </Stack>
-          <Button className={baseClasses.normal_text} type="submit" fullWidth mt="xl">
-            Sign up
-          </Button>
+          <Group justify="center" mt="xl">
+            <PrimaryButton className={baseClasses.normal_text} type="submit">
+              Sign up
+            </PrimaryButton>
+          </Group>
         </Paper>
       </form>
     </Container>

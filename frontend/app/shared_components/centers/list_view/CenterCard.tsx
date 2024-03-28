@@ -25,7 +25,7 @@ export default function CenterCard ({ center, userPatientId, patientApplicationC
   }
 
   return (
-    <Card radius="md" p="md" component="a" onClick={handleClick}>
+    <Card shadow="xs" radius="lg" onClick={handleClick} style={{ cursor: 'pointer' }}>
       <PictureArea image={center.image} centerType={center.centerType} />
       <CenterDescription name={center.name} address={center.address} eligibleHealthInsurances={center.eligibleHealthInsurances} />
     </Card>
@@ -40,7 +40,7 @@ function PictureArea ({ image, centerType }: PictureAreaProps): JSX.Element {
   return (
     <Card.Section>
       <div style={{ position: 'relative' }}>
-        <Image src={image} height={240} radius="md" />
+        <Image src={image} height={240} />
         <Badge variant="dot" color="blue" className={classes.image_overlaying_badge}>{centerType}</Badge>
       </div>
     </Card.Section>
@@ -54,7 +54,7 @@ interface CenterDescriptionProps {
 }
 function CenterDescription ({ name, address, eligibleHealthInsurances }: CenterDescriptionProps): JSX.Element {
   return (
-    <Card.Section mt="xs">
+    <Card.Section px="md" pt="sm" pb="md">
       <FirstLine name={name} />
       <Stack gap={0}>
         <AddressLine address={address} />

@@ -4,9 +4,11 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { ACCESS_TOKEN } from '@/app/constants/local_storage'
+import { PROVIDER_DASHBOARD_PATIENTS_TAB_PATH } from '@/app/constants/paths'
+
+import { Container, Stack } from '@mantine/core'
 
 import MainNavbar from '@/app/shared_components/navbar/home/HomeNavbar'
-import { PROVIDER_DASHBOARD_PATIENTS_TAB_PATH } from '../constants/paths'
 
 export default function HomeLayout ({ children }: { children: any }): JSX.Element {
   const router = useRouter()
@@ -19,11 +21,11 @@ export default function HomeLayout ({ children }: { children: any }): JSX.Elemen
   }, [router])
 
   return (
-    <>
-      <header>
-        <MainNavbar />
-      </header>
-      <main>{children}</main>
-    </>
+    <Stack justify='flex-start' gap='lg'>
+      <MainNavbar />
+      <Container w="100%" size="xl" pb="xl">
+        {children}
+      </Container>
+    </Stack>
   )
 }

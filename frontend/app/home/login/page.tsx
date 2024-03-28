@@ -11,14 +11,14 @@ import {
   Paper,
   Text,
   Container,
-  Group,
-  Button
+  Group
 } from '@mantine/core'
 
 import { logIn } from '@/app/api/log_in'
 import { PROVIDER_DASHBOARD_PATIENTS_TAB_PATH, SIGNUP_PATH } from '@/app/constants/paths'
 
 import baseClasses from '@/app/base.module.css'
+import PrimaryButton from '@/app/shared_components/buttons/PrimaryButton'
 
 export default function LoginPage (): JSX.Element {
   const form = useForm({ initialValues: { email: '', password: '' } })
@@ -40,7 +40,7 @@ export default function LoginPage (): JSX.Element {
   }
 
   return (
-    <Container size={420} my={40}>
+    <Container size={420} mt="md">
       <form onSubmit={handleSubmit}>
         <Text className={baseClasses.title_main} ta="center">
           Welcome back!
@@ -73,9 +73,11 @@ export default function LoginPage (): JSX.Element {
               Forgot password?
             </Anchor>
           </Group>
-          <Button className={baseClasses.normal_text} type="submit" fullWidth mt="xl">
-            Sign in
-          </Button>
+          <Group justify="center" mt="xl">
+            <PrimaryButton className={baseClasses.normal_text} type="submit">
+              Sign in
+            </PrimaryButton>
+          </Group>
         </Paper>
       </form>
     </Container>

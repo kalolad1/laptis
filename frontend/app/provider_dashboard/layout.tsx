@@ -30,9 +30,9 @@ export default function ProviderDashboardLayout ({ children }: { children: any }
   }
 
   return (
-    <Stack justify='flex-start' gap='lg' style={{ height: '100vh' }} bg="#f6f6f6">
+    <Stack justify='flex-start' gap='lg' style={{ height: '100vh' }}>
       <Navbar loggedInUserName={getFullName()} ></Navbar>
-      <Container size="xl">
+      <Container>
         {children}
       </Container>
     </Stack>
