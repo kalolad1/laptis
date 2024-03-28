@@ -96,7 +96,7 @@ export default function SignupPage (): JSX.Element {
             />
           </Stack>
           <Group justify="center" mt="xl">
-            <PrimaryButton className={baseClasses.normal_text} type="submit">
+            <PrimaryButton type="submit">
               Sign up
             </PrimaryButton>
           </Group>

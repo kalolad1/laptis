@@ -14,11 +14,12 @@ import {
   Group
 } from '@mantine/core'
 
+import PrimaryButton from '@/app/shared_components/buttons/PrimaryButton'
+
 import { logIn } from '@/app/api/log_in'
 import { PROVIDER_DASHBOARD_PATIENTS_TAB_PATH, SIGNUP_PATH } from '@/app/constants/paths'
 
 import baseClasses from '@/app/base.module.css'
-import PrimaryButton from '@/app/shared_components/buttons/PrimaryButton'
 
 export default function LoginPage (): JSX.Element {
   const form = useForm({ initialValues: { email: '', password: '' } })
@@ -74,7 +75,7 @@ export default function LoginPage (): JSX.Element {
             </Anchor>
           </Group>
           <Group justify="center" mt="xl">
-            <PrimaryButton className={baseClasses.normal_text} type="submit">
+            <PrimaryButton type="submit">
               Sign in
             </PrimaryButton>
           </Group>
