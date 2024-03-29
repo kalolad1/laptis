@@ -32,7 +32,7 @@ export default function ProviderDashboardLayout ({ children }: { children: any }
   return (
     <Stack justify='flex-start' gap='lg' style={{ height: '100vh' }}>
       <Navbar loggedInUserName={getFullName()} ></Navbar>
-      <Container>
+      <Container w="100%" size="xl" pb="xl">
         {children}
       </Container>
     </Stack>

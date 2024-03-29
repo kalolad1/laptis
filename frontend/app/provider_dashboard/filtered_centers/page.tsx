@@ -6,7 +6,7 @@ import { useState, useEffect, Suspense } from 'react'
 import { filterCenters } from '@/app/api/filter_centers'
 import { type Center } from '@/app/constants/types'
 
-import { Stack, Text } from '@mantine/core'
+import { Flex, Stack, Text } from '@mantine/core'
 import CenterCardsGrid from '@/app/shared_components/centers/list_view/CenterCardsGrid'
 import NoFilteredCentersPlaceholder from '@/app/shared_components/no_results_placeholders/NoFilteredCentersPlaceholder'
 
@@ -43,8 +43,10 @@ function FilteredCentersContent (): JSX.Element {
     <>
       {hasCenters
         ? (
-          <Stack >
-            <CenterResultsCountTitle count={centers.length} />
+          <Stack>
+            <Flex ml="xs">
+              <CenterResultsCountTitle count={centers.length} />
+            </Flex>
             <CenterCardsGrid
               centers={centers}
               userPatientId={userPatientId}

@@ -29,9 +29,6 @@ export default function DashboardNavbar ({ loggedInUserName }: { loggedInUserNam
         <Button component={Link} href={PROVIDER_DASHBOARD_PATIENTS_TAB_PATH} className={baseClasses.normal_text} variant='subtle'>
           Patients
         </Button>
-        <Button className={baseClasses.normal_text} variant='subtle'>
-          Centers
-        </Button>
       </Group>
       <Group>
         <Menu trigger="hover" transitionProps={{ exitDuration: 0 }} withinPortal>

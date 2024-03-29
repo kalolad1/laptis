@@ -14,7 +14,7 @@ interface Props {
 
 export default function CenterCardsGrid ({ centers, userPatientId, patientApplicationContextId }: Props): JSX.Element {
   return (
-    <Grid p="md">
+    <Grid>
       {centers.map((center: any, index: number) => (
         <Grid.Col key={index} span={{ base: 12, sm: 6, md: 4 }}>
           <CenterCard center={center} userPatientId={userPatientId} patientApplicationContextId={patientApplicationContextId} />
