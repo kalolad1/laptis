@@ -50,17 +50,16 @@ export default function SignupPage (): JSX.Element {
 
   return (
     <Container size={420} mt="md">
+      <Text className={baseClasses.title_main} ta="center">
+        Welcome!
+      </Text>
+      <Text className={baseClasses.normal_text} ta="center" mt={5}>
+        Already have an account?{' '}
+        <Anchor component="button" onClick={handleLoginButtonClick}>
+          Log in
+        </Anchor>
+      </Text>
       <form onSubmit={handleSubmit}>
-        <Text className={baseClasses.title_main} ta="center">
-          Welcome!
-        </Text>
-        <Text className={baseClasses.normal_text} ta="center" mt={5}>
-          Already have an account?{' '}
-          <Anchor component="button" onClick={handleLoginButtonClick}>
-            Log in
-          </Anchor>
-        </Text>
-
         <Paper withBorder shadow="md" p={30} mt={30} radius="md">
           <Stack className={baseClasses.normal_text}>
             <TextInput

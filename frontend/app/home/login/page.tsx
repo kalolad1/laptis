@@ -26,6 +26,7 @@ export default function LoginPage (): JSX.Element {
   const router = useRouter()
 
   function handleCreateAccountButtonClick (): void {
+    console.log('Create account button clicked')
     router.push(SIGNUP_PATH)
   }
 
@@ -33,6 +34,7 @@ export default function LoginPage (): JSX.Element {
     e.preventDefault()
     logIn(form.values.email, form.values.password)
       .then(() => {
+        console.log('Logged in')
         router.push(PROVIDER_DASHBOARD_PATIENTS_TAB_PATH)
       })
       .catch((error) => {
@@ -42,17 +44,16 @@ export default function LoginPage (): JSX.Element {
 
   return (
     <Container size={420} mt="md">
+      <Text className={baseClasses.title_main} ta="center">
+        Welcome back!
+      </Text>
+      <Text className={baseClasses.normal_text} ta="center" mt={5}>
+        Don&apos;t have an account yet?{' '}
+        <Anchor component="button" onClick={handleCreateAccountButtonClick}>
+          Create account
+        </Anchor>
+      </Text>
       <form onSubmit={handleSubmit}>
-        <Text className={baseClasses.title_main} ta="center">
-          Welcome back!
-        </Text>
-        <Text className={baseClasses.normal_text} ta="center" mt={5}>
-          Don&apos;t have an account yet?{' '}
-          <Anchor component="button" onClick={handleCreateAccountButtonClick}>
-            Create account
-          </Anchor>
-        </Text>
-
         <Paper withBorder shadow="md" p={30} mt={30} radius="md">
           <TextInput
             className={baseClasses.normal_text}
