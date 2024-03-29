@@ -6,14 +6,8 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 export default withBundleAnalyzer({
   reactStrictMode: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   experimental: {
     optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
-  },
-  typescript: {
-    ignoreBuildErrors: true,
   },
     webpack: (
       config,

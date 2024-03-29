@@ -10,6 +10,7 @@ export const axiosInstance = axios.create({
 // Request interceptor for API calls
 axiosInstance.interceptors.request.use(
   function (config) {
+    // @ts-expect-error Property 'headers' does not exist on type 'AxiosRequestConfig'
     config.headers = {
       ...config.headers,
       authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
