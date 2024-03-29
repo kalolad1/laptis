@@ -23,7 +23,7 @@ export default function HomeLayout ({ children }: { children: any }): JSX.Elemen
   return (
     <Stack justify='flex-start' gap='lg'>
       <MainNavbar />
-      <Container w="100%" size="xl" pb="xl">
+      <Container w="95%" size="xl" pb="xl">
         {children}
       </Container>
     </Stack>

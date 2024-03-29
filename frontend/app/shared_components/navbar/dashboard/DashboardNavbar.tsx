@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 
 import { ActionIcon, Button, Group, Image, Menu } from '@mantine/core'

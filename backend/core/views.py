@@ -114,7 +114,20 @@ def create_patient_application_context(request: Request) -> Response:
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def create_application(request: Request) -> Response:
-    Application.objects.create(**request.data)
+    user_patient_id: str = request.data.get("user_patient_id", "")
+    patient_application_context_id: str = request.data.get(
+        "patient_application_context_id", ""
+    )
+    center_id: str = request.data.get("center_id", "")
+
+    user = User.objects.get(id=user_patient_id)
+    pac = PatientApplicationContext.objects.get(
+        patient_application_context_id=patient_application_context_id
+    )
+    center = Center.objects.get(id=center_id)
+    Application.objects.create(
+        user=user, center=center, patient_application_context=pac
+    )
     return Response(status=200)
 
 
