@@ -54,7 +54,7 @@ export default function LoginPage (): JSX.Element {
         </Anchor>
       </Text>
       <form onSubmit={handleSubmit}>
-        <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+        <Paper shadow="xs" radius="lg" p={40} mt={30}>
           <TextInput
             className={baseClasses.normal_text}
             label="Email"

@@ -60,7 +60,7 @@ export default function SignupPage (): JSX.Element {
         </Anchor>
       </Text>
       <form onSubmit={handleSubmit}>
-        <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+        <Paper shadow="xs" radius="lg" p={40} mt={30}>
           <Stack className={baseClasses.normal_text}>
             <TextInput
               label="First name"
