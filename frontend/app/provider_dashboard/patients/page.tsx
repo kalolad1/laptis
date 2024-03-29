@@ -168,11 +168,11 @@ function NewPatientButton ({ handleNewPatientFormClose }: NewPatientButtonProps)
         .catch(error => {
           console.error(error)
         })
-    }, 2000)
+    }, 1000)
   }
 
   return (
-    <PopupButton id={NEW_PATIENT_FORM_ID} onSubmit={handleSubmit} className={classes.new_patient_button}>
+    <PopupButton id={NEW_PATIENT_FORM_ID} onSubmit={handleSubmit} className={classes.new_patient_button} autoClose>
       New Patient
     </PopupButton>
   )
