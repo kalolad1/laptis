@@ -8,7 +8,7 @@ import { getTypeformResponse } from '@/app/api/get_typeform_response'
 import { getPatients } from '@/app/api/get_patients'
 import { PROVIDER_DASHBOARD_FILTERED_CENTERS } from '@/app/constants/paths'
 import { type Patient, type NewPatientInfo, type PatientApplicationContext } from '@/app/constants/types'
-import { PATIENT_APPLICATION_CONTEXT_FORM_ID } from '@/app/constants/typeform'
+import { NEW_PATIENT_FORM_ID, PATIENT_APPLICATION_CONTEXT_FORM_ID } from '@/app/constants/typeform'
 import { createPatientApplicationContext } from '@/app/api/create_patient_application_context'
 
 import { Flex, Paper, ScrollArea, Table } from '@mantine/core'
@@ -172,7 +172,7 @@ function NewPatientButton ({ handleNewPatientFormClose }: NewPatientButtonProps)
   }
 
   return (
-    <PopupButton id={process.env.NEXT_PUBLIC_NEW_PATIENT_FORM_ID} onSubmit={handleSubmit} className={classes.new_patient_button} autoClose>
+    <PopupButton id={NEW_PATIENT_FORM_ID} onSubmit={handleSubmit} className={classes.new_patient_button} autoClose>
       New Patient
     </PopupButton>
   )
