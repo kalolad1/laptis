@@ -3,6 +3,7 @@ import { theme } from './mantine_theme'
 import { MantineProvider } from '@mantine/core'
 
 import '@mantine/core/styles.css'
+import baseClasses from '@/app/base.module.css'
 
 export const metadata = {
   title: 'Laptis',
@@ -20,7 +21,7 @@ export default function RootLayout ({ children }: { children: any }): JSX.Elemen
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
       </head>
-      <body style={{ backgroundColor: '#f6f6f6' }}>
+      <body className={baseClasses.website}>
         <MantineProvider theme={theme}>
           {children}
         </MantineProvider>

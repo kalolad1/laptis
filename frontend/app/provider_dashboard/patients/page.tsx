@@ -36,10 +36,6 @@ export default function PatientsTab (): JSX.Element {
       })
   }
 
-  function handleNewPatientFormClose (): void {
-    callGetPatients()
-  }
-
   useEffect(() => {
     callGetPatients()
   }, [])
@@ -47,7 +43,7 @@ export default function PatientsTab (): JSX.Element {
   return (
     <Flex p='lg'>
       {hasPatients ? <PatientTable patients={patients} /> : <NoPatientsPlaceholder />}
-      <NewPatientButton handleNewPatientFormClose={handleNewPatientFormClose} />
+      <NewPatientButton />
     </Flex>
   )
 }
@@ -129,14 +125,12 @@ function FindTreatmentButton ({ userPatientId }: FindTreatmentButtonProps): JSX.
   )
 }
 
-interface NewPatientButtonProps {
-  handleNewPatientFormClose: () => void
-}
+function NewPatientButton (): JSX.Element {
+  const router = useRouter()
 
-function NewPatientButton ({ handleNewPatientFormClose }: NewPatientButtonProps): JSX.Element {
   function parseTypeformAnswers (jsonAnswers: string): NewPatientInfo {
     const answers = JSON.parse(jsonAnswers)
-    console.log(answers)
+
     const newPatientInfo: NewPatientInfo = {
       ...answers,
       sex: answers.sex.label,
@@ -159,7 +153,7 @@ function NewPatientButton ({ handleNewPatientFormClose }: NewPatientButtonProps)
           createPatient(newPatientInfo)
             .then(response => {
               console.log(response)
-              handleNewPatientFormClose()
+              router.refresh()
             })
             .catch(error => {
               console.error(error)
@@ -172,7 +166,7 @@ function NewPatientButton ({ handleNewPatientFormClose }: NewPatientButtonProps)
   }
 
   return (
-    <PopupButton id={NEW_PATIENT_FORM_ID} onSubmit={handleSubmit} className={classes.new_patient_button} autoClose>
+    <PopupButton id={NEW_PATIENT_FORM_ID} onSubmit={handleSubmit} className={classes.new_patient_button} >
       New Patient
     </PopupButton>
   )

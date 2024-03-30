@@ -71,9 +71,6 @@ export default function LoginPage (): JSX.Element {
           />
           <Group justify="space-between" mt="lg">
             <Checkbox className={baseClasses.normal_text} label="Remember me" />
-            <Anchor component="button" className={baseClasses.normal_text} size="sm">
-              Forgot password?
-            </Anchor>
           </Group>
           <Group justify="center" mt="xl">
             <PrimaryButton type="submit">
