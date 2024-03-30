@@ -36,6 +36,43 @@ export default function PatientsTab (): JSX.Element {
       })
   }
 
+  function parseNewPatientTypeformAnswers (jsonAnswers: string): NewPatientInfo {
+    const answers = JSON.parse(jsonAnswers)
+
+    const newPatientInfo: NewPatientInfo = {
+      ...answers,
+      sex: answers.sex.label,
+      usingMedicationAssistedTherapies: 'usingMedicationAssistedTherapies' in answers ? answers.usingMedicationAssistedTherapies.labels : [],
+      usingSubstances: 'usingSubstances' in answers ? answers.usingSubstances.labels : [],
+      mentalHealthDiagnoses: 'mentalHealthDiagnoses' in answers ? answers.mentalHealthDiagnoses.labels : [],
+      healthInsurance: answers.healthInsurance.label
+    }
+    return newPatientInfo
+  }
+
+  function handleNewPatientButtonSubmit ({ formId, responseId }: { formId: string, responseId: string }): void {
+    // There is a wierd race going on in which the response is not available immediately
+    // after the form is submitted. This is a temporary fix to wait for some time before
+    // fetching the response.
+    setTimeout(() => {
+      getTypeformResponse(formId, responseId)
+        .then(answers => {
+          const newPatientInfo: NewPatientInfo = parseNewPatientTypeformAnswers(answers)
+          createPatient(newPatientInfo)
+            .then(response => {
+              console.log(response)
+              callGetPatients()
+            })
+            .catch(error => {
+              console.error(error)
+            })
+        })
+        .catch(error => {
+          console.error(error)
+        })
+    }, 1000)
+  }
+
   useEffect(() => {
     callGetPatients()
   }, [])
@@ -43,7 +80,7 @@ export default function PatientsTab (): JSX.Element {
   return (
     <Flex p='lg'>
       {hasPatients ? <PatientTable patients={patients} /> : <NoPatientsPlaceholder />}
-      <NewPatientButton />
+      <NewPatientButton handleNewPatientButtonSubmit={handleNewPatientButtonSubmit} />
     </Flex>
   )
 }
@@ -125,48 +162,9 @@ function FindTreatmentButton ({ userPatientId }: FindTreatmentButtonProps): JSX.
   )
 }
 
-function NewPatientButton (): JSX.Element {
-  const router = useRouter()
-
-  function parseTypeformAnswers (jsonAnswers: string): NewPatientInfo {
-    const answers = JSON.parse(jsonAnswers)
-
-    const newPatientInfo: NewPatientInfo = {
-      ...answers,
-      sex: answers.sex.label,
-      usingMedicationAssistedTherapies: 'usingMedicationAssistedTherapies' in answers ? answers.usingMedicationAssistedTherapies.labels : [],
-      usingSubstances: 'usingSubstances' in answers ? answers.usingSubstances.labels : [],
-      mentalHealthDiagnoses: 'mentalHealthDiagnoses' in answers ? answers.mentalHealthDiagnoses.labels : [],
-      healthInsurance: answers.healthInsurance.label
-    }
-    return newPatientInfo
-  }
-
-  function handleSubmit ({ formId, responseId }: { formId: string, responseId: string }): void {
-    // There is a wierd race going on in which the response is not available immediately
-    // after the form is submitted. This is a temporary fix to wait for some time before
-    // fetching the response.
-    setTimeout(() => {
-      getTypeformResponse(formId, responseId)
-        .then(answers => {
-          const newPatientInfo: NewPatientInfo = parseTypeformAnswers(answers)
-          createPatient(newPatientInfo)
-            .then(response => {
-              console.log(response)
-              router.refresh()
-            })
-            .catch(error => {
-              console.error(error)
-            })
-        })
-        .catch(error => {
-          console.error(error)
-        })
-    }, 1000)
-  }
-
+function NewPatientButton ({ handleNewPatientButtonSubmit }: any): JSX.Element {
   return (
-    <PopupButton id={NEW_PATIENT_FORM_ID} onSubmit={handleSubmit} className={classes.new_patient_button} >
+    <PopupButton id={NEW_PATIENT_FORM_ID} onSubmit={handleNewPatientButtonSubmit} className={classes.new_patient_button} >
       New Patient
     </PopupButton>
   )
