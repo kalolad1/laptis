@@ -43,7 +43,7 @@ class CenterSerializer(serializers.ModelSerializer[Center]):
         return center.image.url.split("?")[0]
         
 
-    # image = serializers.SerializerMethodField()
+    image = serializers.SerializerMethodField()
     class Meta:
         model = Center
         fields = [
