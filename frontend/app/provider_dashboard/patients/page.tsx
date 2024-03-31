@@ -7,10 +7,11 @@ import { getTypeformResponse } from '@/app/api/get_typeform_response'
 import { getPatients } from '@/app/api/get_patients'
 import { type Patient, type NewPatientInfo } from '@/app/constants/types'
 
-import { Flex } from '@mantine/core'
+import { Stack } from '@mantine/core'
 
-import NoPatientsPlaceholder from '@/app/shared_components/no_results_placeholders/NoPatientsPlaceholder'
+import NoPatientsPlaceholder from '@/app/provider_dashboard/patients/NoPatientsPlaceholder'
 import PatientTable from './PatientTable'
+import NewPatientButton from './NewPatientButton'
 
 export default function PatientsTab (): JSX.Element {
   const [patients, setPatients] = useState<Patient[]>([])
@@ -54,7 +55,7 @@ export default function PatientsTab (): JSX.Element {
           createPatient(newPatientInfo)
             .then(response => {
               console.log(response)
-              callGetPatients()
+              window.location.reload()
             })
             .catch(error => {
               console.error(error)
@@ -71,8 +72,14 @@ export default function PatientsTab (): JSX.Element {
   }, [])
 
   return (
-    <Flex p='lg'>
-      {hasPatients ? <PatientTable patients={patients} handleNewPatientButtonSubmit={handleNewPatientButtonSubmit} /> : <NoPatientsPlaceholder />}
-    </Flex>
+    <>
+      {hasPatients
+        ? <PatientTable patients={patients} handleNewPatientButtonSubmit={handleNewPatientButtonSubmit} />
+        : <Stack align='center'>
+          <NoPatientsPlaceholder />
+          <NewPatientButton handleNewPatientButtonSubmit={handleNewPatientButtonSubmit} />
+        </Stack>
+      }
+    </>
   )
 }

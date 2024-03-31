@@ -41,9 +41,10 @@ class CenterSerializer(serializers.ModelSerializer[Center]):
         (probably because the incorrect signature is added as a query parameter).
         """
         return center.image.url.split("?")[0]
-        
 
-    image = serializers.SerializerMethodField()
+    if os.environ.get("USE_S3") == "True":
+        image = serializers.SerializerMethodField()
+
     class Meta:
         model = Center
         fields = [

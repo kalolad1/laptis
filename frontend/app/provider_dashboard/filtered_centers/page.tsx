@@ -1,22 +1,20 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import { useState, useEffect, Suspense } from 'react'
+import { useState, useEffect } from 'react'
 
 import { filterCenters } from '@/app/api/filter_centers'
 import { type Center } from '@/app/constants/types'
 
 import { Flex, Stack, Text } from '@mantine/core'
 import CenterCardsGrid from '@/app/shared_components/centers/list_view/CenterCardsGrid'
-import NoFilteredCentersPlaceholder from '@/app/shared_components/no_results_placeholders/NoFilteredCentersPlaceholder'
+import NoFilteredCentersPlaceholder from '@/app/provider_dashboard/filtered_centers/NoFilteredCentersPlaceholder'
 
 import baseClasses from '@/app/base.module.css'
 
-export default function SuspenseWrapper (): JSX.Element {
+export default function FilteredCentersPage (): JSX.Element {
   return (
-    <Suspense>
       <FilteredCentersContent />
-    </Suspense>
   )
 }
 

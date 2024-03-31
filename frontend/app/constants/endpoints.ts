@@ -1,3 +1,6 @@
+// Base
+export const BASE_BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BASE_API_ENDPOINT
+
 // Centers
 export const GET_CENTERS_ENDPOINT = '/centers'
 export const FILTER_CENTERS_ENDPOINT = '/filter_centers'
