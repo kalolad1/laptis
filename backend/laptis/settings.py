@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
-DEBUG = os.environ.get("DJANGO_DEBUG")
+DEBUG = os.environ.get("DJANGO_DEBUG") == "TRUE"
 
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
@@ -28,13 +28,13 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
+    "storages",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "compressor",
 ]
 
 MIDDLEWARE = [
@@ -145,25 +145,27 @@ USE_I18N = True
 
 USE_TZ = True
 
+USE_S3 = os.environ.get("USE_S3") == "TRUE"
+
+if USE_S3:
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_SIGNATURE_NAME = ("s3v4",)
+    AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME")
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+    MEDIA_URL = "media/"
+
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-COMPRESS_ROOT = BASE_DIR / "static"
-COMPRESS_ENABLED = True
-STATICFILES_FINDERS = [
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-    "compressor.finders.CompressorFinder",
-]
-STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-django_heroku.settings(locals())
+STATIC_URL = "static/"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+django_heroku.settings(locals())

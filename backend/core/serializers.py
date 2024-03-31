@@ -1,8 +1,10 @@
+import os
+
 from rest_framework import serializers
 
 from .models.application import PatientApplicationContext
 from .models.center import Center
-from .models.user import User, Patient
+from .models.user import Patient, User
 
 
 class UserSerializer(serializers.ModelSerializer[User]):
@@ -31,6 +33,19 @@ class UserSerializer(serializers.ModelSerializer[User]):
 
 
 class CenterSerializer(serializers.ModelSerializer[Center]):
+    def get_image(self, center: Center) -> str:
+        """Removes query parameters from image URL
+
+        The image URL, if stored on S3, has query parameters appended to it,
+        which are not needed. Keeping them on the URL prohibits image retrieval
+        (probably because the incorrect signature is added as a query parameter).
+        """
+        if os.environ.get("USE_S3") == "TRUE":
+            return center.image.url.split("?")[0]
+        else:
+            return center.image.url
+
+    # image = serializers.SerializerMethodField()
     class Meta:
         model = Center
         fields = [

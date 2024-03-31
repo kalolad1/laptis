@@ -40,7 +40,7 @@ class Center(models.Model):
     center_type = models.CharField(
         max_length=200, choices=CenterType.choices, default=CenterType.RESIDENTIAL
     )
-    image = models.ImageField(upload_to="centers/images/", blank=True)
+    image = models.FileField(upload_to="centers/images/", blank=True)
     phone_number = models.CharField(max_length=200, default="")
     website = models.CharField(max_length=200, default="")
 
