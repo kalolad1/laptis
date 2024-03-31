@@ -40,10 +40,8 @@ class CenterSerializer(serializers.ModelSerializer[Center]):
         which are not needed. Keeping them on the URL prohibits image retrieval
         (probably because the incorrect signature is added as a query parameter).
         """
-        if os.environ.get("USE_S3") == "TRUE":
-            return center.image.url.split("?")[0]
-        else:
-            return center.image.url
+        return center.image.url.split("?")[0]
+        
 
     # image = serializers.SerializerMethodField()
     class Meta:
