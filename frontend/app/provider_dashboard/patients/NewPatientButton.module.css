@@ -1,9 +1,7 @@
-
-.find_treatment_button {
+.new_patient_button {
   appearance: none;
-  background-color: #000000;
-  border: 2px solid #1A1A1A;
-  border: 0;
+  background-color: #26619c;
+  border: 2px solid #26619c;
   border-radius: 15px;
   box-sizing: border-box;
   color: #FFFFFF;
@@ -13,7 +11,6 @@
   font-size: 16px;
   font-weight: 600;
   line-height: normal;
-  margin: 0;
   min-height: 60px;
   min-width: 0;
   outline: none;
@@ -27,16 +24,16 @@
   will-change: transform;
 }
 
-.find_treatment_button:disabled {
+.new_patient_button:disabled {
   pointer-events: none;
 }
 
-.find_treatment_button:hover {
+.new_patient_button:hover {
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   transform: translateY(-2px);
 }
 
-.find_treatment_button:active {
+.new_patient_button:active {
   box-shadow: none;
   transform: translateY(0);
 }
