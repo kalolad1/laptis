@@ -14,7 +14,7 @@ import baseClasses from '@/app/base.module.css'
 
 export default function FilteredCentersPage (): JSX.Element {
   return (
-      <FilteredCentersContent />
+    <FilteredCentersContent />
   )
 }
 
