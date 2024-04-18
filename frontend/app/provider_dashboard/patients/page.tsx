@@ -10,7 +10,7 @@ import { type Patient, type NewPatientInfo } from '@/app/constants/types'
 import { Stack } from '@mantine/core'
 
 import NoPatientsPlaceholder from '@/app/provider_dashboard/patients/NoPatientsPlaceholder'
-import PatientTable from './PatientTable'
+import PatientTable from '@/app/provider_dashboard/patients/PatientTable'
 import NewPatientButton from './NewPatientButton'
 
 export default function PatientsTab (): JSX.Element {
