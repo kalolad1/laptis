@@ -1,5 +1,4 @@
 .primary_button {
-  appearance: none;
   background-color: #000000;
   border: 2px solid #1A1A1A;
   border-radius: 15px;
@@ -21,7 +20,6 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  will-change: transform;
 }
 
 .primary_button:disabled {
