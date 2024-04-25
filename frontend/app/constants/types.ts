@@ -15,15 +15,21 @@ export interface NewPatientInfo {
   firstName: string
   lastName: string
   age: number
-  // sex: string
-  // address: string
-  // usingMedicationAssistedTherapies: string[]
-  // usingSubstances: string[]
-  // mentalHealthDiagnoses: string[]
-  // healthInsurance: string
-  // healthInsuranceIdentifier: string
-  // hasDisability: boolean
-  // isOpenToFaithBasedTreatment: boolean
+  sex: string
+  languages: string[]
+  address: string
+  canTravel: boolean
+  milesCanTravel: number
+  isHeldInConfinement: boolean
+  weeksHeldInConfinement: number
+  criminalHistory: string
+  usingMedicationAssistedTherapies: string[]
+  usingSubstances: string[]
+  mentalHealthDiagnoses: string[]
+  healthInsurance: string
+  healthInsuranceIdentifier: string
+  hasDisability: boolean
+  isOpenToFaithBasedTreatment: boolean
 }
 
 export interface PatientApplicationContext {

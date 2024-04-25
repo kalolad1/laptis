@@ -80,10 +80,15 @@ class Patient(models.Model):
     last_name = models.CharField(max_length=200, default="")
     sex = models.CharField(max_length=200, default="")
     age = models.IntegerField(default=-1)
+    languages = ArrayField(models.CharField(max_length=200), default=list)
+
     address = models.CharField(max_length=200, default="")
-    placement_status = models.CharField(
-        max_length=200, choices=PLACEMENT_STATUSES, default="pending"
-    )
+    can_travel = models.BooleanField(default=True)
+    miles_can_travel = models.IntegerField(default=100)
+
+    is_held_in_confinement = models.BooleanField(default=False)
+    weeks_held_in_confinement = models.IntegerField(default=0)
+    criminal_history = models.CharField(max_length=10000, default="")
 
     using_medication_assisted_therapies = ArrayField(
         models.CharField(max_length=200), default=list
@@ -93,8 +98,13 @@ class Patient(models.Model):
 
     health_insurance = models.CharField(max_length=200, default="")
     health_insurance_identifier = models.CharField(max_length=200, default="")
+
     has_disability = models.BooleanField(default=False)
     is_open_to_faith_based_treatment = models.BooleanField(default=False)
+
+    placement_status = models.CharField(
+        max_length=200, choices=PLACEMENT_STATUSES, default="pending"
+    )
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
