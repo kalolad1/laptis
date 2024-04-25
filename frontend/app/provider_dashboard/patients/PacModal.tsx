@@ -5,7 +5,7 @@ import { type PatientApplicationContext } from '@/app/constants/types'
 import { createPatientApplicationContext } from '@/app/api/create_patient_application_context'
 import { PROVIDER_DASHBOARD_FILTERED_CENTERS } from '@/app/constants/paths'
 
-import { Modal, Select, Group } from '@mantine/core'
+import { Modal, Select, Group, Stack } from '@mantine/core'
 
 import PrimaryButton from '@/app/shared_components/buttons/PrimaryButton'
 
@@ -47,25 +47,27 @@ export default function PacModal ({ opened, close, userPatientId }: PacModalProp
   }
 
   return (
-    <Modal opened={opened} onClose={handleModalClose} title="Find a treatment center" centered>
+    <Modal opened={opened} onClose={handleModalClose} title="Find a treatment center" size="lg" radius="lg" centered>
       <form onSubmit={handlePacModalSubmit}>
-        <Select
-          label="Has this client had thoughts of suicide within the last 90 days?"
-          placeholder="Pick value"
-          data={['No', 'Yes']}
-          {...form.getInputProps('hasHadSuicidalThoughtsInLast90Days')}
-        />
+        <Stack p="lg">
+          <Select
+            label="Has this client had thoughts of suicide within the last 90 days?"
+            placeholder="Pick value"
+            data={['Yes', 'No']}
+            {...form.getInputProps('hasHadSuicidalThoughtsInLast90Days')}
+          />
 
-        <Select
-          label="Has this client used drugs within the last 90 days?"
-          placeholder="Pick value"
-          data={['No', 'Yes']}
-          {...form.getInputProps('hasUsedDrugsInLast90Days')}
-        />
+          <Select
+            label="Has this client used drugs within the last 90 days?"
+            placeholder="Pick value"
+            data={['Yes', 'No']}
+            {...form.getInputProps('hasUsedDrugsInLast90Days')}
+          />
 
-        <Group justify="flex-end" mt="md">
-          <PrimaryButton type="submit">Submit</PrimaryButton>
-        </Group>
+          <Group justify="center" mt="md">
+            <PrimaryButton type="submit">Submit</PrimaryButton>
+          </Group>
+        </Stack>
       </form>
     </Modal>
   )
