@@ -7,7 +7,6 @@ import { type Patient } from '@/app/constants/types'
 
 import { Flex, Paper, ScrollArea, Table } from '@mantine/core'
 
-import NewPatientButton from '@/app/provider_dashboard/patients/NewPatientButton'
 import PacModal from '@/app/provider_dashboard/patients/PacModal'
 import PrimaryButton from '@/app/shared_components/buttons/PrimaryButton'
 
@@ -35,10 +34,6 @@ export default function PatientTable ({ patients }: PatientTableProps): JSX.Elem
     </Table.Tr>
   ))
 
-  function handleNewPatientButtonSubmit (): void {
-    console.log('New patient button clicked')
-  }
-
   return (
     <>
       <PacModal opened={pacModalOpened} close={pacModalHandlers.close} userPatientId={openedPacModalUserPatientId}></PacModal>
@@ -50,11 +45,6 @@ export default function PatientTable ({ patients }: PatientTableProps): JSX.Elem
                 <Table.Th>Name</Table.Th>
                 <Table.Th>Age</Table.Th>
                 <Table.Th>Placement Status</Table.Th>
-                <Table.Th>
-                  <Flex direction='row' justify='flex-end'>
-                    <NewPatientButton handleNewPatientButtonSubmit={handleNewPatientButtonSubmit} />
-                  </Flex>
-                </Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>{rows}</Table.Tbody>

@@ -1,15 +1,9 @@
-'use client'
+import PrimaryButton from '@/app/shared_components/buttons/PrimaryButton'
 
-import { NEW_PATIENT_FORM_ID } from '@/app/constants/typeform'
-
-import { PopupButton } from '@typeform/embed-react'
-
-import classes from '@/app/provider_dashboard/patients/NewPatientButton.module.css'
-
-export default function NewPatientButton ({ handleNewPatientButtonSubmit }: any): JSX.Element {
+export default function NewPatientButton ({ handleNewPatientButtonClick }: any): JSX.Element {
   return (
-    <PopupButton id={NEW_PATIENT_FORM_ID} onSubmit={handleNewPatientButtonSubmit} className={classes.new_patient_button}>
+    <PrimaryButton onClick={handleNewPatientButtonClick}>
       New Patient
-    </PopupButton>
+    </PrimaryButton>
   )
 }

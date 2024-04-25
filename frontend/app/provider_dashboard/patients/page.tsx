@@ -1,21 +1,22 @@
 'use client'
 
+import { useDisclosure } from '@mantine/hooks'
 import { useEffect, useState } from 'react'
 
-import { createPatient } from '@/app/api/create_patient'
-import { getTypeformResponse } from '@/app/api/get_typeform_response'
 import { getPatients } from '@/app/api/get_patients'
-import { type Patient, type NewPatientInfo } from '@/app/constants/types'
+import { type Patient } from '@/app/constants/types'
 
 import { Stack } from '@mantine/core'
 
 import NoPatientsPlaceholder from '@/app/provider_dashboard/patients/NoPatientsPlaceholder'
 import PatientTable from '@/app/provider_dashboard/patients/PatientTable'
-import NewPatientButton from './NewPatientButton'
+import NewPatientButton from '@/app/provider_dashboard/patients/NewPatientButton'
+import NewPatientModal from '@/app/provider_dashboard/patients/NewPatientModal'
 
 export default function PatientsTab (): JSX.Element {
   const [patients, setPatients] = useState<Patient[]>([])
   const [hasPatients, setHasPatients] = useState<boolean>(true)
+  const [newPatientModalOpened, newPatientModalHandlers] = useDisclosure(false)
 
   function callGetPatients (): void {
     getPatients()
@@ -30,54 +31,21 @@ export default function PatientsTab (): JSX.Element {
       })
   }
 
-  function parseNewPatientTypeformAnswers (jsonAnswers: string): NewPatientInfo {
-    const answers = JSON.parse(jsonAnswers)
-
-    const newPatientInfo: NewPatientInfo = {
-      ...answers,
-      sex: answers.sex.label,
-      usingMedicationAssistedTherapies: 'usingMedicationAssistedTherapies' in answers ? answers.usingMedicationAssistedTherapies.labels : [],
-      usingSubstances: 'usingSubstances' in answers ? answers.usingSubstances.labels : [],
-      mentalHealthDiagnoses: 'mentalHealthDiagnoses' in answers ? answers.mentalHealthDiagnoses.labels : [],
-      healthInsurance: answers.healthInsurance.label
-    }
-    return newPatientInfo
-  }
-
-  function handleNewPatientButtonSubmit ({ formId, responseId }: { formId: string, responseId: string }): void {
-    // There is a wierd race going on in which the response is not available immediately
-    // after the form is submitted. This is a temporary fix to wait for some time before
-    // fetching the response.
-    setTimeout(() => {
-      getTypeformResponse(formId, responseId)
-        .then(answers => {
-          const newPatientInfo: NewPatientInfo = parseNewPatientTypeformAnswers(answers)
-          createPatient(newPatientInfo)
-            .then(response => {
-              console.log(response)
-              window.location.reload()
-            })
-            .catch(error => {
-              console.error(error)
-            })
-        })
-        .catch(error => {
-          console.error(error)
-        })
-    }, 1000)
-  }
-
   useEffect(() => {
     callGetPatients()
   }, [])
 
   return (
     <>
+      <NewPatientModal opened={newPatientModalOpened} close={newPatientModalHandlers.close} callGetPatients={callGetPatients}></NewPatientModal>
       {hasPatients
-        ? <PatientTable patients={patients} handleNewPatientButtonSubmit={handleNewPatientButtonSubmit} />
+        ? <Stack align='center'>
+          <NewPatientButton handleNewPatientButtonClick={newPatientModalHandlers.open} />
+          <PatientTable patients={patients} />
+        </Stack>
         : <Stack align='center'>
           <NoPatientsPlaceholder />
-          <NewPatientButton handleNewPatientButtonSubmit={handleNewPatientButtonSubmit} />
+          <NewPatientButton handleNewPatientButtonClick={newPatientModalHandlers.open} />
         </Stack>
       }
     </>
