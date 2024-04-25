@@ -68,5 +68,7 @@ class Center(models.Model):
     is_disability_compatible = models.BooleanField(default=True)
     is_faith_based_treatment = models.BooleanField(default=False)
 
+    available_beds = models.IntegerField(default=0)
+
     def __str__(self) -> str:
         return self.name

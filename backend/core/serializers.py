@@ -56,6 +56,7 @@ class CenterSerializer(serializers.ModelSerializer[Center]):
             "phone_number",
             "website",
             "eligible_health_insurances",
+            "available_beds",
         ]
 
 

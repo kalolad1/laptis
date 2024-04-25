@@ -9,6 +9,7 @@ export interface Center {
   phoneNumber: string
   website: string
   eligibleHealthInsurances: string[]
+  availableBeds: number
 }
 
 export interface NewPatientInfo {

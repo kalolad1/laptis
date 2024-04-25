@@ -73,7 +73,7 @@ function Information ({ center, userPatientId, patientApplicationContextId }: In
       <Flex justify="space-between" gap="lg" align="center">
         <Stack gap={0}>
           <Text className={baseClasses.title_secondary}>{center.address}</Text>
-          <QuickCenterStats eligibleHealthInsurances={center.eligibleHealthInsurances} />
+          <QuickCenterStats eligibleHealthInsurances={center.eligibleHealthInsurances} bedsAvailable={center.availableBeds} />
           <Anchor className={baseClasses.normal_text} href={center.website} target='blank'>Go to website</Anchor>
         </Stack>
         <PrimaryButton onClick={handleApplyButtonClick}>Apply</PrimaryButton>
@@ -90,10 +90,13 @@ function Information ({ center, userPatientId, patientApplicationContextId }: In
 
 interface QuickCenterStatsProps {
   eligibleHealthInsurances: string[]
+  bedsAvailable: number
 }
 
-function QuickCenterStats ({ eligibleHealthInsurances }: QuickCenterStatsProps): any {
+function QuickCenterStats ({ eligibleHealthInsurances, bedsAvailable }: QuickCenterStatsProps): any {
+  const bedsAvailableText = bedsAvailable === 1 ? `${bedsAvailable} bed available` : `${bedsAvailable} beds available`
+
   return (
-    <Text className={baseClasses.sub_text}>5 beds available • 100 total beds • Accepts {eligibleHealthInsurances.join(', ')}</Text>
+    <Text className={baseClasses.sub_text}>{bedsAvailableText} • 100 total beds • Accepts {eligibleHealthInsurances.join(', ')}</Text>
   )
 }
