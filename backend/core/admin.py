@@ -5,7 +5,12 @@ from .models.center import Center
 from .models.user import Patient, Provider, User
 from .models.application import Application, PatientApplicationContext
 
-admin.site.register(Center)
+
+class CenterAdmin(admin.ModelAdmin):
+    readonly_fields = ("id",)
+
+
+admin.site.register(Center, CenterAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(Patient)
 admin.site.register(Provider)

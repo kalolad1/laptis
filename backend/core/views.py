@@ -25,6 +25,9 @@ from .models.application import Application, PatientApplicationContext
 from .models.center import Center
 from .models.user import User
 
+from .bed_availability_updater import bed_availability_updater
+from django.http import HttpResponse
+
 
 @api_view(["GET"])
 @authentication_classes([])
@@ -176,3 +179,8 @@ def get_logged_in_user(request: Request) -> Response:
 
     serializer = UserSerializer(request.user, context={"request": request})
     return Response(serializer.data)
+
+
+def test_bed_availability_updater(request):
+    bed_availability_updater.run()
+    return HttpResponse("Hello")
