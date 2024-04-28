@@ -7,11 +7,12 @@ import { createApplication } from '@/app/api/create_application'
 import { getCenter } from '@/app/api/get_center'
 import { type Center } from '@/app/constants/types'
 
-import { Image, Text, Stack, Divider, Anchor, Flex } from '@mantine/core'
+import { IconAmbulance, IconBabyBottle, IconBrain, IconBrandMastercard, IconDisabled, IconPill, IconTimeline, IconUser } from '@tabler/icons-react'
+import { Image, Text, Stack, Divider, Anchor, Flex, Grid } from '@mantine/core'
 
-import '@mantine/dates/styles.css'
+import PrimaryButton from '@/app/shared_components/buttons/PrimaryButton'
+
 import baseClasses from '@/app/base.module.css'
-import PrimaryButton from '../../buttons/PrimaryButton'
 
 interface CenterDetailViewProps {
   centerId: string
@@ -74,17 +75,96 @@ function Information ({ center, userPatientId, patientApplicationContextId }: In
         <Stack gap={0}>
           <Text className={baseClasses.title_secondary}>{center.address}</Text>
           <QuickCenterStats eligibleHealthInsurances={center.eligibleHealthInsurances} bedsAvailable={center.availableBeds} />
+          <Text className={baseClasses.sub_text}>{center.phoneNumber}</Text>
           <Anchor className={baseClasses.normal_text} href={center.website} target='blank'>Go to website</Anchor>
         </Stack>
         <PrimaryButton onClick={handleApplyButtonClick}>Apply</PrimaryButton>
       </Flex>
 
-      <Divider my="sm" />
-
-      <Text className={baseClasses.normal_text}>Woburn Addiction Treatment is a top-rated addiction treatment center in Massachusetts that accepts most insurance plans. If you or a loved one are ready to overcome substance addiction and commit to life-changing treatment, our Massachusetts treatment facility is here to help.
-
-        From drug and alcohol detox to individualized treatment at the outpatient level of care, the programs at our addiction treatment center and partner facilities are meticulously designed to empower you to overcome your addictions and create a lasting foundation for recovery. Our multi-faceted substance abuse services are designed to help identify and diminish the compulsive obsession to use drugs and alcohol.</Text>
+      <Divider my="md" />
+      <Grid justify="space-between" gutter={{ base: '100' }}>
+        <Grid.Col span={{ md: 8 }}>
+          <CenterDescription />
+        </Grid.Col>
+        <Grid.Col span={{ md: 4 }}>
+          <Stack gap="lg">
+            <EligibilityCriteria />
+            <Insurance />
+            <OtherCriteria />
+          </Stack>
+        </Grid.Col>
+      </Grid>
     </div>
+  )
+}
+
+function CenterDescription (): JSX.Element {
+  return (
+    <Text className={baseClasses.normal_text}>Woburn Addiction Treatment is a top-rated addiction treatment center in Massachusetts that accepts most insurance plans. If you or a loved one are ready to overcome substance addiction and commit to life-changing treatment, our Massachusetts treatment facility is here to help.
+
+      From drug and alcohol detox to individualized treatment at the outpatient level of care, the programs at our addiction treatment center and partner facilities are meticulously designed to empower you to overcome your addictions and create a lasting foundation for recovery. Our multi-faceted substance abuse services are designed to help identify and diminish the compulsive obsession to use drugs and alcohol.</Text>
+  )
+}
+
+function EligibilityCriteria (): JSX.Element {
+  return (
+    <Stack gap="md">
+      <Text size='lg'>Eligibility Criteria</Text>
+      <Stack gap="sm">
+        <Flex gap="md">
+          <IconTimeline size={24} />
+          <Text className={baseClasses.normal_text}><b>Eligible ages:</b> 18+</Text>
+        </Flex>
+        <Flex gap="md">
+          <IconUser size={24} />
+          <Text className={baseClasses.normal_text}><b>Eligible genders:</b> male</Text>
+        </Flex>
+      </Stack>
+    </Stack>
+  )
+}
+
+function Insurance (): JSX.Element {
+  return (
+    <Stack gap="md">
+      <Text size='lg'>Insurance</Text>
+      <Stack gap="sm">
+        <Flex gap="md">
+          <IconAmbulance size={24} />
+          <Text className={baseClasses.normal_text}><b>Accepts uninsured</b></Text>
+        </Flex>
+        <Flex gap="md">
+          <IconBrandMastercard size={24} />
+          <Text className={baseClasses.normal_text}><b>Insurances accepted: </b>Mass Health, Aetna</Text>
+        </Flex>
+      </Stack>
+    </Stack>
+  )
+}
+
+function OtherCriteria (): JSX.Element {
+  return (
+    <Stack gap="md">
+      <Text size='lg'>Other Criteria</Text>
+      <Stack gap="sm">
+        <Flex gap="md">
+          <IconBrain size={30} />
+          <Text className={baseClasses.normal_text}><b>Accepts patients with co-occuring disorders</b></Text>
+        </Flex>
+        <Flex gap="md">
+          <IconPill size={24} />
+          <Text className={baseClasses.normal_text}><b>Accepts patients on methadone</b></Text>
+        </Flex>
+        <Flex gap="md">
+          <IconDisabled size={24} />
+          <Text className={baseClasses.normal_text}><b>Accepts patients with disabilities</b></Text>
+        </Flex>
+        <Flex gap="md">
+          <IconBabyBottle size={24} />
+          <Text className={baseClasses.normal_text}><b>Accepts pregnant patients</b></Text>
+        </Flex>
+      </Stack>
+    </Stack>
   )
 }
 
