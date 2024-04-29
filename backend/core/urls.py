@@ -29,9 +29,16 @@ urlpatterns = [
     path("log_out", views.LogoutView.as_view(), name="log_out"),
     path("token", jwt_views.TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh", jwt_views.TokenRefreshView.as_view(), name="token_refresh"),
+    # TODO: DELETE
     path(
         "test_bed_availability_updater",
         views.test_bed_availability_updater,
         name="test_bed_availability_updater",
+    ),
+    # TODO: DELETE
+    path(
+        "import_center_data_from_csv",
+        views.import_center_data_from_csv,
+        name="import_center_data_from_csv",
     ),
 ]

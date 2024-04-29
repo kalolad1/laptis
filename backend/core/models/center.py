@@ -8,17 +8,23 @@ class CenterType(models.TextChoices):
     DETOX: str = "detox"
     CLINICAL_STABILIZATION_SERVICES: str = "clinical stabilization services"
     TRANSITIONAL_SUPPORT_SERVICES: str = "transitional support services"
-    RESIDENTIAL: str = "residential"
+    RESIDENTIAL_REHABILITATION: str = "residential rehabilitation"
+    OUTPATIENT_REHAB: str = "outpatient rehab"
+    MULTIPLE_OUTPATIENT: str = "multiple outpatient"
+    DUAL_DIAGNOSIS: str = "dual diagnosis"
+    BOAT: str = "BOAT"
+    PHP: str = "PHP"
 
 
 # ArrayField defaults
 class Sex(models.TextChoices):
     MALE: str = "male"
     FEMALE: str = "female"
+    OTHER: str = "other"
 
 
 def get_eligible_sex_default() -> List[str]:
-    return ["male", "female"]
+    return ["male", "female", "other"]
 
 
 def get_eligible_medications_default() -> List[str]:
@@ -38,7 +44,9 @@ class Center(models.Model):
     address = models.CharField(max_length=200, default="")
 
     center_type = models.CharField(
-        max_length=200, choices=CenterType.choices, default=CenterType.RESIDENTIAL
+        max_length=200,
+        choices=CenterType.choices,
+        default=CenterType.RESIDENTIAL_REHABILITATION,
     )
     image = models.FileField(upload_to="centers/images/", blank=True)
     phone_number = models.CharField(max_length=200, default="")
@@ -67,6 +75,12 @@ class Center(models.Model):
 
     is_disability_compatible = models.BooleanField(default=True)
     is_faith_based_treatment = models.BooleanField(default=False)
+
+    accepts_patients_with_co_occuring_disorders = models.BooleanField(default=False)
+    accepts_patients_on_methadone = models.BooleanField(default=False)
+    accepts_patients_who_are_pregnant = models.BooleanField(default=False)
+    accepts_patients_with_disabilities = models.BooleanField(default=False)
+    accepts_patients_who_are_uninsured = models.BooleanField(default=False)
 
     available_beds = models.IntegerField(default=0)
 

@@ -26,6 +26,7 @@ from .models.center import Center
 from .models.user import User
 
 from .bed_availability_updater import bed_availability_updater
+from .import_data import import_centers_from_csv
 from django.http import HttpResponse
 
 
@@ -184,3 +185,8 @@ def get_logged_in_user(request: Request) -> Response:
 def test_bed_availability_updater(request):
     bed_availability_updater.run()
     return HttpResponse("Hello")
+
+
+def import_center_data_from_csv(request):
+    import_centers_from_csv.main()  # type: ignore
+    return HttpResponse("Imported")
