@@ -76,8 +76,8 @@ interface FirstLineProps {
 }
 function FirstLine ({ name }: FirstLineProps): JSX.Element {
   return (
-    <Group justify="space-between">
-      <Text className={baseClasses.normal_text}>{name}</Text>
+    <Group justify="space-between" wrap="nowrap">
+      <Text className={baseClasses.normal_text} truncate="end">{name}</Text>
       <StarReviewDisplay />
     </Group>
   )
@@ -85,7 +85,7 @@ function FirstLine ({ name }: FirstLineProps): JSX.Element {
 
 function StarReviewDisplay (): JSX.Element {
   return (
-    <Group gap={4}>
+    <Group gap={4} wrap="nowrap">
       <IconStarFilled size={12} />
       <Text className={baseClasses.normal_text}>4.5</Text>
     </Group>
@@ -97,7 +97,7 @@ interface AddressLineProps {
 }
 function AddressLine ({ address }: AddressLineProps): JSX.Element {
   return (
-    <Text className={baseClasses.sub_text}>{address}</Text>
+    <Text className={baseClasses.sub_text} truncate="end">{address}</Text>
   )
 }
 
@@ -107,6 +107,6 @@ interface AcceptedPaymentsLineProps {
 
 function AcceptedPaymentsLine ({ eligibleHealthInsurances }: AcceptedPaymentsLineProps): JSX.Element {
   return (
-    <Text className={baseClasses.sub_text}>Accepts {eligibleHealthInsurances.join(', ')}</Text>
+    <Text className={baseClasses.sub_text} truncate="end">Accepts {eligibleHealthInsurances.join(', ')}</Text>
   )
 }
