@@ -38,10 +38,24 @@ interface PictureAreaProps {
   availableBeds: number
 }
 function PictureArea ({ image, centerType, availableBeds }: PictureAreaProps): JSX.Element {
+  const images = [
+    'Answer House.png',
+    'Bay Cove Substance Abuse Center.png',
+    'Boston Comprehensive Treatment Center.png',
+    'Health Care Resource Centers Boston.png',
+    'Hope House, Inc..png',
+    'PAATHS Program.png',
+    'Project Trust.png',
+    'Providence Treatment for Professionals.png',
+    'The Gavin Foundation - Devine Recovery Center.png',
+    'Victory House.png'
+  ]
+  const randomImage = '../../../centers/' + images[Math.floor(Math.random() * images.length)]
+
   return (
     <Card.Section>
       <div style={{ position: 'relative' }}>
-        <Image src={image} height={240} />
+        <Image src={randomImage} height={240} />
         <Stack className={classes.badges_overlaying_image} gap="4px">
           {availableBeds > 0
             ? <Badge variant="dot" color="green" className={classes.image_overlaying_badge}>Beds available</Badge>
