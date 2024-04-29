@@ -31,9 +31,14 @@ class CenterFilterer:
         centers = centers.filter(eligible_mental_health_diagnoses__contains=mhd)
 
         # Is the patient's health insurance accepted by the center?
+        centers_accepting_all_insurance = centers.filter(
+            eligible_health_insurances__contains=["All insurance"]
+        )
         centers = centers.filter(
             eligible_health_insurances__contains=[self._user.patient.health_insurance]
         )
+
+        centers = centers | centers_accepting_all_insurance
 
         # Is the patient's mobility compatible with the center?
         if self._user.patient.has_disability:

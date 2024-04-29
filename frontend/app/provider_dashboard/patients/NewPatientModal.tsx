@@ -135,19 +135,19 @@ export default function NewPatientModal ({ opened, close, callGetPatients }: New
           <MultiSelect
             label="Is your client using any medication assisted therapies?"
             placeholder="Pick value(s)"
-            data={['Buprenorphine', 'Naloxone', 'Naltrexone', 'Methadone', 'Suboxone', 'Sublocade', 'Vivitrol', 'Other']}
+            data={['buprenorphine', 'naloxone', 'naltrexone', 'methadone', 'suboxone', 'sublocade', 'vivitrol', 'other']}
             {...form.getInputProps('usingMedicationAssistedTherapies')}
           />
           <MultiSelect
             label="Is your client using any substances?"
             placeholder="Pick value(s)"
-            data={['Alcohol', 'Cocaine', 'Ecstasy', 'Heroin', 'Marijuana', 'Methamphetamine', 'Opioids', 'Other']}
+            data={['alcohol', 'cocaine', 'ecstasy', 'heroin', 'marijuana', 'methamphetamine', 'opioids', 'other']}
             {...form.getInputProps('usingSubstances')}
           />
           <MultiSelect
             label="Does your client have any mental health diagnoses?"
             placeholder="Pick value(s)"
-            data={['Anxiety', 'Bipolar', 'Depression', 'Obsessive-compulsive disorder', 'Post-traumatic stress disorder', 'Schizophrenia', 'Other']}
+            data={['anxiety', 'bipolar', 'depression', 'obsessive-compulsive disorder', 'post-traumatic stress disorder', 'schizophrenia', 'other']}
             {...form.getInputProps('mentalHealthDiagnoses')}
           />
           <Select

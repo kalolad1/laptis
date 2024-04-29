@@ -178,7 +178,7 @@ function OtherCriteria ({ acceptsPatientsWithCoOccuringDisorders, acceptsPatient
 
     if (acceptsPatientsWithCoOccuringDisorders) {
       criteriaContent.push(
-        <Flex gap="md">
+        <Flex gap="md" key="coOccuringDisorders">
           <IconBrain size={24} style={{ flexShrink: 0 }} />
           <Text className={baseClasses.normal_text}><b>Accepts patients with other disorders</b></Text>
         </Flex>
@@ -186,7 +186,7 @@ function OtherCriteria ({ acceptsPatientsWithCoOccuringDisorders, acceptsPatient
     }
     if (acceptsPatientsOnMethadone) {
       criteriaContent.push(
-        <Flex gap="md">
+        <Flex gap="md" key="onMethadone">
           <IconPill size={24} style={{ flexShrink: 0 }} />
           <Text className={baseClasses.normal_text}><b>Accepts patients on methadone</b></Text>
         </Flex>
@@ -194,7 +194,7 @@ function OtherCriteria ({ acceptsPatientsWithCoOccuringDisorders, acceptsPatient
     }
     if (acceptsPatientsWithDisabilities) {
       criteriaContent.push(
-        <Flex gap="md">
+        <Flex gap="md" key="withDisabilities">
           <IconDisabled size={24} style={{ flexShrink: 0 }} />
           <Text className={baseClasses.normal_text}><b>Accepts patients with disabilities</b></Text>
         </Flex>
@@ -202,7 +202,7 @@ function OtherCriteria ({ acceptsPatientsWithCoOccuringDisorders, acceptsPatient
     }
     if (acceptsPatientsWhoArePregnant) {
       criteriaContent.push(
-        <Flex gap="md">
+        <Flex gap="md" key="whoArePregnant">
           <IconBabyBottle size={24} style={{ flexShrink: 0 }} />
           <Text className={baseClasses.normal_text}><b>Accepts pregnant patients</b></Text>
         </Flex>
