@@ -84,10 +84,12 @@ function FirstLine ({ name }: FirstLineProps): JSX.Element {
 }
 
 function StarReviewDisplay (): JSX.Element {
+  // TODO: Replace with actual rating
+  const rating = (Math.random() * 3 + 2).toFixed(1)
   return (
     <Group gap={4} wrap="nowrap">
       <IconStarFilled size={12} />
-      <Text className={baseClasses.normal_text}>4.5</Text>
+      <Text className={baseClasses.normal_text}>{rating}</Text>
     </Group>
   )
 }
