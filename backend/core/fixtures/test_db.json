@@ -13,7 +13,7 @@
       "eligible_medications": "[\"methadone\"]",
       "eligible_mental_health_diagnoses": "[\"depression\", \"anxiety\", \"ADHD\"]",
       "eligible_health_insurances": "[\"MassHealth\"]",
-      "is_disability_compatible": true,
+      "accepts_patients_with_disabilities": true,
       "is_faith_based_treatment": false
     }
   },
@@ -31,7 +31,7 @@
       "eligible_medications": "[\"methadone\"]",
       "eligible_mental_health_diagnoses": "[\"depression\", \"anxiety\", \"ADHD\"]",
       "eligible_health_insurances": "[\"depression\", \"anxiety\", \"ADHD\"]",
-      "is_disability_compatible": true,
+      "accepts_patients_with_disabilities": true,
       "is_faith_based_treatment": false
     }
   },
@@ -49,7 +49,7 @@
       "eligible_medications": "[\"methadone\"]",
       "eligible_mental_health_diagnoses": "[\"PTSD\", \"anxiety\", \"ADHD\"]",
       "eligible_health_insurances": "[\"Aetna\"]",
-      "is_disability_compatible": true,
+      "accepts_patients_with_disabilities": true,
       "is_faith_based_treatment": false
     }
   }

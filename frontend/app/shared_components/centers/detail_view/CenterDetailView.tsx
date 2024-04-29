@@ -88,9 +88,9 @@ function Information ({ center, userPatientId, patientApplicationContextId }: In
         </Grid.Col>
         <Grid.Col span={{ md: 4 }}>
           <Stack gap="lg">
-            <EligibilityCriteria />
-            <Insurance />
-            <OtherCriteria />
+            <EligibilityCriteria eligibleAgeMinimum={center.eligibleAgeMinimum} eligibleAgeMaximum={center.eligibleAgeMaximum} eligibleSexes={center.eligibleSexes} />
+            <Insurance acceptsPatientsWhoAreUninsured={center.acceptsPatientsWhoAreUninsured} eligibleHealthInsurances={center.eligibleHealthInsurances} />
+            <OtherCriteria acceptsPatientsOnMethadone={center.acceptsPatientsOnMethadone} acceptsPatientsWhoArePregnant={center.acceptsPatientsWhoArePregnant} acceptsPatientsWithCoOccuringDisorders={center.acceptsPatientsWithCoOccuringDisorders} acceptsPatientsWithDisabilities={center.acceptsPatientsWithDisabilities} />
           </Stack>
         </Grid.Col>
       </Grid>
@@ -106,64 +106,125 @@ function CenterDescription (): JSX.Element {
   )
 }
 
-function EligibilityCriteria (): JSX.Element {
+interface EligibilityCriteriaProps {
+  eligibleAgeMinimum: number
+  eligibleAgeMaximum: number
+  eligibleSexes: string[]
+}
+
+function EligibilityCriteria ({ eligibleAgeMinimum, eligibleAgeMaximum, eligibleSexes }: EligibilityCriteriaProps): JSX.Element {
+  function getEligibleAgesText (eligibleAgeMinimum: number, eligibleAgeMaximum: number): string {
+    if (eligibleAgeMaximum > 125) {
+      return `${eligibleAgeMinimum}+`
+    }
+    return `${eligibleAgeMinimum}-${eligibleAgeMaximum}`
+  }
+
+  const eligibleAgesText = getEligibleAgesText(eligibleAgeMinimum, eligibleAgeMaximum)
+
   return (
     <Stack gap="md">
       <Text size='lg'>Eligibility Criteria</Text>
       <Stack gap="sm">
         <Flex gap="md">
-          <IconTimeline size={24} />
-          <Text className={baseClasses.normal_text}><b>Eligible ages:</b> 18+</Text>
+          <IconTimeline size={24} style={{ flexShrink: 0 }} />
+          <Text className={baseClasses.normal_text}><b>Eligible ages:</b> {eligibleAgesText}</Text>
         </Flex>
         <Flex gap="md">
-          <IconUser size={24} />
-          <Text className={baseClasses.normal_text}><b>Eligible genders:</b> male</Text>
+          <IconUser size={24} style={{ flexShrink: 0 }} />
+          <Text className={baseClasses.normal_text}><b>Eligible genders:</b> {eligibleSexes.join(', ')}</Text>
         </Flex>
       </Stack>
     </Stack>
   )
 }
 
-function Insurance (): JSX.Element {
+interface InsuranceProps {
+  eligibleHealthInsurances: string[]
+  acceptsPatientsWhoAreUninsured: boolean
+}
+
+function Insurance ({ eligibleHealthInsurances, acceptsPatientsWhoAreUninsured }: InsuranceProps): JSX.Element {
   return (
     <Stack gap="md">
       <Text size='lg'>Insurance</Text>
       <Stack gap="sm">
-        <Flex gap="md">
-          <IconAmbulance size={24} />
-          <Text className={baseClasses.normal_text}><b>Accepts uninsured</b></Text>
-        </Flex>
-        <Flex gap="md">
-          <IconBrandMastercard size={24} />
-          <Text className={baseClasses.normal_text}><b>Insurances accepted: </b>Mass Health, Aetna</Text>
+        {acceptsPatientsWhoAreUninsured && (
+          <Flex gap="md">
+            <IconAmbulance size={24} style={{ flexShrink: 0 }} />
+            <Text className={baseClasses.normal_text}><b>Accepts uninsured</b></Text>
+          </Flex>
+        )}
+
+        <Flex gap="md" >
+          <IconBrandMastercard style={{ flexShrink: 0 }} size={24} />
+          <Text className={baseClasses.normal_text}><b>Insurances accepted: </b>{eligibleHealthInsurances.join(', ')}</Text>
         </Flex>
       </Stack>
     </Stack>
   )
 }
 
-function OtherCriteria (): JSX.Element {
-  return (
-    <Stack gap="md">
-      <Text size='lg'>Other Criteria</Text>
-      <Stack gap="sm">
+interface OtherCriteriaProps {
+  acceptsPatientsWithCoOccuringDisorders: boolean
+  acceptsPatientsOnMethadone: boolean
+  acceptsPatientsWhoArePregnant: boolean
+  acceptsPatientsWithDisabilities: boolean
+}
+
+function OtherCriteria ({ acceptsPatientsWithCoOccuringDisorders, acceptsPatientsOnMethadone, acceptsPatientsWhoArePregnant, acceptsPatientsWithDisabilities }: OtherCriteriaProps): JSX.Element {
+  function getCriteriaContent (): any {
+    const criteriaContent = []
+
+    if (acceptsPatientsWithCoOccuringDisorders) {
+      criteriaContent.push(
         <Flex gap="md">
-          <IconBrain size={30} />
-          <Text className={baseClasses.normal_text}><b>Accepts patients with co-occuring disorders</b></Text>
+          <IconBrain size={24} style={{ flexShrink: 0 }} />
+          <Text className={baseClasses.normal_text}><b>Accepts patients with other disorders</b></Text>
         </Flex>
+      )
+    }
+    if (acceptsPatientsOnMethadone) {
+      criteriaContent.push(
         <Flex gap="md">
-          <IconPill size={24} />
+          <IconPill size={24} style={{ flexShrink: 0 }} />
           <Text className={baseClasses.normal_text}><b>Accepts patients on methadone</b></Text>
         </Flex>
+      )
+    }
+    if (acceptsPatientsWithDisabilities) {
+      criteriaContent.push(
         <Flex gap="md">
-          <IconDisabled size={24} />
+          <IconDisabled size={24} style={{ flexShrink: 0 }} />
           <Text className={baseClasses.normal_text}><b>Accepts patients with disabilities</b></Text>
         </Flex>
+      )
+    }
+    if (acceptsPatientsWhoArePregnant) {
+      criteriaContent.push(
         <Flex gap="md">
-          <IconBabyBottle size={24} />
+          <IconBabyBottle size={24} style={{ flexShrink: 0 }} />
           <Text className={baseClasses.normal_text}><b>Accepts pregnant patients</b></Text>
         </Flex>
+      )
+    }
+    return criteriaContent
+  }
+
+  const criteriaContent = getCriteriaContent()
+  if (criteriaContent.length > 0) {
+    return (
+      <Stack gap="md">
+        <Text size='lg'>Other Criteria</Text>
+        <Stack gap="sm">
+          {criteriaContent}
+        </Stack>
       </Stack>
+    )
+  }
+
+  return (
+    <Stack gap="md">
     </Stack>
   )
 }
@@ -175,8 +236,8 @@ interface QuickCenterStatsProps {
 
 function QuickCenterStats ({ eligibleHealthInsurances, bedsAvailable }: QuickCenterStatsProps): any {
   const bedsAvailableText = bedsAvailable === 1 ? `${bedsAvailable} bed available` : `${bedsAvailable} beds available`
-
+  const eligibleHealthInsurancesText = eligibleHealthInsurances.slice(0, 3).join(', ')
   return (
-    <Text className={baseClasses.sub_text}>{bedsAvailableText} • 100 total beds • Accepts {eligibleHealthInsurances.join(', ')}</Text>
+    <Text className={baseClasses.sub_text}>{bedsAvailableText} • Accepts {eligibleHealthInsurancesText}</Text>
   )
 }

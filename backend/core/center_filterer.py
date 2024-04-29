@@ -37,7 +37,7 @@ class CenterFilterer:
 
         # Is the patient's mobility compatible with the center?
         if self._user.patient.has_disability:
-            centers = centers.exclude(is_disability_compatible=False)
+            centers = centers.exclude(accepts_patients_with_disabilities=False)
 
         # Is the patient open to faith-based treatment?
         if not self._user.patient.is_open_to_faith_based_treatment:

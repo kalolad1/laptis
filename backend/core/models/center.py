@@ -73,14 +73,13 @@ class Center(models.Model):
         models.CharField(max_length=200), default=get_eligible_health_insurances_default
     )
 
-    is_disability_compatible = models.BooleanField(default=True)
-    is_faith_based_treatment = models.BooleanField(default=False)
-
     accepts_patients_with_co_occuring_disorders = models.BooleanField(default=False)
     accepts_patients_on_methadone = models.BooleanField(default=False)
     accepts_patients_who_are_pregnant = models.BooleanField(default=False)
     accepts_patients_with_disabilities = models.BooleanField(default=False)
     accepts_patients_who_are_uninsured = models.BooleanField(default=False)
+
+    is_faith_based_treatment = models.BooleanField(default=False)
 
     available_beds = models.IntegerField(default=0)
 

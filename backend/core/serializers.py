@@ -57,6 +57,14 @@ class CenterSerializer(serializers.ModelSerializer[Center]):
             "website",
             "eligible_health_insurances",
             "available_beds",
+            "eligible_age_minimum",
+            "eligible_age_maximum",
+            "eligible_sexes",
+            "accepts_patients_with_co_occuring_disorders",
+            "accepts_patients_on_methadone",
+            "accepts_patients_who_are_pregnant",
+            "accepts_patients_with_disabilities",
+            "accepts_patients_who_are_uninsured",
         ]
 
 

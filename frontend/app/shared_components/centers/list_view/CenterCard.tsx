@@ -50,6 +50,7 @@ function PictureArea ({ image, centerType, availableBeds }: PictureAreaProps): J
     'The Gavin Foundation - Devine Recovery Center.png',
     'Victory House.png'
   ]
+  // TODO: Replace with actual image
   const randomImage = '../../../centers/' + images[Math.floor(Math.random() * images.length)]
 
   return (

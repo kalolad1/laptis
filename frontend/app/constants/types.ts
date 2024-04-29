@@ -10,6 +10,14 @@ export interface Center {
   website: string
   eligibleHealthInsurances: string[]
   availableBeds: number
+  eligibleAgeMinimum: number
+  eligibleAgeMaximum: number
+  eligibleSexes: string[]
+  acceptsPatientsWithCoOccuringDisorders: boolean
+  acceptsPatientsOnMethadone: boolean
+  acceptsPatientsWhoArePregnant: boolean
+  acceptsPatientsWithDisabilities: boolean
+  acceptsPatientsWhoAreUninsured: boolean
 }
 
 export interface NewPatientInfo {
